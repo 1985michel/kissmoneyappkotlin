@@ -1,16 +1,18 @@
 package com.example.kissmoney.interacao
 
 import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -30,43 +32,46 @@ class BoasvindasFragment : Fragment() {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_boasvindas, container, false)
 
-        val binding = DataBindingUtil.inflate<FragmentBoasvindasBinding>(inflater,R.layout.fragment_boasvindas,container,false)
+        val binding = DataBindingUtil.inflate<FragmentBoasvindasBinding>(
+            inflater,
+            R.layout.fragment_boasvindas,
+            container,
+            false
+        )
 
         //apresentando o script inicial
 
 
         //binding.button.setOnClickListener {
 
-            println(">>>>>>>>>>> entrando")
-            val dialog = Dialog(activity as AppCompatActivity)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setCancelable(false)
-            dialog.setContentView(R.layout.base_de_comunicacao)
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-            var msgEditText = dialog.findViewById(R.id.msg1textView) as TextView
+        val dialog = Dialog(activity as AppCompatActivity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.base_de_comunicacao)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-            var texto = "Este é um grande texto que estou utilizando para verificar como fica.\nAté que fica bom"
-            typingAnimation(msgEditText,texto,4 )
+        var msgEditText = dialog.findViewById(R.id.msg1textView) as TextView
+
+        var texto =
+            "Este é um grande texto que estou utilizando para verificar como fica.\nAté que fica bom"
+
+        val mp = playSound()
+        typingAnimation(msgEditText, texto, 1, mp)
 
 
-            var nextBtn = dialog.findViewById(R.id.nextButton) as ImageView
-            var backBtn = dialog.findViewById(R.id.backButton) as ImageView
-            var closeBtn = dialog.findViewById(R.id.closeButton) as ImageView
 
-            nextBtn.setOnClickListener {  }
-            backBtn.setOnClickListener {  }
-            closeBtn.setOnClickListener { dialog.dismiss() }
-            dialog.show()
-            setLarguraEAltura(dialog) {}
+
+        var nextBtn = dialog.findViewById(R.id.nextButton) as ImageView
+        var backBtn = dialog.findViewById(R.id.backButton) as ImageView
+        var closeBtn = dialog.findViewById(R.id.closeButton) as ImageView
+
+        nextBtn.setOnClickListener { }
+        backBtn.setOnClickListener { }
+        closeBtn.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+        setLarguraEAltura(dialog) {}
         //}
-
-
-
-
-
-
-
 
 
         return binding.root
@@ -92,18 +97,41 @@ class BoasvindasFragment : Fragment() {
         callback()
     }
 
-    private fun typingAnimation(view: TextView, text: String, length: Int) {
+    private fun typingAnimation(view: TextView, text: String, length: Int, mp: MediaPlayer) {
+
         var delay = 100L
-        if(Character.isWhitespace(text.elementAt(length-1))){
-            delay = 300L
+        if (Character.isWhitespace(text.elementAt(length - 1))) {
+            delay = 200L
         }
-        view.text = text.substring(0,length)
+        view.text = text.substring(0, length)
+
         when (length) {
-            text.length -> return
+            text.length -> {
+                mp.stop()
+                return
+            }
             else -> Handler().postDelayed({
-                typingAnimation(view, text, length+1 )
+                typingAnimation(view, text, length + 1,mp)
             }, delay)
         }
+
+
+    }
+
+    fun playSound(): MediaPlayer {
+        Log.v(TAG, "Initializing sounds...")
+
+
+        var resId = getResources().getIdentifier(R.raw.keyboard3.toString(),
+            "raw", activity?.packageName)
+
+        val mp: MediaPlayer = MediaPlayer()
+        val mediaPlayer = MediaPlayer.create(activity, resId)
+        mediaPlayer.isLooping =  true
+        mediaPlayer.start()
+
+        return mediaPlayer
+
     }
 
 }
