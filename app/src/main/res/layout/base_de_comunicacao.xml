@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/msg1textView"
+        style="@style/padraoTextView"
+        android:layout_width="371dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:paddingLeft="16dp"
+        android:text="@string/boas_vindas"
+        app:layout_constraintBottom_toTopOf="@+id/nextButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonClose"
+        app:layout_constraintVertical_bias="0.556" />
+
+    <ImageView
+        android:id="@+id/nextButton"
+        android:layout_width="46dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/totheright"
+        app:layout_constraintEnd_toEndOf="@+id/msg1textView"
+        app:layout_constraintTop_toBottomOf="@+id/msg1textView" />
+
+    <Button
+        android:id="@+id/buttonClose"
+        android:layout_width="18dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/previousButton"
+        android:layout_width="46dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/totheleft"
+        app:layout_constraintStart_toStartOf="@+id/msg1textView"
+        app:layout_constraintTop_toTopOf="@+id/nextButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

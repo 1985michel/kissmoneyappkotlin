@@ -9,5 +9,14 @@
         android:id="@+id/logoFragment"
         android:name="com.example.kissmoney.logo.logoFragment"
         android:label="fragment_logo"
-        tools:layout="@layout/fragment_logo" />
+        tools:layout="@layout/fragment_logo" >
+        <action
+            android:id="@+id/action_logoFragment_to_boasvindasFragment"
+            app:destination="@id/boasvindasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/boasvindasFragment"
+        android:name="com.example.kissmoney.interacao.BoasvindasFragment"
+        android:label="fragment_boasvindas"
+        tools:layout="@layout/fragment_boasvindas" />
 </navigation>
