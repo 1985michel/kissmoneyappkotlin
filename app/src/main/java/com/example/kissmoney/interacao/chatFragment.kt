@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -46,13 +47,7 @@ class chatFragment : Fragment() {
         if (etapa.equals("boas vindas")) {
             var msgs = getBoasVindasStrings()
             chatManager(msgs,0)
-
         }
-
-
-
-
-
 
         return binding.root
     }
@@ -77,7 +72,11 @@ class chatFragment : Fragment() {
         dialog.setContentView(R.layout.base_de_comunicacao)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        var msgEditText = dialog.findViewById(R.id.msg1textView) as TextView
+        var msgEditText = dialog.findViewById(R.id.msg1textView) as EditText
+
+        msgEditText.isActivated = true
+        msgEditText.isPressed = true
+        msgEditText.requestFocus()
 
         val mp = playSound()
         typingAnimation(msgEditText, texto, 1, mp)
@@ -99,17 +98,21 @@ class chatFragment : Fragment() {
     }
 
 
-    private fun typingAnimation(view: TextView, text: String, length: Int, mp: MediaPlayer) {
+    private fun typingAnimation(view: EditText, text: String, length: Int, mp: MediaPlayer) {
 
         var delay = 100L
         if (Character.isWhitespace(text.elementAt(length - 1))) {
             delay = 200L
         }
-        view.text = text.substring(0, length)
+        
+        view.setText(text.substring(0, length))
+
+        view.setSelection(view.getText().length)
 
         when (length) {
             text.length -> {
                 mp.stop()
+                view.setSelection(view.getText().length)
                 return
             }
             else -> Handler().postDelayed({
