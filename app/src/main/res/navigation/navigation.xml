@@ -11,12 +11,12 @@
         android:label="fragment_logo"
         tools:layout="@layout/fragment_logo" >
         <action
-            android:id="@+id/action_logoFragment_to_boasvindasFragment"
-            app:destination="@id/boasvindasFragment" />
+            android:id="@+id/action_logoFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
     <fragment
-        android:id="@+id/boasvindasFragment"
-        android:name="com.example.kissmoney.interacao.BoasvindasFragment"
+        android:id="@+id/chatFragment"
+        android:name="com.example.kissmoney.interacao.chatFragment"
         android:label="fragment_boasvindas"
-        tools:layout="@layout/fragment_boasvindas" />
+        tools:layout="@layout/fragment_chat" />
 </navigation>

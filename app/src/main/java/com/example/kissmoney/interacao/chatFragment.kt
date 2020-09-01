@@ -19,10 +19,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.kissmoney.R
-import com.example.kissmoney.databinding.FragmentBoasvindasBinding
+import com.example.kissmoney.databinding.FragmentChatBinding
 
 
-class BoasvindasFragment : Fragment() {
+class chatFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -32,9 +32,9 @@ class BoasvindasFragment : Fragment() {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_boasvindas, container, false)
 
-        val binding = DataBindingUtil.inflate<FragmentBoasvindasBinding>(
+        val binding = DataBindingUtil.inflate<FragmentChatBinding>(
             inflater,
-            R.layout.fragment_boasvindas,
+            R.layout.fragment_chat,
             container,
             false
         )
@@ -42,7 +42,7 @@ class BoasvindasFragment : Fragment() {
         //apresentando o script inicial
 
 
-        //binding.button.setOnClickListener {
+
 
 
         val dialog = Dialog(activity as AppCompatActivity)
@@ -71,7 +71,7 @@ class BoasvindasFragment : Fragment() {
         closeBtn.setOnClickListener { dialog.dismiss() }
         dialog.show()
         setLarguraEAltura(dialog) {}
-        //}
+
 
 
         return binding.root

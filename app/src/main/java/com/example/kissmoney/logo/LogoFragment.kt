@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.example.kissmoney.MainActivity
 import com.example.kissmoney.R
-import com.example.kissmoney.databinding.FragmentBoasvindasBinding
 import com.example.kissmoney.databinding.FragmentLogoBinding
 
 
@@ -30,7 +28,7 @@ class LogoFragment : Fragment() {
             override fun onFinish() {
                 //set the new Content of your activity
                 //(activity as MainActivity).setContentView(R.layout.fragment_boasvindas)
-                Navigation.findNavController(requireView()).navigate(R.id.action_logoFragment_to_boasvindasFragment)
+                Navigation.findNavController(requireView()).navigate(R.id.action_logoFragment_to_chatFragment)
 
             }
         }.start()
