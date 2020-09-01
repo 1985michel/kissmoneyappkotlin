@@ -18,5 +18,9 @@
         android:id="@+id/chatFragment"
         android:name="com.example.kissmoney.interacao.chatFragment"
         android:label="fragment_boasvindas"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="msgs"
+            app:argType="string" />
+    </fragment>
 </navigation>

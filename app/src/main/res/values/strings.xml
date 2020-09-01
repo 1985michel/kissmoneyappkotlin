@@ -2,5 +2,34 @@
     <string name="app_name">KISS Money</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="boas_vindas">Então você se cansou de ser pobre?\nQue novidade...\nEste é o que? O décimo app que você instala para gerenciar seus trocados?</string>
+
+
+    <!--BOAS VINDAS-->
+    <string name="bv1">Então você se cansou de ser pobre?\nQue novidade...\nEste é o que? O décimo app que você instala para gerenciar seus trocados?</string>
+    <string name="bv2">E qual dos apps antigos te deixou mais rico?</string>
+    <string name="bv3">Nenhum?!</string>
+    <string name="bv4">Mas você não perdeu a esperança, não é?\nVocê é esperto e sabe o que está fazendo.</string>
+    <string name="bv5">Só que não...</string>
+    <string name="bv6">O que você fez até agora te levou onde você está agora. Para chegar a um lugar diferente, deve fazer algo diferente. </string>
+    <string name="bv7">Motivacional?\n\nNão!</string>
+    <string name="bv8">O que estou te dizendo é que você não faz a mínima ideia do que está fazendo com os trocados que ganha por aturar aquelas pessoas dia após dia.</string>
+    <string name="bv9">Me diga, quanto você enriqueceu este mês?\nDigo, o seu patrimônio está crescendo ou diminuindo?</string>
+    <string name="bv10">Quanto você custa por mês?</string>
+    <string name="bv11">É...  você não sabe.</string>
+    <string name="bv12">Não.\nMais ou menos não é saber.</string>
+    <string name="bv13">Se você perdesse seu trabalho hoje, com o dinheiro que tem agora você se manteria por quanto tempo?</string>
+    <string name="bv14">Não sabe, não é?</string>
+    <string name="bv15">Mas eu sei.</string>
+    <string name="bv16">Ou melhor, vamos analisar os dados e descobrir.</string>
+
+    <!--PRÉ TUTORIAL-->
+    <string name="pt1">Certo. Há algumas coisas que você precisa saber.</string>
+    <string name="pt2">1 - anotar cada centavo que gasta não resolve o problema. Por que? Por que você gastou. Simples assim. E também porque este é um hábito insustentável. Você anota, anota e quando vai conferir, sempre esqueceu de anotar algo e o saldo nunca bate.</string>
+    <string name="pt3">2 - Gerenciar suas finanças exige ter à mão os dados necessários para isso. Quanto você ganhou este mês? Quanto você custa por dia? Quanto você ganha por hora? Dos seus compromissos mensais, quais ainda falta pagar? Você já começa o mês devendo quanto? Se você não sabe esses dados, você não sabe nada e está caminhando no escuro tentanto achar a porta de saída do mês atual para o mês seguinte.
+</string>
+    <string name="pt4">3 - Cuidar das suas finanças deve ser simples. Quando eu digo simples quero dizer: em dois minutos ou menos e sem fazer nenhuma conta.
+</string>
+    <string name="pt5">4 - (e último, não reclame. Você já viu preguiçoso enriquecer?) Perguntas como: Posso pagar por isso? Posso me compromoter com mais esta prestação? (você não aprende, não é?) Se eu for demitido hoje, como eu fico?
+Estas respostas devem estar disponível na hora, sem complicação e de forma objetiva.</string>
+    <string name="pt6">Para começar, existem 7 Princípios que regem o controle financeiro. Mas Sei que você pode estar ocupado (Netflix...), então você pode lê-los depois.\nO que vai ser? </string>
 </resources>

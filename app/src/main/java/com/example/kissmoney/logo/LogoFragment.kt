@@ -28,7 +28,9 @@ class LogoFragment : Fragment() {
             override fun onFinish() {
                 //set the new Content of your activity
                 //(activity as MainActivity).setContentView(R.layout.fragment_boasvindas)
-                Navigation.findNavController(requireView()).navigate(R.id.action_logoFragment_to_chatFragment)
+                //Navigation.findNavController(requireView()).navigate(R.id.action_logoFragment_to_chatFragment)
+                Navigation.findNavController(requireView()).navigate(LogoFragmentDirections.actionLogoFragmentToChatFragment("boas vindas"))
+
 
             }
         }.start()

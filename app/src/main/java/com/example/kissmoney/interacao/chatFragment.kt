@@ -25,6 +25,7 @@ import com.example.kissmoney.databinding.FragmentChatBinding
 class chatFragment : Fragment() {
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,11 +40,36 @@ class chatFragment : Fragment() {
             false
         )
 
-        //apresentando o script inicial
+        val args = chatFragmentArgs.fromBundle(requireArguments())
+        var etapa = args.msgs
+
+        if (etapa.equals("boas vindas")) {
+            var msgs = getBoasVindasStrings()
+            chatManager(msgs,0)
+
+        }
 
 
 
 
+
+
+        return binding.root
+    }
+
+    fun chatManager(msgs: HashMap<Int, String>, posicao: Int){
+        var posi = posicao
+        msgs.get(posicao)?.let {
+            chating(it){
+                if (posi<msgs.size){
+                    posi++
+                    chatManager(msgs,posi)
+                }
+            }
+        }
+    }
+
+    private fun chating(texto : String, callback: () -> Unit) {
 
         val dialog = Dialog(activity as AppCompatActivity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -53,49 +79,25 @@ class chatFragment : Fragment() {
 
         var msgEditText = dialog.findViewById(R.id.msg1textView) as TextView
 
-        var texto =
-            "Este é um grande texto que estou utilizando para verificar como fica.\nAté que fica bom"
-
         val mp = playSound()
         typingAnimation(msgEditText, texto, 1, mp)
-
-
 
 
         var nextBtn = dialog.findViewById(R.id.nextButton) as ImageView
         var backBtn = dialog.findViewById(R.id.backButton) as ImageView
         var closeBtn = dialog.findViewById(R.id.closeButton) as ImageView
 
-        nextBtn.setOnClickListener { }
-        backBtn.setOnClickListener { }
+        nextBtn.setOnClickListener {
+            dialog.dismiss()
+            callback()
+
+        }
+        backBtn.setOnClickListener { callback() }
         closeBtn.setOnClickListener { dialog.dismiss() }
         dialog.show()
         setLarguraEAltura(dialog) {}
-
-
-
-        return binding.root
     }
 
-    fun setLarguraEAltura(dialog: Dialog, callback: () -> Unit) {
-        val height = getHeight {}
-        val width = getWidth {}
-        dialog.window?.setLayout(width, height / 2)
-        callback()
-
-    }
-
-    private fun getHeight(callback: () -> Unit): Int {
-        val height = Resources.getSystem().getDisplayMetrics().heightPixels
-        return height
-        callback()
-    }
-
-    private fun getWidth(callback: () -> Unit): Int {
-        val width: Int = Resources.getSystem().getDisplayMetrics().widthPixels
-        return width
-        callback()
-    }
 
     private fun typingAnimation(view: TextView, text: String, length: Int, mp: MediaPlayer) {
 
@@ -132,6 +134,51 @@ class chatFragment : Fragment() {
 
         return mediaPlayer
 
+    }
+
+    fun getBoasVindasStrings() : HashMap<Int,String> {
+        var map = HashMap<Int, String>()
+
+        map.put(0,getString(R.string.bv1))
+        map.put(1,getString(R.string.bv2))
+        map.put(2,getString(R.string.bv3))
+        map.put(3,getString(R.string.bv4))
+        map.put(4,getString(R.string.bv5))
+        map.put(5,getString(R.string.bv6))
+        map.put(6,getString(R.string.bv7))
+        map.put(7,getString(R.string.bv8))
+        map.put(8,getString(R.string.bv9))
+        map.put(9,getString(R.string.bv10))
+        map.put(10,getString(R.string.bv11))
+        map.put(11,getString(R.string.bv12))
+        map.put(12,getString(R.string.bv13))
+        map.put(13,getString(R.string.bv14))
+        map.put(14,getString(R.string.bv15))
+        map.put(15,getString(R.string.bv16))
+
+        return map
+    }
+
+
+
+    fun setLarguraEAltura(dialog: Dialog, callback: () -> Unit) {
+        val height = getHeight {}
+        val width = getWidth {}
+        dialog.window?.setLayout(width, height / 2)
+        callback()
+
+    }
+
+    private fun getHeight(callback: () -> Unit): Int {
+        val height = Resources.getSystem().getDisplayMetrics().heightPixels
+        return height
+        callback()
+    }
+
+    private fun getWidth(callback: () -> Unit): Int {
+        val width: Int = Resources.getSystem().getDisplayMetrics().widthPixels
+        return width
+        callback()
     }
 
 }
