@@ -12,11 +12,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.ui.NavigationUI
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        @Suppress("UNUSED_VARIABLE")
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
     }
 

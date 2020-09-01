@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/logoFragment">
+
+    <fragment
+        android:id="@+id/logoFragment"
+        android:name="com.example.kissmoney.logo.logoFragment"
+        android:label="fragment_logo"
+        tools:layout="@layout/fragment_logo" />
+</navigation>
