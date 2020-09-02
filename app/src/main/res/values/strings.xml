@@ -32,4 +32,6 @@
     <string name="pt5">4 - (e último, não reclame. Você já viu preguiçoso enriquecer?) Perguntas como: Posso pagar por isso? Posso me compromoter com mais esta prestação? (você não aprende, não é?) Se eu for demitido hoje, como eu fico?
 Estas respostas devem estar disponível na hora, sem complicação e de forma objetiva.</string>
     <string name="pt6">Para começar, existem 7 Princípios que regem o controle financeiro. Mas Sei que você pode estar ocupado (Netflix...), então você pode lê-los depois.\nO que vai ser? </string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

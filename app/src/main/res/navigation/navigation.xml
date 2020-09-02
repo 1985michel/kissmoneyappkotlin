@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_logoFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_logoFragment_to_mesFragment"
+            app:destination="@id/mesFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -23,4 +26,9 @@
             android:name="msgs"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/mesFragment"
+        android:name="com.example.kissmoney.mes.mesFragment"
+        android:label="fragment_mes"
+        tools:layout="@layout/fragment_mes" />
 </navigation>
