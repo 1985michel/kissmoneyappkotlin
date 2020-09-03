@@ -9,9 +9,10 @@
         android:background="@color/cardview_shadow_end_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:background="@drawable/base_botton"
+            android:background="@drawable/base_botton2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -42,10 +43,10 @@
                 android:layout_width="37dp"
                 android:layout_height="35dp"
                 android:src="@drawable/creditcard"
+                app:layout_constraintBottom_toBottomOf="@+id/gastosImageView"
                 app:layout_constraintEnd_toStartOf="@+id/walletImageView"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/gastosImageView"
-                app:layout_constraintTop_toTopOf="@+id/gastosImageView" />
+                app:layout_constraintStart_toEndOf="@+id/gastosImageView" />
 
             <ImageView
                 android:id="@+id/walletImageView"
@@ -97,14 +98,15 @@
                 app:layout_constraintEnd_toEndOf="@+id/walletImageView"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/walletImageView" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
+            android:layout_width="fill_parent"
+            android:layout_height="135dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="13dp"
             android:background="@drawable/cornerlesssquare"
             app:layout_constraintEnd_toEndOf="parent"
@@ -131,10 +133,10 @@
                 style="@style/padraoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="26dp"
                 android:text="Setembro, 2020"
                 app:layout_constraintBottom_toTopOf="@+id/valorBalancoTextView"
-                app:layout_constraintStart_toStartOf="@+id/valorBalancoTextView" />
+                app:layout_constraintStart_toStartOf="@+id/valorBalancoTextView"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/variacaoDiasMesTextView"
@@ -175,13 +177,102 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="67dp"
+            android:layout_marginTop="32dp"
             android:text="Balanço"
             android:textColor="@android:color/primary_text_light"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBarDiasDeLiberdade"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="310dp"
+            android:layout_height="290dp"
+            android:max="100"
+            android:progress="100"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:rotation="270"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintVertical_bias="0.494" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPoupadoNoMes"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="256dp"
+            android:layout_height="242dp"
+            android:color="@color/greyfont"
+            android:max="100"
+            android:progress="100"
+            android:progressDrawable="@drawable/circular_progress_bar_3"
+            android:rotation="270"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarDiasDeLiberdade"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarDiasDeLiberdade"
+            app:layout_constraintStart_toStartOf="@+id/progressBarDiasDeLiberdade"
+            app:layout_constraintTop_toTopOf="@+id/progressBarDiasDeLiberdade" />
+
+        <ProgressBar
+            android:id="@+id/progressBarGastoNoMes"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:color="@color/greyfont"
+            android:max="100"
+            android:progress="100"
+            android:progressDrawable="@drawable/circular_progress_bar_2"
+            android:rotation="270"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarPoupadoNoMes"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarPoupadoNoMes"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPoupadoNoMes"
+            app:layout_constraintTop_toTopOf="@+id/progressBarPoupadoNoMes" />
+
+        <TextView
+            android:id="@+id/textoCentralTextView"
+            style="@style/padraoTextView"
+            android:layout_width="138dp"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarGastoNoMes"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarGastoNoMes"
+            app:layout_constraintStart_toStartOf="@+id/progressBarGastoNoMes"
+            app:layout_constraintTop_toTopOf="@+id/progressBarGastoNoMes"
+            app:layout_constraintVertical_bias="0.58" />
+
+        <Button
+            android:id="@+id/buttonGreen"
+            android:layout_width="30dp"
+            android:layout_height="26dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/green"
+            app:layout_constraintBottom_toTopOf="@+id/buttonRed"
+            app:layout_constraintEnd_toStartOf="@+id/progressBarPoupadoNoMes"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonRed"
+            android:layout_width="30dp"
+            android:layout_height="26dp"
+            android:background="@color/red"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarGastoNoMes"
+            app:layout_constraintEnd_toStartOf="@+id/progressBarPoupadoNoMes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/progressBarGastoNoMes" />
+
+        <Button
+            android:id="@+id/buttonGrey"
+            android:layout_width="30dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/greyfont"
+            app:layout_constraintEnd_toStartOf="@+id/progressBarPoupadoNoMes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonRed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

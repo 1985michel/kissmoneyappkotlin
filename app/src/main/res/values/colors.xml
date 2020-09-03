@@ -5,4 +5,11 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="black_overlay">#66000000</color>
     <color name="lightgreybackground">#FCFCFE</color>
+
+    <color name="greyfont">#737373</color>
+    <color name="shadowtick">#808080</color>
+    <color name="shadow">#E0E0E0</color>
+    <color name="green">#32AB44</color>
+    <color name="red">#FF1A1A</color>
+
 </resources>

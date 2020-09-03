@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:shape="ring"-->
+<!--    android:innerRadiusRatio="2.5"-->
+<!--    android:thickness="10dp"-->
+<!--    android:useLevel="true">-->
+<!--    <solid android:color="@color/green" />-->
+<!--</shape>-->
+
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+<!--    <item>-->
+<!--        <shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            android:innerRadiusRatio="2.5"-->
+<!--            android:shape="ring"-->
+<!--            android:thickness="17dp"-->
+<!--            android:useLevel="true">-->
+<!--            <solid android:color="@color/shadow" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+    <!--    <item>-->
+    <!--        <shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--            android:shape="ring"-->
+    <!--            android:innerRadiusRatio="2.5"-->
+    <!--            android:thickness="11dp"-->
+    <!--            android:useLevel="true">-->
+    <!--            <solid android:color="@color/grey" />-->
+    <!--        </shape>-->
+    <!--    </item>-->
+
+<!--    <item>-->
+<!--        <shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            android:innerRadiusRatio="2.5"-->
+<!--            android:shape="ring"-->
+<!--            android:thickness="12dp"-->
+<!--            android:useLevel="true">-->
+<!--            <solid android:color="@color/shadowtick" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:innerRadiusRatio="2.5"
+            android:shape="ring"
+            android:thickness="11dp"
+            android:useLevel="true">
+            <solid android:color="@color/green" />
+        </shape>
+    </item>
+
+<!--    <item>-->
+<!--        <shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            android:innerRadiusRatio="2.5"-->
+<!--            android:shape="ring"-->
+<!--            android:thickness="1dp"-->
+<!--            android:useLevel="true">-->
+<!--            <solid android:color="@color/shadowtick" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+
+
+
+</layer-list>
