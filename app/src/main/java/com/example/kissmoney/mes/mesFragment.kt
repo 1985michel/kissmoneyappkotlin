@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.Navigation
 import com.example.kissmoney.R
 import com.example.kissmoney.databinding.FragmentChatBinding
 import com.example.kissmoney.databinding.FragmentMesBinding
@@ -53,6 +54,10 @@ class mesFragment : Fragment() {
 
         binding.buttonGrey.setOnClickListener {
             binding.textoCentralTextView.text = "Você investiu 10% da sua renda. Parabéns!"
+        }
+
+        binding.walletImageView.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_contasFragment)
         }
 
 

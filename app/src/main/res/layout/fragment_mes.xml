@@ -173,15 +173,12 @@
 
         <TextView
             android:id="@+id/textView7"
-            style="@style/padraoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="32dp"
             android:text="Balanço"
-            android:textColor="@android:color/primary_text_light"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            style="@style/tituloTextView"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toTopOf="parent" />
 

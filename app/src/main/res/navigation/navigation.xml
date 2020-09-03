@@ -30,5 +30,14 @@
         android:id="@+id/mesFragment"
         android:name="com.example.kissmoney.mes.mesFragment"
         android:label="fragment_mes"
-        tools:layout="@layout/fragment_mes" />
+        tools:layout="@layout/fragment_mes" >
+        <action
+            android:id="@+id/action_mesFragment_to_contasFragment"
+            app:destination="@id/contasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contasFragment"
+        android:name="com.example.kissmoney.contas.ContasFragment"
+        android:label="fragment_contas"
+        tools:layout="@layout/fragment_contas" />
 </navigation>

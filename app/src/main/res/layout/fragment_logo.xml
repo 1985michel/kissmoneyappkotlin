@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView2" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/nomeContaTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
@@ -42,8 +42,8 @@
             android:orientation="horizontal"
             android:text="e\ne\np"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="@+id/nomeContaTextView"
+            app:layout_constraintTop_toTopOf="@+id/nomeContaTextView" />
 
         <TextView
             android:id="@+id/textView4"
