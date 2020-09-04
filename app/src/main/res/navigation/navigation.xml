@@ -34,10 +34,17 @@
         <action
             android:id="@+id/action_mesFragment_to_contasFragment"
             app:destination="@id/contasFragment" />
+        <action
+            android:id="@+id/action_mesFragment_to_gatnhosFragment"
+            app:destination="@id/ganhosFragment" />
     </fragment>
     <fragment
         android:id="@+id/contasFragment"
         android:name="com.example.kissmoney.contas.ContasFragment"
         android:label="fragment_contas"
         tools:layout="@layout/fragment_contas" />
+    <fragment
+        android:id="@+id/ganhosFragment"
+        android:name="com.example.kissmoney.ganhos.GatnhosFragment"
+        android:label="GanhosFragment" />
 </navigation>

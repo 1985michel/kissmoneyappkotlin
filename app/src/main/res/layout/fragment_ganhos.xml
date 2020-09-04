@@ -1,7 +1,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.kissmoney.contas.ContasFragment">
+    tools:context="com.example.kissmoney.ganhos.GanhosFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -9,13 +9,13 @@
 
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textView"
             style="@style/tituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:text="Contas"
+            android:text="Ganhos"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,24 +26,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:text="Saldo:"
+            android:text="Total:"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
-            android:id="@+id/nomeDaContaTextView"
+            android:id="@+id/nomeDoGanhoTextView"
             style="@style/subtituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:text="Banco do Brasil"
+            android:text="Salário José"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewGanho" />
 
         <TextView
-            android:id="@+id/saldoTextView"
+            android:id="@+id/totalTextView"
             style="@style/tituloTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             app:layout_constraintStart_toEndOf="@+id/textView9" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewCaixa"
+            android:id="@+id/recyclerViewGanho"
             android:layout_width="400dp"
             android:layout_height="261dp"
             android:layout_marginStart="4dp"
@@ -65,48 +65,30 @@
             android:background="@android:color/darker_gray"
             app:layout_constraintBottom_toTopOf="@+id/nomeDaContaTextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/saldoTextView"
-            tools:listitem="@layout/item_contas" />
+            app:layout_constraintTop_toBottomOf="@+id/totalTextView"
+            tools:listitem="@layout/item_ganhos" />
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/valorGanhoTextView"
             style="@style/padraoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Tipo de Conta:"
-            app:layout_constraintStart_toStartOf="@+id/textView19"
-            app:layout_constraintTop_toBottomOf="@+id/nomeDaContaTextView" />
-
-        <Spinner
-            android:id="@+id/spinnerTipoDeConta"
-            style="@style/padraoTextView"
-            android:layout_width="0dp"
-            android:layout_height="27dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/saldoInicialTextView" />
-
-        <TextView
-            android:id="@+id/saldoInicialTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="68dp"
             android:text="R$ 150.000,00"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
             app:layout_constraintStart_toEndOf="@+id/textView19" />
 
         <TextView
-            android:id="@+id/saldoAtualTextView"
+            android:id="@+id/dataDoRecebimentoTextView"
             style="@style/padraoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="R$ 200.000,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
-            app:layout_constraintStart_toStartOf="@+id/saldoInicialTextView" />
+            android:text="01/01/2000"
+            app:layout_constraintBottom_toBottomOf="@+id/textView21"
+            app:layout_constraintStart_toStartOf="@+id/valorGanhoTextView"
+            app:layout_constraintTop_toTopOf="@+id/textView21" />
 
         <TextView
             android:id="@+id/textView23"
@@ -117,26 +99,26 @@
             android:layout_marginTop="16dp"
             android:text="No mês:"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/nomeDaContaTextView"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+            app:layout_constraintStart_toStartOf="@+id/nomeDoGanhoTextView"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <TextView
             android:id="@+id/variacaoTextView"
             style="@style/padraoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="R$ 30.000,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView24"
-            app:layout_constraintStart_toStartOf="@+id/saldoAtualTextView" />
+            android:text="+ R$ 1.300,00 (+8%)"
+            app:layout_constraintBottom_toBottomOf="@+id/textView24"
+            app:layout_constraintStart_toStartOf="@+id/dataDoRecebimentoTextView"
+            app:layout_constraintTop_toTopOf="@+id/textView24" />
 
         <TextView
             android:id="@+id/textView26"
             style="@style/padraoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Atualizado em:"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="Observação:"
+            app:layout_constraintBottom_toTopOf="@+id/textView21"
             app:layout_constraintStart_toStartOf="@+id/textView24"
             app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -145,39 +127,45 @@
             style="@style/padraoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Saldo Inicial:"
-            app:layout_constraintBottom_toTopOf="@+id/textView21"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:text="Valor:"
+            app:layout_constraintBottom_toTopOf="@+id/textView24"
             app:layout_constraintStart_toStartOf="@+id/textView23"
             app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
         <TextView
             android:id="@+id/textView21"
             style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Saldo Atual:"
-            app:layout_constraintBottom_toTopOf="@+id/textView24"
-            app:layout_constraintStart_toStartOf="@+id/textView19"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+            android:layout_width="76dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="16dp"
+            android:text="Data do Recebimento:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView26"
+            app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
         <TextView
             android:id="@+id/textView24"
             style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Variação:"
+            android:layout_width="86dp"
+            android:layout_height="29dp"
+            android:text="Em relação ao mês anterior:"
             app:layout_constraintBottom_toTopOf="@+id/textView26"
-            app:layout_constraintStart_toStartOf="@+id/textView21"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+            app:layout_constraintStart_toStartOf="@+id/textView19"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
         <TextView
-            android:id="@+id/dataAtualizacaoTextView"
+            android:id="@+id/observacaoTextView"
             style="@style/padraoTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="01/01/2000"
+            android:autoText="false"
+            android:hint="Algo que se queira falar"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollHorizontally="false"
+            android:text="Trabalhei horas extras"
+            android:textColor="@color/greyfont"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView26"
             app:layout_constraintStart_toStartOf="@+id/variacaoTextView" />
 
@@ -193,6 +181,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_add_black_24dp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            style="@style/padraoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Tipo de Ganho:"
+            app:layout_constraintStart_toStartOf="@+id/textView19"
+            app:layout_constraintTop_toBottomOf="@+id/nomeDoGanhoTextView" />
+
+        <Spinner
+            android:id="@+id/spinnerTipoDeGanho"
+            style="@style/padraoTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/valorGanhoTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

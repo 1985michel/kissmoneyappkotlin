@@ -33,7 +33,7 @@ limitations under the License. -->
         android:paddingBottom="8dp">
 
         <TextView
-            android:id="@+id/nomeContaTextView"
+            android:id="@+id/nomeGanhoTextView"
 
             style="@style/subtituloTextView"
             android:layout_width="0dp"
@@ -41,14 +41,13 @@ limitations under the License. -->
             android:layout_marginStart="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="12dp"
-            android:text="Banco do Brasil"
+            android:text="Salário do José"
             android:textAlignment="textStart"
             android:textAllCaps="false"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/contaIconImageView"
+            app:layout_constraintBottom_toBottomOf="@+id/ganhoIconImageView"
             app:layout_constraintEnd_toStartOf="@+id/atencaoImageView"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/contaIconImageView" />
+            app:layout_constraintStart_toEndOf="@+id/ganhoIconImageView" />
 
         <TextView
             android:id="@+id/valor_total_textView"
@@ -56,41 +55,41 @@ limitations under the License. -->
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:text="R$ 989.00,00"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="14sp"
             android:textStyle="normal"
-            app:layout_constraintEnd_toStartOf="@+id/atencaoImageView"
-            app:layout_constraintTop_toBottomOf="@+id/nomeContaTextView" />
+            app:layout_constraintEnd_toEndOf="@+id/nomeGanhoTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nomeGanhoTextView" />
 
         <ImageView
             android:id="@+id/atencaoImageView"
             android:layout_width="15dp"
             android:layout_height="25dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/nomeContaTextView"
+            app:layout_constraintBottom_toBottomOf="@+id/nomeGanhoTextView"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
-            android:id="@+id/contaIconImageView"
+            android:id="@+id/ganhoIconImageView"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:background="@drawable/invest_icon_list"
+            android:background="@drawable/trabalho_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/dataAtualizacaoTextView"
+            android:id="@+id/dataRecebimentoTextView"
             style="@style/padraoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="08 / Junho"
-            app:layout_constraintStart_toStartOf="@+id/nomeContaTextView"
-            app:layout_constraintTop_toBottomOf="@+id/nomeContaTextView" />
+            app:layout_constraintStart_toStartOf="@+id/nomeGanhoTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nomeGanhoTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

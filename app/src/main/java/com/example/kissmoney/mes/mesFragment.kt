@@ -60,6 +60,10 @@ class mesFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_contasFragment)
         }
 
+        binding.ganhosImageView.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_gatnhosFragment)
+        }
+
 
         return binding.root
 
