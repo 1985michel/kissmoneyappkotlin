@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lightgreybackground"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/cleanwhitesquare"
+        android:clickable="true"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/nomeCompromissoTextView"
+            style="@style/subtituloTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
+            android:text="Conta de Água"
+            app:layout_constraintBottom_toBottomOf="@+id/isRecorrenteImageView"
+            app:layout_constraintEnd_toStartOf="@+id/atencaoImageView"
+            app:layout_constraintStart_toEndOf="@+id/isRecorrenteImageView" />
+
+        <ImageView
+            android:id="@+id/atencaoImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/nomeCompromissoTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:srcCompat="@drawable/atencao_icon" />
+
+        <ImageView
+            android:id="@+id/isRecorrenteImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/despesa_recorrente_2" />
+
+        <TextView
+            android:id="@+id/dataVencimentoTextView"
+            style="@style/padraoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="06 / Junho"
+            app:layout_constraintStart_toStartOf="@+id/nomeCompromissoTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nomeCompromissoTextView" />
+
+        <TextView
+            android:id="@+id/valorCompromisso"
+            style="@style/subtituloTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            android:text="R$ 123.000,00"
+            app:layout_constraintEnd_toEndOf="@+id/nomeCompromissoTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nomeCompromissoTextView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

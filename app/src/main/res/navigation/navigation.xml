@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_mesFragment_to_gatnhosFragment"
             app:destination="@id/ganhosFragment" />
+        <action
+            android:id="@+id/action_mesFragment_to_compromissosFragment"
+            app:destination="@id/compromissosFragment" />
     </fragment>
     <fragment
         android:id="@+id/contasFragment"
@@ -47,4 +50,9 @@
         android:id="@+id/ganhosFragment"
         android:name="com.example.kissmoney.ganhos.GatnhosFragment"
         android:label="GanhosFragment" />
+    <fragment
+        android:id="@+id/compromissosFragment"
+        android:name="com.example.kissmoney.compromissos.CompromissosFragment"
+        android:label="fragment_compromissos"
+        tools:layout="@layout/fragment_compromissos" />
 </navigation>

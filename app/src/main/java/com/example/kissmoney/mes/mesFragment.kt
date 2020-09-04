@@ -64,6 +64,10 @@ class mesFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_gatnhosFragment)
         }
 
+        binding.cardImageView.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_compromissosFragment)
+        }
+
 
         return binding.root
 
