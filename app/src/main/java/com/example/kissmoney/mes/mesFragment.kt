@@ -1,18 +1,15 @@
 package com.example.kissmoney.mes
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.kissmoney.R
-import com.example.kissmoney.databinding.FragmentChatBinding
 import com.example.kissmoney.databinding.FragmentMesBinding
-import com.example.kissmoney.interacao.chatFragment
-import kotlinx.android.synthetic.main.fragment_mes.*
 
 
 class mesFragment : Fragment() {
@@ -46,14 +43,26 @@ class mesFragment : Fragment() {
 
         binding.buttonGreen.setOnClickListener {
             binding.textoCentralTextView.text = "125 Dias de Liberdade.\n Meta: 180 dias"
+            binding.progressBarDiasDeLiberdade.alpha = 1F
+            binding.progressBarGastoNoMes.alpha = 0.1F
+            binding.progressBarPoupadoNoMes.alpha = 0.1F
         }
 
         binding.buttonRed.setOnClickListener {
             binding.textoCentralTextView.text = "Já foram gastos 76% do que foi ganho no mês."
+
+            binding.progressBarDiasDeLiberdade.alpha = 0.1F
+            binding.progressBarGastoNoMes.alpha = 0.1F
+            binding.progressBarPoupadoNoMes.alpha = 1F
         }
 
         binding.buttonGrey.setOnClickListener {
             binding.textoCentralTextView.text = "Você investiu 10% da sua renda. Parabéns!"
+
+            binding.progressBarDiasDeLiberdade.alpha = 0.1F
+            binding.progressBarGastoNoMes.alpha = 1F
+            binding.progressBarPoupadoNoMes.alpha = 0.1F
+
         }
 
         binding.walletImageView.setOnClickListener {
@@ -66,6 +75,10 @@ class mesFragment : Fragment() {
 
         binding.cardImageView.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_compromissosFragment)
+        }
+
+        binding.gastosImageView.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_gastosFragment)
         }
 
 

@@ -236,6 +236,7 @@
             android:layout_height="50dp"
             android:textAlignment="center"
             android:textAllCaps="false"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/progressBarGastoNoMes"
             app:layout_constraintEnd_toEndOf="@+id/progressBarGastoNoMes"
             app:layout_constraintStart_toStartOf="@+id/progressBarGastoNoMes"

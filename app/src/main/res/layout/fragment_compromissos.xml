@@ -94,8 +94,7 @@
             style="@style/padraoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="20dp"
             android:text="Data do Vencimento:"
             app:layout_constraintBottom_toTopOf="@+id/switchRecorrente"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +105,7 @@
             style="@style/padraoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="8dp"
             android:text="01/01/2000"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView28"
             app:layout_constraintStart_toEndOf="@+id/textView28" />
@@ -121,7 +120,7 @@
             android:textColor="@color/greyfont"
             android:textColorHighlight="@color/green"
             android:textColorLink="@color/green"
-            app:layout_constraintBottom_toTopOf="@+id/switchIsPago"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
             app:layout_constraintStart_toStartOf="@+id/textView28"
             app:layout_constraintTop_toBottomOf="@+id/textView28"
             tools:checked="true" />
@@ -136,9 +135,56 @@
             android:textColor="@color/greyfont"
             android:textOff="Devendo"
             android:textOn="Pago"
+            app:layout_constraintBaseline_toBaselineOf="@+id/switchRecorrente"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/switchRecorrente" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/shadowtick"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/switchRecorrente"
-            app:layout_constraintTop_toBottomOf="@+id/switchRecorrente" />
+            app:layout_constraintEnd_toStartOf="@+id/fab"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/item_relatorio" />
+
+        <TextView
+            android:id="@+id/textView30"
+            style="@style/padraoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor:"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView29"
+            app:layout_constraintStart_toStartOf="@+id/switchIsPago" />
+
+        <TextView
+            android:id="@+id/valorTextView"
+            style="@style/padraoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="R$ 200,00"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView30"
+            app:layout_constraintStart_toEndOf="@+id/textView30" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Novo Compromisso"
+            app:backgroundTint="@color/cardview_light_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_add_black_24dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
