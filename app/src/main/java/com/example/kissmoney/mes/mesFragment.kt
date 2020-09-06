@@ -1,19 +1,20 @@
 package com.example.kissmoney.mes
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.example.kissmoney.MainActivity
 import com.example.kissmoney.R
 import com.example.kissmoney.databinding.FragmentMesBinding
 
 
 class mesFragment : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,12 +23,38 @@ class mesFragment : Fragment() {
         // Inflate the layout for this fragment
 
 
+//        val dialog = Dialog(activity as AppCompatActivity)
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        dialog.setCancelable(false)
+//        dialog.setContentView(R.layout.fragment_logo)
+//        //val body = dialog.findViewById(R.id.body) as TextView
+//        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+//        dialog.show()
+//
+//        dialog.window?.setLayout(Resources.getSystem().getDisplayMetrics().widthPixels, Resources.getSystem().getDisplayMetrics().heightPixels)
+//        object : CountDownTimer(4000, 1000) {
+//            override fun onTick(millisUntilFinished: Long) {}
+//            override fun onFinish() {
+//                dialog.dismiss()
+//            }
+//        }.start()
+
+
+//        if (isAbertura) {
+//            isAbertura = false
+//            Navigation.findNavController(requireView()).navigate(R.id.action_mesFragment_to_logoFragment)
+//        }
+
+
+
         val binding = DataBindingUtil.inflate<FragmentMesBinding>(
             inflater,
             R.layout.fragment_mes,
             container,
             false
         )
+
+
 
         binding.progressBarDiasDeLiberdade.setOnClickListener {
             binding.textoCentralTextView.text = "125 Dias de Liberdade.\n Meta: 180 dias"
@@ -69,6 +96,8 @@ class mesFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_contasFragment)
         }
 
+
+
         binding.ganhosImageView.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_gatnhosFragment)
         }
@@ -81,6 +110,9 @@ class mesFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_gastosFragment)
         }
 
+        (activity as AppCompatActivity).supportActionBar?.title ="Kiss"
+        (activity as AppCompatActivity).supportActionBar?.subtitle = Html.fromHtml("<font color='#808080'><small>Mantenha simples. Mantenha o controle.</small> </font>")
+
 
         return binding.root
 
@@ -88,5 +120,9 @@ class mesFragment : Fragment() {
 
 
     }
+
+
+
+
 
 }

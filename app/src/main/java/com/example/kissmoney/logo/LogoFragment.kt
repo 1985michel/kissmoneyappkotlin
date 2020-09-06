@@ -23,7 +23,7 @@ class LogoFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentLogoBinding>(inflater,R.layout.fragment_logo,container,false)
 
 
-        object : CountDownTimer(2000, 1000) {
+        object : CountDownTimer(4000, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
                 //set the new Content of your activity

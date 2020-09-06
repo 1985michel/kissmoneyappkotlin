@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/logoFragment">
+    app:startDestination="@id/mesFragment">
 
     <fragment
         android:id="@+id/logoFragment"
@@ -15,7 +15,9 @@
             app:destination="@id/chatFragment" />
         <action
             android:id="@+id/action_logoFragment_to_mesFragment"
-            app:destination="@id/mesFragment" />
+            app:destination="@id/mesFragment"
+            app:popUpTo="@id/mesFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -43,6 +45,9 @@
         <action
             android:id="@+id/action_mesFragment_to_gastosFragment"
             app:destination="@id/gastosFragment" />
+        <action
+            android:id="@+id/action_mesFragment_to_logoFragment"
+            app:destination="@id/logoFragment" />
     </fragment>
     <fragment
         android:id="@+id/contasFragment"

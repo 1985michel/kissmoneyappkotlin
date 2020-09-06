@@ -1,23 +1,54 @@
 package com.example.kissmoney
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Rect
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.kissmoney.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
 
+        @Suppress("UNUSED_VARIABLE")
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        //botão de navegação superior
+        val navController = this.findNavController(R.id.myNavHostFragment)
+
+        //abaixo sem o menu lateral
+        NavigationUI.setupActionBarWithNavController(this, navController)
+
+
+    }
+
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+
+        //sem o menu lateral
+        return navController.navigateUp()
+
+        //com o menu lateral
+        //return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
     //ocultando o teclado ao clicar fora
