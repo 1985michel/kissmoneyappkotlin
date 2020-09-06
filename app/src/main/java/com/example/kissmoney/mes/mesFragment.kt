@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.example.kissmoney.MainActivity
 import com.example.kissmoney.R
 import com.example.kissmoney.databinding.FragmentMesBinding
+import kotlin.concurrent.fixedRateTimer
 
 
 class mesFragment : Fragment() {
@@ -120,6 +120,9 @@ class mesFragment : Fragment() {
 
 
     }
+
+
+
 
 
 

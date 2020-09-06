@@ -16,8 +16,8 @@
         <action
             android:id="@+id/action_logoFragment_to_mesFragment"
             app:destination="@id/mesFragment"
-            app:popUpTo="@id/mesFragment"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/logoFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -45,9 +45,6 @@
         <action
             android:id="@+id/action_mesFragment_to_gastosFragment"
             app:destination="@id/gastosFragment" />
-        <action
-            android:id="@+id/action_mesFragment_to_logoFragment"
-            app:destination="@id/logoFragment" />
     </fragment>
     <fragment
         android:id="@+id/contasFragment"
