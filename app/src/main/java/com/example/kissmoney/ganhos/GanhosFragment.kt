@@ -37,7 +37,7 @@ class GatnhosFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        (activity as AppCompatActivity).supportActionBar?.title ="Kiss - meus Ganhos"
+        (activity as AppCompatActivity).supportActionBar?.title ="Kiss"
         return inflater.inflate(R.layout.fragment_ganhos, container, false)
     }
 

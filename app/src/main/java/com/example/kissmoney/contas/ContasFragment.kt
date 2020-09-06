@@ -37,7 +37,7 @@ class ContasFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        (activity as AppCompatActivity).supportActionBar?.title ="Kiss - minhas Contas"
+        (activity as AppCompatActivity).supportActionBar?.title ="Kiss"
         return inflater.inflate(R.layout.fragment_contas, container, false)
     }
 

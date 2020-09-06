@@ -37,7 +37,7 @@ class CompromissosFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        (activity as AppCompatActivity).supportActionBar?.title ="Kiss - meus Compromissos"
+        (activity as AppCompatActivity).supportActionBar?.title ="Kiss"
         return inflater.inflate(R.layout.fragment_compromissos, container, false)
     }
 

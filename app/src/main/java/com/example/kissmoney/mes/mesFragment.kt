@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.kissmoney.R
 import com.example.kissmoney.databinding.FragmentMesBinding
-import kotlin.concurrent.fixedRateTimer
+import kotlinx.android.synthetic.main.item_compromisso.*
 
 
 class mesFragment : Fragment() {
@@ -112,6 +112,7 @@ class mesFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.title ="Kiss"
         (activity as AppCompatActivity).supportActionBar?.subtitle = Html.fromHtml("<font color='#808080'><small>Mantenha simples. Mantenha o controle.</small> </font>")
+
 
 
         return binding.root

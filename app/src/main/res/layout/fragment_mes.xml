@@ -3,10 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.kissmoney.mes.mesFragment">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/cardview_shadow_end_color">
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"

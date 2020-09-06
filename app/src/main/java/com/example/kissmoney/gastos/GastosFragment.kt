@@ -36,7 +36,7 @@ class GastosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        (activity as AppCompatActivity).supportActionBar?.title ="Kiss - meus Gastos"
+        (activity as AppCompatActivity).supportActionBar?.title ="Kiss"
         return inflater.inflate(R.layout.fragment_gastos, container, false)
     }
 
