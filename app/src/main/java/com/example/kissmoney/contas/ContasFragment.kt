@@ -1,12 +1,20 @@
 package com.example.kissmoney.contas
 
+import android.app.Dialog
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.example.kissmoney.R
+import com.example.kissmoney.databinding.FragmentContasBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,27 +45,38 @@ class ContasFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
+        val binding = DataBindingUtil.inflate<FragmentContasBinding>(
+            inflater, R.layout.fragment_contas, container, false
+        )
+
+        val tiposDeConta = TiposDeConta.values()
+
+        binding.fab.setOnClickListener {
+
+            val dialog = BottomSheetDialog(activity as AppCompatActivity)
+            val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
+            dialog.setContentView(view)
+
+            var tiposSpinner = dialog.findViewById<Spinner>(R.id.tipoContaSpinner2)
+
+            var adapter = ArrayAdapter(activity as AppCompatActivity, R.layout.spinner_item, TiposDeConta.values() )
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            tiposSpinner?.adapter = adapter
+
+
+            dialog.show()
+        }
+
         (activity as AppCompatActivity).supportActionBar?.title ="Kiss"
-        return inflater.inflate(R.layout.fragment_contas, container, false)
+
+
+
+
+
+//        return inflater.inflate(R.layout.fragment_contas, container, false)
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ContasFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ContasFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

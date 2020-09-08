@@ -6,6 +6,11 @@ enum class TiposDeConta (val tipo: String){
 
     CARTEIRA("Conta Corrente / Carteira"),
     DIVIDAS("Cartão de Crédito / Divida"),
-    INVESTIMENTO ("Investimento / Poupança")
+    INVESTIMENTO ("Investimento / Poupança");
 
+
+
+    override fun toString(): String {
+        return tipo
+    }
 }
