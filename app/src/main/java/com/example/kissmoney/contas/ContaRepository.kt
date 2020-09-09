@@ -10,7 +10,15 @@ class ContaRepository (private  val contaDao: ContaDao) {
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(conta: Conta) : Long {
-        return contaDao.insert(conta)
+        var id = contaDao.insert(conta)
+        println(">>>>>>>> EM CONTA REPOSITORY ID GERADO: $id")
+        return id
+    }
+
+    fun insertMonitorado(conta: Conta) : Long {
+        var id = contaDao.insert(conta)
+        println(">>>>>>>> EM CONTA REPOSITORY ID GERADO: $id")
+        return id
     }
 
     @Suppress("RedundantSuspendModifier")

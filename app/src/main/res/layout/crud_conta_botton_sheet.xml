@@ -1,114 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:background="@color/cardview_shadow_end_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@drawable/darkblue_background_2">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/isEncerradaSwitch"
+            style="@style/meu_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Encerrada"
+            android:textColor="@color/lightgreybackground"
+
+            app:trackTint="@color/switch_track_selector"
+            app:thumbTint="@color/switch_thumb_selector"
+
+            android:textSize="12sp"
+
+            app:layout_constraintBaseline_toBaselineOf="@+id/saldoTextView"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/saldoAtualEditTextText"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="R$ 0,00"
+            android:inputType="numberSigned|numberDecimal"
+            android:digits="0123456789-.,"
+            android:textColor="@color/lightgreybackground"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="@+id/saldoInicialEditText"
+            app:layout_constraintStart_toStartOf="@+id/saldoInicialEditText" />
 
         <TextView
-            android:id="@+id/nomeContaTextView"
-            style="@style/subtituloTextView"
+            android:id="@+id/dataAtualizacaoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Banco do Brasil"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <Spinner
-            android:id="@+id/tipoContaSpinner2"
-            style="@style/padraoTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeContaTextView" />
-
-        <Switch
-            android:id="@+id/encerradaSwitch"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Encerrada"
-            android:textColor="@color/greyfont"
-            app:layout_constraintBaseline_toBaselineOf="@+id/saldoInicialEditText"
-            app:layout_constraintEnd_toEndOf="@+id/tipoContaSpinner2" />
+            android:text="01/01/2000"
+            android:textColor="@color/lightgreybackground"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
+            app:layout_constraintStart_toEndOf="@+id/textView32" />
 
         <TextView
             android:id="@+id/saldoTextView"
-            style="@style/padraoTextView"
+            style="@style/padraoTextViewWhite"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Saldo Inicial:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tipoContaSpinner2" />
+
+        <Spinner
+            android:id="@+id/tipoContaSpinner2"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nomeContaTextView" />
+
+        <EditText
+            android:id="@+id/nomeContaTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Nome da Conta"
+            android:textColor="@color/lightgreybackground"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintEnd_toStartOf="@+id/cancelButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView32"
+            style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
-            android:text="Saldo Inicial:"
-            app:layout_constraintStart_toStartOf="@+id/tipoContaSpinner2"
-            app:layout_constraintTop_toBottomOf="@+id/tipoContaSpinner2" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Data da Atualização:"
+            android:textColor="@color/lightgreybackground"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/saldoAtualEditTextText" />
 
         <EditText
             android:id="@+id/saldoInicialEditText"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:hint="R$ 0,00"
+            android:inputType="numberSigned|numberDecimal"
+            android:digits="0123456789-.,"
+            android:textColor="@color/lightgreybackground"
+            android:textColorHighlight="@color/lightgreybackground"
+            android:textColorHint="@color/lightgreybackground"
             app:layout_constraintBaseline_toBaselineOf="@+id/saldoTextView"
+            app:layout_constraintEnd_toStartOf="@+id/isEncerradaSwitch"
             app:layout_constraintStart_toEndOf="@+id/saldoTextView" />
 
         <TextView
             android:id="@+id/textView5"
-            style="@style/padraoTextView"
+            style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:text="Saldo Atual:"
-            app:layout_constraintStart_toStartOf="@+id/saldoTextView"
+            android:textColor="@color/lightgreybackground"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/saldoTextView" />
 
-        <EditText
-            android:id="@+id/saldoAtualEditTextText"
+        <Button
+            android:id="@+id/salvarButton"
             style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
-            app:layout_constraintStart_toStartOf="@+id/saldoInicialEditText" />
-
-        <TextView
-            android:id="@+id/textView32"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="32dp"
-            android:text="Data da Atualização:"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/lightgreybackground"
+            android:text="Salvar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/saldoAtualEditTextText" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
-        <TextView
-            android:id="@+id/textView33"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:text="01/01/2000"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
-            app:layout_constraintStart_toEndOf="@+id/textView32" />
-
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/close_button_white_transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

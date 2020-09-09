@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -27,6 +27,12 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="meu_switch" >
+        <item name="android:state_checked">@color/red</item>
+    </style>
+
+
+
     <style name="tituloTextView" >
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">24sp</item>
@@ -41,7 +47,14 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-
+    <style name="padraoTextViewWhite" parent="padraoTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">27dp</item>
+        <item name="android:textColor">@color/lightgreybackground</item>
+        <item name="android:textColorHint">@color/lightgreybackground</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
 
     style="@style/padraoTextView"

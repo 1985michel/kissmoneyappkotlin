@@ -1,6 +1,7 @@
 package com.example.kissmoney
 
 import android.annotation.TargetApi
+import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
 import android.os.Build
@@ -13,9 +14,17 @@ import android.widget.EditText
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.kissmoney.contas.ContaJoinViewModel
+import com.example.kissmoney.contas.ContaViewModel
+import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
+import com.example.kissmoney.database.KissmoneyDatabase
 import com.example.kissmoney.databinding.ActivityMainBinding
+import com.example.kissmoney.mes.MesViewModel
+import kotlinx.coroutines.CoroutineScope
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,12 +39,23 @@ class MainActivity : AppCompatActivity() {
         @Suppress("UNUSED_VARIABLE")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
+        var cjvm = ContaJoinViewModel
+
+        var contaViewModel = ViewModelProvider(this).get(ContaViewModel::class.java)
+        var mesViewModel = ViewModelProvider(this).get(MesViewModel::class.java)
+        var movimentacaoMensalViewModel= ViewModelProvider(this).get(MovimentacaoMensalViewModel::class.java)
+
+        cjvm.setMyOwner(this)
+        cjvm.setApplicationObject(contaViewModel, mesViewModel, movimentacaoMensalViewModel)
+        cjvm.setAllContasJoin()
+
 
         //botão de navegação superior
         val navController = this.findNavController(R.id.myNavHostFragment)
 
         //abaixo sem o menu lateral
         NavigationUI.setupActionBarWithNavController(this, navController)
+
 
 
     }

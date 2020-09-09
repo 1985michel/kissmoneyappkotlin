@@ -25,10 +25,10 @@ data class MovimentacaoMensal (
     var movimentacaoMensalId: Long = 0L,
 
     @ColumnInfo(name = "mesId")
-    val mesId: Long,
+    var mesId: Long,
 
     @ColumnInfo(name = "contaId")
-    val contaId: Long,
+    var contaId: Long,
 
     @ColumnInfo(name = "valor_inicial")
     val saldoInicial: Double = 0.00,
