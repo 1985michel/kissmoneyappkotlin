@@ -30,7 +30,18 @@ class ContaJoin(conta: Conta, movimentacaoMensal: MovimentacaoMensal, mes: Mes){
         dataAtualizacao = movimentacaoMensal.dataAtualizacao
     }
 
-
-
-
+    override fun toString(): String {
+        println(">>>>>>>>>>>>>>>>>>>> Conta Join : <<<<<<<<<<<<<<<<<")
+        println("ID MES ${mesId}")
+        println("NOME MES ${mesNome}")
+        println("CONTA ID ${contaId}")
+        println("NOME CONTA ${nomeConta}")
+        println("TIPO CONTA ${tipoConta}")
+        println("IS ENCERRADA ${isEncerrada}")
+        println("MOVIMENTACAO ID ${movimentacaoId}")
+        println("SALDO INICIAL ${saldoInicial}")
+        println("SALDO ATUAL OU FINAL ${saldoAtualOuFinal}")
+        println("DATA ATUALIZACAO ${dataAtualizacao}")
+        return ""
+    }
 }

@@ -61,8 +61,7 @@
         <TextView
             android:id="@+id/saldoTextView"
             style="@style/padraoTextViewWhite"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="20dp"
             android:text="Saldo Inicial:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tipoContaSpinner2" />
@@ -73,23 +72,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeContaTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/nomeContaBottonTextView" />
 
         <EditText
-            android:id="@+id/nomeContaTextView"
+            android:id="@+id/nomeContaBottonTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:hint="Nome da Conta"
             android:textColor="@color/lightgreybackground"
             android:textColorHint="@color/lightgreybackground"
             app:layout_constraintEnd_toStartOf="@+id/cancelButton"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

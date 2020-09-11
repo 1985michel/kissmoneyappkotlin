@@ -2,7 +2,6 @@ package com.example.kissmoney.contas
 
 import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.DialogInterface.OnShowListener
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -22,33 +21,16 @@ import com.example.kissmoney.R
 import com.example.kissmoney.contas.mensal.MovimentacaoMensal
 import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
 import com.example.kissmoney.databinding.FragmentContasBinding
-import com.example.kissmoney.mes.Mes
 import com.example.kissmoney.mes.MesViewModel
 import com.example.kissmoney.util.MoneyTextWatcher
 import com.example.kissmoney.util.getDataHojeString
 import com.example.kissmoney.util.limpaFormatacaoDeMoeda
-import com.example.kissmoney.util.recebeDataRetornaMes
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import org.w3c.dom.Text
+import kotlinx.coroutines.*
 import java.util.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ContasFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ContasFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
 
     //do pickdate
     private var mDateSetListener: DatePickerDialog.OnDateSetListener? = null
@@ -59,34 +41,32 @@ class ContasFragment : Fragment() {
     lateinit var mesViewModel: MesViewModel
     lateinit var movimentacaoMensalViewModel: MovimentacaoMensalViewModel
 
+    lateinit var adapter: ContaListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
 
         contaViewModel = ViewModelProvider(this).get(ContaViewModel::class.java)
         mesViewModel = ViewModelProvider(this).get(MesViewModel::class.java)
-        movimentacaoMensalViewModel = ViewModelProvider(this).get(MovimentacaoMensalViewModel::class.java)
+        movimentacaoMensalViewModel =
+            ViewModelProvider(this).get(MovimentacaoMensalViewModel::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
 
         val binding = DataBindingUtil.inflate<FragmentContasBinding>(
             inflater, R.layout.fragment_contas, container, false
         )
 
         val recyclerView = binding.recyclerViewCaixa
-        val adapter = ContaListAdapter(activity as Activity)
+        adapter = ContaListAdapter(activity as Activity)
 
         //adapter.setViewModel...
 
-        adapter.setContas(ContaJoinViewModel.allContasJoin)
+        setaContasNoAdapter()
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity as AppCompatActivity)
@@ -100,15 +80,21 @@ class ContasFragment : Fragment() {
             dialog.getWindow()?.setDimAmount(0F);
 
             var tiposSpinner = dialog.findViewById<Spinner>(R.id.tipoContaSpinner2)
-            var nomeEditText = dialog.findViewById<EditText>(R.id.nomeContaTextView)
+            var nomeEditText = dialog.findViewById<EditText>(R.id.nomeContaBottonTextView)
             var valorInicialEditText = dialog.findViewById<EditText>(R.id.saldoInicialEditText)
-            var valorAtualOuFinalEditText = dialog.findViewById<EditText>(R.id.saldoAtualEditTextText)
-            var dataAtualizacaoTextView = dialog.findViewById<TextView>(R.id.dataAtualizacaoTextView)
+            var valorAtualOuFinalEditText =
+                dialog.findViewById<EditText>(R.id.saldoAtualEditTextText)
+            var dataAtualizacaoTextView =
+                dialog.findViewById<TextView>(R.id.dataAtualizacaoTextView)
             var isEncerrada = dialog.findViewById<SwitchCompat>(R.id.isEncerradaSwitch)
 
-            var adapter = ArrayAdapter(activity as AppCompatActivity, R.layout.spinner_item_white, TiposDeConta.values() )
-            adapter.setDropDownViewResource(R.layout.spinner_item_white)
-            tiposSpinner?.adapter = adapter
+            var adapterSpinner = ArrayAdapter(
+                activity as AppCompatActivity,
+                R.layout.spinner_item_white,
+                TiposDeConta.values()
+            )
+            adapterSpinner.setDropDownViewResource(R.layout.spinner_item_white)
+            tiposSpinner?.adapter = adapterSpinner
 
             dataAtualizacaoTextView?.text = getDataHojeString()
 
@@ -182,16 +168,49 @@ class ContasFragment : Fragment() {
 
                     var nome = nomeEditText?.text.toString()
                     var tipo = tiposSpinner?.selectedItem.toString()
-                    var valorInicial = limpaFormatacaoDeMoeda(valorInicialEditText?.text.toString()).trim().toDouble()
-                    var valorAtual = limpaFormatacaoDeMoeda(valorAtualOuFinalEditText?.text.toString()).trim().toDouble()
+                    var valorInicial =
+                        limpaFormatacaoDeMoeda(valorInicialEditText?.text.toString()).trim()
+                            .toDouble()
+                    var valorAtual =
+                        limpaFormatacaoDeMoeda(valorAtualOuFinalEditText?.text.toString()).trim()
+                            .toDouble()
                     var isEncerrada = isEncerrada?.isChecked
                     var dataAtualizacao = dataAtualizacaoTextView?.text.toString()
 
                     var conta = Conta(0L, nome, tipo, isEncerrada!!)
-                    var movimentacaoMensal = MovimentacaoMensal(0L,0L,conta.contaId,
-                    valorInicial,valorAtual,dataAtualizacao)
+                    var movimentacaoMensal = MovimentacaoMensal(
+                        0L, 0L, conta.contaId,
+                        valorInicial, valorAtual, dataAtualizacao
+                    )
 
-                    ContaManager.criaContaComMovimentacao(conta, movimentacaoMensal, contaViewModel, mesViewModel, movimentacaoMensalViewModel)
+                    ContaManager.criaContaComMovimentacao(
+                        conta,
+                        movimentacaoMensal,
+                        contaViewModel,
+                        mesViewModel,
+                        movimentacaoMensalViewModel
+                    ) {
+                        println(">>>>>>>>>>>>>>>>>>>>>>>> a conta foi criada <<<<<<<<<<<<<< ")
+                        //ContaJoinViewModel.setAllContasJoin(){
+                        println(">>>>>>>>>>>>>>>>>>>>>>>> setando o novo adapter <<<<<<<<<<<<<< ")
+
+//                        MainScope().launch {
+//                            withContext(Dispatchers.Default) {
+//                                //"Background processing...")
+//                            }
+//                            //"Update UI here!")
+//                        }
+
+                        GlobalScope.launch {
+                            //Background processing..."
+                            withContext(Dispatchers.Main) {
+                                //"Update UI here!")
+                                ContaJoinViewModel.setAllContasJoin() {
+                                    setaContasNoAdapter() // para poder rodar na tread principal
+                                }
+                            }
+                        }
+                    }
 
                     val toast = Toast.makeText(
                         activity as AppCompatActivity,
@@ -204,8 +223,6 @@ class ContasFragment : Fragment() {
 
                     toast.show()
 
-                    ContaJoinViewModel.setAllContasJoin()
-
                     dialog.dismiss()
                 }
 
@@ -216,18 +233,20 @@ class ContasFragment : Fragment() {
             dialog.show()
         }
 
-        (activity as AppCompatActivity).supportActionBar?.title ="Kiss"
-
-
-
-
-
-//        return inflater.inflate(R.layout.fragment_contas, container, false)
+        (activity as AppCompatActivity).supportActionBar?.title = "Kiss"
 
         return binding.root
     }
 
+    private fun setaContasNoAdapter() {
 
-
-
+//        GlobalScope.launch {
+//            //TODO("Background processing...")
+//            withContext(Dispatchers.Main) {
+//                // TODO("Update UI here!")
+//            }
+//            TODO("Continue background processing...")
+//        }
+        adapter.setContas(ContaJoinViewModel.allContasJoin)
+    }
 }

@@ -2,7 +2,6 @@ package com.example.kissmoney.contas
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -21,7 +20,7 @@ class ContaListAdapter internal constructor(context: Context) :
 
     inner class ContaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val nomeContaTextView: TextView = itemView.findViewById(R.id.nomeContaTextView)
+        val nomeContaTextView: TextView = itemView.findViewById(R.id.nomeContaItemTV)
         val valorAtualTextView: TextView = itemView.findViewById(R.id.valor_total_textView)
         val dataAtualizacaoTextView: TextView = itemView.findViewById(R.id.dataAtualizacaoTextView)
         val contaIconImageView: ImageView = itemView.findViewById(R.id.contaIconImageView)
@@ -36,12 +35,12 @@ class ContaListAdapter internal constructor(context: Context) :
     ): ContaListAdapter.ContaViewHolder {
 
         val itemView = inflater.inflate(R.layout.item_contas, parent, false)
-
         return ContaViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ContaListAdapter.ContaViewHolder, position: Int) {
         var current = contas[position]
+
         holder.nomeContaTextView.text = current.nomeConta
         holder.valorAtualTextView.text = formataParaBr(current.saldoAtualOuFinal.toBigDecimal())
         holder.dataAtualizacaoTextView.text = current.dataAtualizacao
@@ -56,14 +55,10 @@ class ContaListAdapter internal constructor(context: Context) :
                 R.drawable.creditcard_icon_list
             }
         )
-
     }
 
     internal  fun setContas(contas: List<ContaJoin>){
         this.contas = contas
-        println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> foram recebidas ${contas.size} CONTAS" )
         notifyDataSetChanged()
     }
 

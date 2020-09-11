@@ -45,10 +45,11 @@ class MainActivity : AppCompatActivity() {
         var mesViewModel = ViewModelProvider(this).get(MesViewModel::class.java)
         var movimentacaoMensalViewModel= ViewModelProvider(this).get(MovimentacaoMensalViewModel::class.java)
 
-        cjvm.setMyOwner(this)
-        cjvm.setApplicationObject(contaViewModel, mesViewModel, movimentacaoMensalViewModel)
-        cjvm.setAllContasJoin()
-
+        cjvm.setMyOwner(this){
+            cjvm.setApplicationObject(contaViewModel, mesViewModel, movimentacaoMensalViewModel){
+                cjvm.setAllContasJoin(){}
+            }
+        }
 
         //botão de navegação superior
         val navController = this.findNavController(R.id.myNavHostFragment)

@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.kissmoney.database.KissmoneyDatabase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 
 class MovimentacaoMensalViewModel  (application: Application) : AndroidViewModel(application) {
@@ -22,6 +23,12 @@ class MovimentacaoMensalViewModel  (application: Application) : AndroidViewModel
 
     fun insert(movimentacaoMensal: MovimentacaoMensal) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(movimentacaoMensal)
+    }
+
+    fun insertMonitorado(movimentacaoMensal: MovimentacaoMensal, callback: () -> Unit) {
+        var id = repository.insertMonitorado(movimentacaoMensal)
+        movimentacaoMensal.movimentacaoMensalId = id
+        callback()
     }
 
     fun update(movimentacaoMensal: MovimentacaoMensal) = viewModelScope.launch(Dispatchers.IO) {

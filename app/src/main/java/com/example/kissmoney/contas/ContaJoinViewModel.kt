@@ -16,10 +16,6 @@ import com.example.kissmoney.mes.MesViewModel
 
 object ContaJoinViewModel {
 
-//    private lateinit var repositoryConta: ContaRepository
-//    private lateinit var repositoryMovimentacaoMensal: MovimentacaoMensalRepository
-//    private lateinit var repositoryMes: MesRepository
-
     private lateinit var allContas: LiveData<List<Conta>>
     private lateinit var allMovimentacoes: LiveData<List<MovimentacaoMensal>>
     private lateinit var allMeses: LiveData<List<Mes>>
@@ -29,37 +25,29 @@ object ContaJoinViewModel {
     lateinit var owner : LifecycleOwner
 
 
-    fun setApplicationObject(contaViewModel: ContaViewModel, mesViewModel: MesViewModel, movimentacaoMensalViewModel: MovimentacaoMensalViewModel) {
-//        val contaDao = KissmoneyDatabase.getDatabase(application, viewModelScope).contaDao()
-//        val movimentacaoDao = KissmoneyDatabase.getDatabase(application, viewModelScope).movimentacaoMensalDao()
-//        val mesDao = KissmoneyDatabase.getDatabase(application, viewModelScope).mesDao()
-
-//
-//
-//        repositoryConta = ContaRepository(contaDao)
-//        repositoryMovimentacaoMensal = MovimentacaoMensalRepository(movimentacaoDao)
-//        repositoryMes = MesRepository(mesDao)
+    fun setApplicationObject(contaViewModel: ContaViewModel, mesViewModel: MesViewModel, movimentacaoMensalViewModel: MovimentacaoMensalViewModel, callback: () -> Unit) {
 
         allContas = contaViewModel.allContas
         allMovimentacoes = movimentacaoMensalViewModel.allMovimentacoes
         allMeses = mesViewModel.allMeses
+        callback()
     }
 
-    fun setMyOwner(owner: LifecycleOwner){
+    fun setMyOwner(owner: LifecycleOwner, callback: () -> Unit){
         this.owner = owner
+        callback()
     }
 
-    fun setAllContasJoin(){
-
-        allContasJoin = ArrayList<ContaJoin>()
+    fun setAllContasJoin(callback: () -> Unit){
 
         var moviList = ArrayList<MovimentacaoMensal>()
-
         var contaList = ArrayList<Conta>()
-
         var mesList = ArrayList<Mes>()
 
         getData(moviList, mesList, contaList){
+
+            allContasJoin.clear()
+
             var mesW = Mes(0L, "")
             var contaW = Conta(0L, "", "", false)
 
@@ -73,15 +61,8 @@ object ContaJoinViewModel {
                 allContasJoin.add(ContaJoin(contaW,movi,mesW))
             }
 
-            println("$$$$$$$$$$$$$$$$$")
-            println("$$$$$$$$$$$$$$$$$")
-            println("$$$$$$$$$$$$$$$$$ no CJVM encontramos ${allContasJoin.size} contas")
+            callback()
         }
-
-
-
-
-
     }
 
     private fun getData(
@@ -90,40 +71,41 @@ object ContaJoinViewModel {
         contaList: ArrayList<Conta>,
         callback: () -> Unit
     ) {
+        moviList.clear()
+        mesList.clear()
+        contaList.clear()
         getMovimentacoes(moviList) {
             getMeses(mesList) {
-                getContas(contaList) {}
+                getContas(contaList) {
+                    callback()
+                }
             }
-            callback()
         }
     }
 
     private fun getContas(contaList: ArrayList<Conta>, callback: () -> Unit) {
         allContas.observe(owner, Observer {contas ->
-
+            contaList.clear()
             contaList.addAll(contas)
-            println("$$$$$$$$$$$$$$$$$ no CJVM encontramos ${contaList.size} contas")
             callback()
         })
-
-
     }
 
     private fun getMeses(mesList: ArrayList<Mes>, callback: () -> Unit) {
         allMeses.observe(owner, Observer {
+            mesList.clear()
             mesList.addAll(it)
-            println("$$$$$$$$$$$$$$$$$ no CJVM encontramos ${mesList.size} meses")
             callback()
         })
-
     }
 
     private fun getMovimentacoes(moviList: ArrayList<MovimentacaoMensal>, callback: () -> Unit) {
+        moviList.clear()
         allMovimentacoes.observe(owner, Observer {
+
+            moviList.clear()
             moviList.addAll(it)
-            println("$$$$$$$$$$$$$$$$$ no CJVM encontramos ${moviList.size} movimentacoes")
             callback()
         })
-
     }
 }

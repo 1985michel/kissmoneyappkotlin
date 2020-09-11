@@ -33,7 +33,7 @@ limitations under the License. -->
         android:paddingBottom="8dp">
 
         <TextView
-            android:id="@+id/nomeContaTextView"
+            android:id="@+id/nomeContaItemTV"
 
             style="@style/subtituloTextView"
             android:layout_width="0dp"
@@ -63,14 +63,14 @@ limitations under the License. -->
             android:textSize="14sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/atencaoImageView"
-            app:layout_constraintTop_toBottomOf="@+id/nomeContaTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/nomeContaItemTV" />
 
         <ImageView
             android:id="@+id/atencaoImageView"
             android:layout_width="15dp"
             android:layout_height="25dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/nomeContaTextView"
+            app:layout_constraintBottom_toBottomOf="@+id/nomeContaItemTV"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
@@ -78,10 +78,10 @@ limitations under the License. -->
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:background="@drawable/invest_icon_list"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/invest_icon_list" />
 
         <TextView
             android:id="@+id/dataAtualizacaoTextView"
@@ -89,8 +89,8 @@ limitations under the License. -->
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="08 / Junho"
-            app:layout_constraintStart_toStartOf="@+id/nomeContaTextView"
-            app:layout_constraintTop_toBottomOf="@+id/nomeContaTextView" />
+            app:layout_constraintStart_toStartOf="@+id/nomeContaItemTV"
+            app:layout_constraintTop_toBottomOf="@+id/nomeContaItemTV" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

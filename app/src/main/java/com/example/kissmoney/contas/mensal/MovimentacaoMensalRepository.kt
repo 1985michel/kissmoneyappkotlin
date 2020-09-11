@@ -13,6 +13,11 @@ class MovimentacaoMensalRepository (private val movimentacaoMensalDao: Movimenta
         return movimentacaoMensalDao.insert(movimentacaoMensal)
     }
 
+    fun insertMonitorado (movimentacaoMensal: MovimentacaoMensal) : Long {
+        var id = movimentacaoMensalDao.insert(movimentacaoMensal)
+        return id
+    }
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun update (movimentacaoMensal: MovimentacaoMensal){
