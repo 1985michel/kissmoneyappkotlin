@@ -9,7 +9,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/cardview_shadow_end_color">
+    android:background="@color/lightgreybackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,22 +25,22 @@
             android:text="Encerrada"
             android:textColor="@color/lightgreybackground"
 
-            app:trackTint="@color/switch_track_selector"
-            app:thumbTint="@color/switch_thumb_selector"
-
             android:textSize="12sp"
-
             app:layout_constraintBaseline_toBaselineOf="@+id/saldoTextView"
-            app:layout_constraintEnd_toEndOf="parent" />
+
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:thumbTint="@color/switch_thumb_selector"
+            app:trackTint="@color/switch_track_selector" />
 
         <EditText
             android:id="@+id/saldoAtualEditTextText"
             style="@style/padraoTextViewWhite"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:digits="0123456789-.,"
             android:hint="R$ 0,00"
             android:inputType="numberSigned|numberDecimal"
-            android:digits="0123456789-.,"
             android:textColor="@color/lightgreybackground"
             android:textColorHint="@color/lightgreybackground"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
@@ -74,7 +74,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tipoContaSpinnerImageView"
             app:layout_constraintTop_toBottomOf="@+id/nomeContaBottonTextView" />
 
         <EditText
@@ -112,10 +112,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="8dp"
+            android:digits="0123456789-.,"
             android:ems="10"
             android:hint="R$ 0,00"
             android:inputType="numberSigned|numberDecimal"
-            android:digits="0123456789-.,"
             android:textColor="@color/lightgreybackground"
             android:textColorHighlight="@color/lightgreybackground"
             android:textColorHint="@color/lightgreybackground"
@@ -161,6 +161,14 @@
             android:background="@drawable/close_button_white_transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/tipoContaSpinnerImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tipoContaSpinner2"
+            app:layout_constraintStart_toStartOf="@+id/nomeContaBottonTextView"
+            app:layout_constraintTop_toTopOf="@+id/tipoContaSpinner2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

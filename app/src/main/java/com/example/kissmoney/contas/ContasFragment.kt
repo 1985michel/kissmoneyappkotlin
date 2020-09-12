@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.graphics.toColor
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -64,12 +66,14 @@ class ContasFragment : Fragment() {
         val recyclerView = binding.recyclerViewCaixa
         adapter = ContaListAdapter(activity as Activity)
 
-        //adapter.setViewModel...
+        adapter.setViewModel(contaViewModel, mesViewModel, movimentacaoMensalViewModel)
 
         setaContasNoAdapter()
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity as AppCompatActivity)
+
+
 
         binding.fab.setOnClickListener {
 
@@ -78,6 +82,8 @@ class ContasFragment : Fragment() {
             dialog.setContentView(R.layout.crud_conta_botton_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.getWindow()?.setDimAmount(0F);
+            dialog.setCancelable(false)
+
 
             var tiposSpinner = dialog.findViewById<Spinner>(R.id.tipoContaSpinner2)
             var nomeEditText = dialog.findViewById<EditText>(R.id.nomeContaBottonTextView)
@@ -87,6 +93,7 @@ class ContasFragment : Fragment() {
             var dataAtualizacaoTextView =
                 dialog.findViewById<TextView>(R.id.dataAtualizacaoTextView)
             var isEncerrada = dialog.findViewById<SwitchCompat>(R.id.isEncerradaSwitch)
+            var tipoContaSpinnerImageView : ImageView? = dialog.findViewById(R.id.tipoContaSpinnerImageView)
 
             var adapterSpinner = ArrayAdapter(
                 activity as AppCompatActivity,
@@ -95,6 +102,38 @@ class ContasFragment : Fragment() {
             )
             adapterSpinner.setDropDownViewResource(R.layout.spinner_item_white)
             tiposSpinner?.adapter = adapterSpinner
+
+            tiposSpinner?.onItemSelectedListener =  object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    tipoContaSpinnerImageView?.setImageResource(
+                        if (tiposSpinner?.selectedItem.toString() == TiposDeConta.CARTEIRA.tipo){
+                            R.drawable.cofre_icon_list_dark
+                        } else if (tiposSpinner?.selectedItem.toString() == TiposDeConta.INVESTIMENTO.tipo){
+                            R.drawable.invest_icon_list_dark
+                        } else{
+                            R.drawable.creditcard_icon_list_dark
+                        })
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    tipoContaSpinnerImageView?.setImageResource(R.color.darkblue_background)
+                }
+            }
+
+
+//            tiposSpinner?.onItemSelectedListener { view, b ->
+//                tipoContaSpinnerImageView?.setImageResource(
+//                if (tiposSpinner?.selectedItem.toString() == TiposDeConta.CARTEIRA.tipo){
+//                    R.drawable.cofre_icon_list
+//                } else if (tiposSpinner?.selectedItem.toString() == TiposDeConta.INVESTIMENTO.tipo){
+//                    R.drawable.invest_icon_list
+//                } else if (tiposSpinner?.selectedItem.toString() == TiposDeConta.DIVIDAS.tipo){
+//                    R.drawable.creditcard_icon_list
+//                }else {
+//                    R.color.darkblue_background
+//                }
+//            )
+//            }
 
             dataAtualizacaoTextView?.text = getDataHojeString()
 

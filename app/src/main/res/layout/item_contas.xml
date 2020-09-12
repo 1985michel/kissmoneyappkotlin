@@ -26,9 +26,9 @@ limitations under the License. -->
         android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="87dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:background="@drawable/cleanwhitesquare"
+        android:background="@color/lightgreybackground"
         android:clickable="true"
         android:paddingBottom="8dp">
 
