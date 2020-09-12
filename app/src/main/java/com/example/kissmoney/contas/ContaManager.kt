@@ -40,11 +40,16 @@ object ContaManager {
                                    contaViewModel: ContaViewModel, mesViewModel: MesViewModel, movimentacaoMensalViewModel: MovimentacaoMensalViewModel, callback: () -> Unit){
 
         setaMes(movimentacaoMensal, mesViewModel){
-            contaViewModel.updateMonitorado(conta){
-                movimentacaoMensalViewModel.updateMonitorado(movimentacaoMensal){
-                    callback()
-                }
-            }
+//            contaViewModel.updateMonitorado(conta){
+//                movimentacaoMensalViewModel.updateMonitorado(movimentacaoMensal){
+//                    callback()
+//                }
+//            }
+            contaViewModel.update(conta)
+                movimentacaoMensalViewModel.update(movimentacaoMensal)
+            callback()
+
+
 
         }
     }
