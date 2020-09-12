@@ -45,6 +45,11 @@ class ContaViewModel(application: Application) : AndroidViewModel(application) {
         repository.update(conta)
     }
 
+    fun updateMonitorado(conta: Conta, callback: () -> Unit) {
+        repository.updateMonitorado(conta)
+        callback()
+    }
+
     fun delete(conta: Conta) = viewModelScope.launch(Dispatchers.IO) {
         repository.delete(conta)
     }

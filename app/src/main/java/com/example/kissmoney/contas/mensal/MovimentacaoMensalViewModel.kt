@@ -35,6 +35,11 @@ class MovimentacaoMensalViewModel  (application: Application) : AndroidViewModel
         repository.update(movimentacaoMensal)
     }
 
+    fun updateMonitorado(movimentacaoMensal: MovimentacaoMensal, callback: () -> Unit) {
+        repository.updateMonitorado(movimentacaoMensal)
+        callback()
+    }
+
     fun delete(movimentacaoMensal: MovimentacaoMensal) = viewModelScope.launch(Dispatchers.IO) {
         repository.delete(movimentacaoMensal)
     }

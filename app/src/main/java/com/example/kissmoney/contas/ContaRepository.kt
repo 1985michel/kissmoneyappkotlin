@@ -27,6 +27,10 @@ class ContaRepository (private  val contaDao: ContaDao) {
         contaDao.update(conta)
     }
 
+    fun updateMonitorado(conta: Conta){
+        contaDao.update(conta)
+    }
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun delete(conta: Conta){

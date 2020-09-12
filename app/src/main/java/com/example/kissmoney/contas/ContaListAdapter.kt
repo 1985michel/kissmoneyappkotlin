@@ -241,29 +241,20 @@ class ContaListAdapter internal constructor(context: Context) :
                     var isEncerrada = isEncerrada?.isChecked
                     var dataAtualizacao = dataAtualizacaoTextView?.text.toString()
 
-                    var conta = Conta(0L, nome, tipo, isEncerrada!!)
+                    var conta = Conta(current.contaId, nome, tipo, isEncerrada!!)
                     var movimentacaoMensal = MovimentacaoMensal(
-                        0L, 0L, conta.contaId,
+                        current.movimentacaoId, current.mesId, current.contaId,
                         valorInicial, valorAtual, dataAtualizacao
                     )
 
-                    ContaManager.criaContaComMovimentacao(
+                    ContaManager.updateContaComMovimentacao(
                         conta,
                         movimentacaoMensal,
                         contaViewModel,
                         mesViewModel,
                         movimentacaoMensalViewModel
                     ) {
-                        println(">>>>>>>>>>>>>>>>>>>>>>>> a conta foi criada <<<<<<<<<<<<<< ")
-                        //ContaJoinViewModel.setAllContasJoin(){
-                        println(">>>>>>>>>>>>>>>>>>>>>>>> setando o novo adapter <<<<<<<<<<<<<< ")
 
-//                        MainScope().launch {
-//                            withContext(Dispatchers.Default) {
-//                                //"Background processing...")
-//                            }
-//                            //"Update UI here!")
-//                        }
 
                         GlobalScope.launch {
                             //Background processing..."
@@ -272,21 +263,24 @@ class ContaListAdapter internal constructor(context: Context) :
                                 ContaJoinViewModel.setAllContasJoin() {
                                     contas =
                                         ContaJoinViewModel.allContasJoin // para poder rodar na tread principal
+                                    setContas(contas)
+
+                                    val toast = Toast.makeText(
+                                        holder.itemView.context as AppCompatActivity,
+                                        Html.fromHtml("<font color='#e3f2fd' ><b>" + "${nomeEditText?.text.toString()} registrado com sucesso!" + "</b></font>"),
+                                        Toast.LENGTH_LONG
+                                    )
+
+                                    //colocando o toast verde
+                                    toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+
+                                    toast.show()
                                 }
                             }
                         }
                     }
 
-                    val toast = Toast.makeText(
-                        holder.itemView.context as AppCompatActivity,
-                        Html.fromHtml("<font color='#e3f2fd' ><b>" + "${nomeEditText?.text.toString()} registrado com sucesso!" + "</b></font>"),
-                        Toast.LENGTH_LONG
-                    )
 
-                    //colocando o toast verde
-                    toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
-
-                    toast.show()
 
                     dialog.dismiss()
                 }

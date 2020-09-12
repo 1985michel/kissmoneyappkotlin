@@ -24,6 +24,10 @@ class MovimentacaoMensalRepository (private val movimentacaoMensalDao: Movimenta
         movimentacaoMensalDao.update(movimentacaoMensal)
     }
 
+    fun updateMonitorado (movimentacaoMensal: MovimentacaoMensal){
+        movimentacaoMensalDao.update(movimentacaoMensal)
+    }
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun delete (movimentacaoMensal: MovimentacaoMensal) {
