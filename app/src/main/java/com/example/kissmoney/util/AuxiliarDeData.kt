@@ -21,3 +21,43 @@ fun recebeDataRetornaMes(data: String): String {
 
     return "$mes/$ano"
 }
+
+fun recebeNomeMesRetornaNomeMesAnterior(nomeMes: String): String {
+    var mes = nomeMes.substring(0,2)
+    var mesInt = mes.toInt()
+    var mesAnteriorInt = mesInt-1
+    var mesAnterior = if (mesAnteriorInt < 10) "0" + mesAnteriorInt.toString() else mesAnteriorInt.toString()
+
+    var anoInt = nomeMes.substring(3).toInt()
+    if (mesInt == 1) {
+        anoInt = anoInt - 1
+        mesAnterior = "12"
+    }
+    return mesAnterior + "/" + anoInt.toString()
+}
+
+fun recebeNomeMesRetornaNomeMesPosterior(nomeMes: String): String {
+    var mes = nomeMes.substring(0,2)
+    var mesInt = mes.toInt()
+    var mesPosteriorInt = mesInt+1
+    var mesPosterior = if (mesPosteriorInt < 10) "0" + mesPosteriorInt.toString() else mesPosteriorInt.toString()
+
+    var anoInt = nomeMes.substring(3).toInt()
+    if (mesInt == 12) {
+        anoInt = anoInt + 1
+        mesPosterior = "01"
+    }
+    return mesPosterior + "/" + anoInt.toString()
+}
+
+fun getNomeMesAtual(): String {
+    val cal = Calendar.getInstance()
+    val year = cal[Calendar.YEAR]
+    var month = cal[Calendar.MONTH]
+    month += 1
+
+    var mes = if (month < 10) "0" + month.toString() else month
+
+
+    return "${mes}/${year}"
+}

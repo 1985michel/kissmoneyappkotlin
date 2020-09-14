@@ -50,7 +50,19 @@
         android:id="@+id/contasFragment"
         android:name="com.example.kissmoney.contas.ContasFragment"
         android:label="fragment_contas"
-        tools:layout="@layout/fragment_contas" />
+        tools:layout="@layout/fragment_contas" >
+        <argument
+            android:name="idMes"
+            android:defaultValue="0L"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_contasFragment_self"
+            app:destination="@id/contasFragment">
+            <argument
+                android:name="idMes"
+                app:argType="long" />
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/ganhosFragment"
         android:name="com.example.kissmoney.ganhos.GatnhosFragment"

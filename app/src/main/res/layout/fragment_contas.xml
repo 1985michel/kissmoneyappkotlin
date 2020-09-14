@@ -64,7 +64,7 @@
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@+id/nomeDoMestextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/saldoTextView"
             tools:listitem="@layout/item_contas" />
@@ -91,8 +91,8 @@
             android:text="Setembro / 2020"
             android:textColor="@color/lightgreybackground"
             app:layout_constraintBottom_toTopOf="@+id/palavraVariacaoEmReaisTextView"
-            app:layout_constraintEnd_toStartOf="@+id/imageView5"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/mesPosteriorImageViewCaixa"
+            app:layout_constraintStart_toEndOf="@+id/mesAnteriorImageViewCaixa"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
 
         <TextView
@@ -104,7 +104,7 @@
             android:layout_marginTop="16dp"
             android:text="Variação:"
             app:layout_constraintBottom_toTopOf="@+id/palavraVariacaoEmReaisTextView2"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/mesAnteriorImageViewCaixa"
             app:layout_constraintTop_toBottomOf="@+id/nomeDoMestextView" />
 
         <TextView
@@ -139,7 +139,7 @@
             app:layout_constraintStart_toEndOf="@+id/palavraVariacaoEmReaisTextView2" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/mesAnteriorImageViewCaixa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -148,7 +148,7 @@
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/mesPosteriorImageViewCaixa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"

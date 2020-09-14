@@ -18,16 +18,19 @@ import androidx.core.graphics.toColor
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kissmoney.R
 import com.example.kissmoney.contas.mensal.MovimentacaoMensal
 import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
 import com.example.kissmoney.databinding.FragmentContasBinding
+import com.example.kissmoney.mes.Mes
 import com.example.kissmoney.mes.MesViewModel
-import com.example.kissmoney.util.MoneyTextWatcher
-import com.example.kissmoney.util.getDataHojeString
-import com.example.kissmoney.util.limpaFormatacaoDeMoeda
+import com.example.kissmoney.mes.NomesMeses
+import com.example.kissmoney.util.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.fragment_contas.*
 import kotlinx.coroutines.*
 import java.util.*
 
@@ -44,6 +47,10 @@ class ContasFragment : Fragment() {
     lateinit var movimentacaoMensalViewModel: MovimentacaoMensalViewModel
 
     lateinit var adapter: ContaListAdapter
+
+    lateinit var mesAtual: Mes
+    lateinit var mesAnterior: Mes
+    lateinit var mesPosterior: Mes
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +79,73 @@ class ContasFragment : Fragment() {
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity as AppCompatActivity)
+
+
+        // início navegação entre meses
+        val args = ContasFragmentArgs.fromBundle(requireArguments())
+        var idMes = args.idMes
+
+        mesAtual = Mes(idMes, getNomeMesAtual())
+
+        // se tiver recebido um id, vou ao banco buscar o nome
+        if (idMes != 0L){
+            mesViewModel.getById(mesAtual){
+                binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes).toString()
+                mesAnterior = Mes(0L,recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
+                mesPosterior = Mes(0L, recebeNomeMesRetornaNomeMesPosterior(mesAtual.nomeMes))
+                mesViewModel.getByName(mesAnterior){}
+                mesViewModel.getByName(mesPosterior){}
+
+                GlobalScope.launch {
+                    //Background processing..."
+                    withContext(Dispatchers.Main) {
+                        //"Update UI here!")
+                        ContaJoinViewModel.setAllContasJoin() {
+                            // para poder rodar na tread principal
+                            binding.mesAnteriorImageViewCaixa.setOnClickListener {
+                                Navigation.findNavController(requireView()).navigate(ContasFragmentDirections.actionContasFragmentSelf(mesAnterior.mesId))
+                            }
+                            binding.mesPosteriorImageViewCaixa.setOnClickListener {
+                                Navigation.findNavController(requireView()).navigate(ContasFragmentDirections.actionContasFragmentSelf(mesPosterior.mesId))
+                            }
+                        }
+                    }
+                }
+
+            }
+        } else { // se não tiver recebido um id, vou ao banco buscar por nome, se não tiver ele cria
+            mesViewModel.getByName(mesAtual){
+                binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
+                mesAnterior = Mes(0L,recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
+                mesPosterior = Mes(0L, recebeNomeMesRetornaNomeMesPosterior(mesAtual.nomeMes))
+                mesViewModel.getByName(mesAnterior){}
+                mesViewModel.getByName(mesPosterior){}
+
+                GlobalScope.launch {
+                    //Background processing..."
+                    withContext(Dispatchers.Main) {
+                        //"Update UI here!")
+                        ContaJoinViewModel.setAllContasJoin() {
+                            // para poder rodar na tread principal
+                            binding.mesAnteriorImageViewCaixa.setOnClickListener {
+                                Navigation.findNavController(requireView()).navigate(ContasFragmentDirections.actionContasFragmentSelf(mesAnterior.mesId))
+                            }
+                            binding.mesPosteriorImageViewCaixa.setOnClickListener {
+                                Navigation.findNavController(requireView()).navigate(ContasFragmentDirections.actionContasFragmentSelf(mesPosterior.mesId))
+                            }
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+//        mesAnteriorImageViewCaixa.findNavController().navigate(ContasFragmentDirections.actionContasFragmentSelf(mesAnterior.mesId))
+//        mesPosteriorImageViewCaixa.findNavController().navigate(ContasFragmentDirections.actionContasFragmentSelf(mesPosterior.mesId))
+
+
+        //fim navegação entre meses
 
 
 
@@ -272,9 +346,18 @@ class ContasFragment : Fragment() {
             dialog.show()
         }
 
+
+
         (activity as AppCompatActivity).supportActionBar?.title = "Kiss"
 
         return binding.root
+    }
+
+    private fun getMesIdPeloNome(nomeMes: String, mesViewModel: MesViewModel, callback: () -> Unit ) {
+        var mes = Mes(0L, nomeMes)
+        mesViewModel.getByName(mes){
+            callback()
+        }
     }
 
     private fun setaContasNoAdapter() {
@@ -287,5 +370,25 @@ class ContasFragment : Fragment() {
 //            TODO("Continue background processing...")
 //        }
         adapter.setContas(ContaJoinViewModel.allContasJoin)
+    }
+
+    private fun getNomeMesPorExtenso(nomeMes: String): String {
+
+        for (mes in NomesMeses.values()){
+            if (nomeMes.substring(0,2).equals(mes.numero.toString())){
+                return mes.name
+            }
+        }
+        return NomesMeses.Abril.name
+    }
+
+    private fun getNomeMesPorExtensoComAno(nomeMes: String): String {
+
+        for (mes in NomesMeses.values()){
+            if (nomeMes.substring(0,2).equals(mes.numero.toString())){
+                return "${mes.name} / ${nomeMes.substring(3)}"
+            }
+        }
+        return ""
     }
 }
