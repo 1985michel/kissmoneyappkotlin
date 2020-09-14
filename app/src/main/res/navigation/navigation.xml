@@ -57,7 +57,8 @@
             app:argType="long" />
         <action
             android:id="@+id/action_contasFragment_self"
-            app:destination="@id/contasFragment">
+            app:destination="@id/contasFragment"
+            app:popUpTo="@id/mesFragment">
             <argument
                 android:name="idMes"
                 app:argType="long" />

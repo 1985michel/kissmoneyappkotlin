@@ -91,53 +91,13 @@ class ContasFragment : Fragment() {
         if (idMes != 0L){
             mesViewModel.getById(mesAtual){
                 binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes).toString()
-                mesAnterior = Mes(0L,recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
-                mesPosterior = Mes(0L, recebeNomeMesRetornaNomeMesPosterior(mesAtual.nomeMes))
-                mesViewModel.getByName(mesAnterior){}
-                mesViewModel.getByName(mesPosterior){}
-
-                GlobalScope.launch {
-                    //Background processing..."
-                    withContext(Dispatchers.Main) {
-                        //"Update UI here!")
-                        ContaJoinViewModel.setAllContasJoin() {
-                            // para poder rodar na tread principal
-                            binding.mesAnteriorImageViewCaixa.setOnClickListener {
-                                Navigation.findNavController(requireView()).navigate(ContasFragmentDirections.actionContasFragmentSelf(mesAnterior.mesId))
-                            }
-                            binding.mesPosteriorImageViewCaixa.setOnClickListener {
-                                Navigation.findNavController(requireView()).navigate(ContasFragmentDirections.actionContasFragmentSelf(mesPosterior.mesId))
-                            }
-                        }
-                    }
-                }
+                setMesAnteriorEMesPosterior(binding)
 
             }
         } else { // se não tiver recebido um id, vou ao banco buscar por nome, se não tiver ele cria
             mesViewModel.getByName(mesAtual){
                 binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
-                mesAnterior = Mes(0L,recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
-                mesPosterior = Mes(0L, recebeNomeMesRetornaNomeMesPosterior(mesAtual.nomeMes))
-                mesViewModel.getByName(mesAnterior){}
-                mesViewModel.getByName(mesPosterior){}
-
-                GlobalScope.launch {
-                    //Background processing..."
-                    withContext(Dispatchers.Main) {
-                        //"Update UI here!")
-                        ContaJoinViewModel.setAllContasJoin() {
-                            // para poder rodar na tread principal
-                            binding.mesAnteriorImageViewCaixa.setOnClickListener {
-                                Navigation.findNavController(requireView()).navigate(ContasFragmentDirections.actionContasFragmentSelf(mesAnterior.mesId))
-                            }
-                            binding.mesPosteriorImageViewCaixa.setOnClickListener {
-                                Navigation.findNavController(requireView()).navigate(ContasFragmentDirections.actionContasFragmentSelf(mesPosterior.mesId))
-                            }
-                        }
-                    }
-                }
-
-
+                setMesAnteriorEMesPosterior(binding)
             }
         }
 
@@ -351,6 +311,31 @@ class ContasFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = "Kiss"
 
         return binding.root
+    }
+
+    private fun setMesAnteriorEMesPosterior(binding: FragmentContasBinding) {
+        mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
+        mesPosterior = Mes(0L, recebeNomeMesRetornaNomeMesPosterior(mesAtual.nomeMes))
+        mesViewModel.getByName(mesAnterior) {}
+        mesViewModel.getByName(mesPosterior) {}
+
+        GlobalScope.launch {
+            //Background processing..."
+            withContext(Dispatchers.Main) {
+                //"Update UI here!")
+                ContaJoinViewModel.setAllContasJoin() {
+                    // para poder rodar na tread principal
+                    binding.mesAnteriorImageViewCaixa.setOnClickListener {
+                        Navigation.findNavController(requireView())
+                            .navigate(ContasFragmentDirections.actionContasFragmentSelf(mesAnterior.mesId))
+                    }
+                    binding.mesPosteriorImageViewCaixa.setOnClickListener {
+                        Navigation.findNavController(requireView())
+                            .navigate(ContasFragmentDirections.actionContasFragmentSelf(mesPosterior.mesId))
+                    }
+                }
+            }
+        }
     }
 
     private fun getMesIdPeloNome(nomeMes: String, mesViewModel: MesViewModel, callback: () -> Unit ) {
