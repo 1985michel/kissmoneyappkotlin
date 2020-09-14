@@ -5,7 +5,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/darkblue_background">
 
 
         <TextView
@@ -16,6 +17,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:text="Contas"
+            android:textColor="@color/lightgreybackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,20 +29,10 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="Saldo:"
+            android:textColor="@color/lightgreybackground"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-        <TextView
-            android:id="@+id/nomeDaContaTextView"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="Banco do Brasil"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
 
         <TextView
             android:id="@+id/saldoTextView"
@@ -50,6 +42,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="R$ 253.000,00"
+            android:textColor="@color/lightgreybackground"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView9" />
@@ -58,135 +51,23 @@
             android:id="@+id/recyclerViewCaixa"
 
             android:layout_width="0dp"
-            android:layout_height="261dp"
+            android:layout_height="0dp"
             android:layout_marginStart="4dp"
 
 
             android:layout_marginTop="16dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginBottom="16dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/darkblue_background"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbarSize="5dp"
             android:scrollbarThumbVertical="@android:color/background_dark"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/nomeDaContaTextView"
+            app:layout_constraintBottom_toTopOf="@+id/nomeDoMestextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/saldoTextView"
             tools:listitem="@layout/item_contas" />
-
-        <TextView
-            android:id="@+id/textView18"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Tipo de Conta:"
-            app:layout_constraintStart_toStartOf="@+id/textView19"
-            app:layout_constraintTop_toBottomOf="@+id/nomeDaContaTextView" />
-
-        <Spinner
-            android:id="@+id/spinnerTipoDeConta"
-            style="@style/padraoTextView"
-            android:layout_width="0dp"
-            android:layout_height="27dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/saldoInicialTextView" />
-
-        <TextView
-            android:id="@+id/saldoInicialTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:text="R$ 150.000,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
-            app:layout_constraintStart_toEndOf="@+id/textView19" />
-
-        <TextView
-            android:id="@+id/saldoAtualTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="R$ 200.000,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
-            app:layout_constraintStart_toStartOf="@+id/saldoInicialTextView" />
-
-        <TextView
-            android:id="@+id/textView23"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="No mês:"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/nomeDaContaTextView"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-        <TextView
-            android:id="@+id/variacaoTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="R$ 30.000,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView24"
-            app:layout_constraintStart_toStartOf="@+id/saldoAtualTextView" />
-
-        <TextView
-            android:id="@+id/textView26"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Atualizado em:"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView24"
-            app:layout_constraintTop_toBottomOf="@+id/textView24" />
-
-        <TextView
-            android:id="@+id/textView19"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Saldo Inicial:"
-            app:layout_constraintBottom_toTopOf="@+id/textView21"
-            app:layout_constraintStart_toStartOf="@+id/textView23"
-            app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-        <TextView
-            android:id="@+id/textView21"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Saldo Atual:"
-            app:layout_constraintBottom_toTopOf="@+id/textView24"
-            app:layout_constraintStart_toStartOf="@+id/textView19"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-        <TextView
-            android:id="@+id/textView24"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Variação:"
-            app:layout_constraintBottom_toTopOf="@+id/textView26"
-            app:layout_constraintStart_toStartOf="@+id/textView21"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-        <TextView
-            android:id="@+id/dataAtualizacaoTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="01/01/2000"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView26"
-            app:layout_constraintStart_toStartOf="@+id/variacaoTextView" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -200,6 +81,80 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_add_black_24dp" />
+
+        <TextView
+            android:id="@+id/nomeDoMestextView"
+            style="@style/subtituloTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Setembro / 2020"
+            android:textColor="@color/lightgreybackground"
+            app:layout_constraintBottom_toTopOf="@+id/palavraVariacaoEmReaisTextView"
+            app:layout_constraintEnd_toStartOf="@+id/imageView5"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
+
+        <TextView
+            android:id="@+id/palavraVariacaoEmReaisTextView"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Variação:"
+            app:layout_constraintBottom_toTopOf="@+id/palavraVariacaoEmReaisTextView2"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/nomeDoMestextView" />
+
+        <TextView
+            android:id="@+id/palavraVariacaoEmReaisTextView2"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:text="Variação em Dias:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/palavraVariacaoEmReaisTextView"
+            app:layout_constraintTop_toBottomOf="@+id/palavraVariacaoEmReaisTextView" />
+
+        <TextView
+            android:id="@+id/valorVariacaoEmReaisTextView"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R$ 0,00"
+            app:layout_constraintBaseline_toBaselineOf="@+id/palavraVariacaoEmReaisTextView"
+            app:layout_constraintStart_toStartOf="@+id/valorVariacaoEmDiasTextView" />
+
+        <TextView
+            android:id="@+id/valorVariacaoEmDiasTextView"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="0 dias"
+            app:layout_constraintBaseline_toBaselineOf="@+id/palavraVariacaoEmReaisTextView2"
+            app:layout_constraintStart_toEndOf="@+id/palavraVariacaoEmReaisTextView2" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/totheleft"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/totheright"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
