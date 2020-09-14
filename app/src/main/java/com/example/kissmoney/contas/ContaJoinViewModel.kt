@@ -22,6 +22,8 @@ object ContaJoinViewModel {
 
     var allContasJoin = ArrayList<ContaJoin>()
 
+    var contasJoinDoMes = ArrayList<ContaJoin>()
+
     lateinit var owner : LifecycleOwner
 
 
@@ -65,6 +67,35 @@ object ContaJoinViewModel {
         }
     }
 
+    fun setContasJoinNoMes(mesId: Long, callback: () -> Unit){
+
+        var moviList = ArrayList<MovimentacaoMensal>()
+        var contaList = ArrayList<Conta>()
+        var mesList = ArrayList<Mes>()
+
+        getData(moviList, mesList, contaList){
+
+            //allContasJoin.clear()
+            contasJoinDoMes.clear()
+
+
+            var mesW = Mes(0L, "")
+            var contaW = Conta(0L, "", "", false)
+
+            for (movi in moviList){
+                for (mes in mesList) {
+                    if(mes.mesId == movi.mesId) mesW = mes
+                }
+                for (conta in contaList){
+                    if (conta.contaId == movi.contaId) contaW = conta
+                }
+                if (movi.mesId == mesId) contasJoinDoMes.add(ContaJoin(contaW,movi,mesW))
+            }
+
+            callback()
+        }
+    }
+
     private fun getData(
         moviList: ArrayList<MovimentacaoMensal>,
         mesList: ArrayList<Mes>,
@@ -102,7 +133,6 @@ object ContaJoinViewModel {
     private fun getMovimentacoes(moviList: ArrayList<MovimentacaoMensal>, callback: () -> Unit) {
         moviList.clear()
         allMovimentacoes.observe(owner, Observer {
-
             moviList.clear()
             moviList.addAll(it)
             callback()

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kissmoney.R
 import com.example.kissmoney.contas.mensal.MovimentacaoMensal
 import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
+import com.example.kissmoney.mes.Mes
 import com.example.kissmoney.mes.MesViewModel
 import com.example.kissmoney.util.MoneyTextWatcher
 import com.example.kissmoney.util.formataParaBr
@@ -45,6 +46,9 @@ class ContaListAdapter internal constructor(context: Context) :
     private var mDateSetListener: DatePickerDialog.OnDateSetListener? = null
     private val TAG = "MainActivity"
 
+    //setando o mes de trabalho
+    lateinit var mesTrabalhado : Mes
+
 
     fun setViewModel(contaViewModel: ContaViewModel, mesViewModel: MesViewModel, movimentacaoMensalViewModel: MovimentacaoMensalViewModel){
         this.contaViewModel = contaViewModel
@@ -52,6 +56,8 @@ class ContaListAdapter internal constructor(context: Context) :
         this.movimentacaoMensalViewModel = movimentacaoMensalViewModel
 
     }
+
+
 
 
     inner class ContaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -260,10 +266,16 @@ class ContaListAdapter internal constructor(context: Context) :
                             //Background processing..."
                             withContext(Dispatchers.Main) {
                                 //"Update UI here!")
-                                ContaJoinViewModel.setAllContasJoin() {
-                                    contas =
-                                        ContaJoinViewModel.allContasJoin // para poder rodar na tread principal
-                                    setContas(contas)
+
+                                ContaJoinViewModel.setContasJoinNoMes(mesTrabalhado.mesId){
+                                    setContas(ContaJoinViewModel.contasJoinDoMes)
+//                                }
+//
+//                                ContaJoinViewModel.setAllContasJoin() {
+
+//                                    contas =
+//                                        ContaJoinViewModel.allContasJoin // para poder rodar na tread principal
+//                                    setContas(contas)
 
                                     val toast = Toast.makeText(
                                         holder.itemView.context as AppCompatActivity,
@@ -300,6 +312,10 @@ class ContaListAdapter internal constructor(context: Context) :
     internal  fun setContas(contas: List<ContaJoin>){
         this.contas = contas
         notifyDataSetChanged()
+    }
+
+    internal fun setMesTrabalhado(mes: Mes) {
+        this.mesTrabalhado = mes
     }
 
     override fun getItemCount() = contas.size
