@@ -66,12 +66,13 @@
             app:layout_constraintStart_toStartOf="@+id/tipoContaSpinnerImageView"
             app:layout_constraintTop_toBottomOf="@+id/tipoContaSpinner2" />
 
-        <Spinner
+        <TextView
             android:id="@+id/tipoContaSpinner2"
             style="@style/padraoTextViewWhite"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:clickable="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -155,38 +156,38 @@
             app:layout_constraintTop_toTopOf="@+id/tipoContaSpinner2" />
 
         <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="163dp"
-            android:layout_height="142dp"
-            android:layout_marginTop="32dp"
+            android:id="@+id/updateValorAtualContaImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView6"
+            app:layout_constraintEnd_toStartOf="@+id/editContaImageView"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintStart_toEndOf="@+id/deleteContaImageView"
             app:layout_constraintTop_toBottomOf="@+id/saldoAtualEditTextText"
             app:srcCompat="@drawable/update_dark_destaque" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/deleteContaImageView"
             android:layout_width="30dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/updateValorAtualContaImageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/updateValorAtualContaImageView"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="@+id/updateValorAtualContaImageView"
             app:srcCompat="@drawable/lixeira_dark_2" />
 
         <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="40dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            android:id="@+id/editContaImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/updateValorAtualContaImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/updateValorAtualContaImageView"
+            app:layout_constraintTop_toTopOf="@+id/updateValorAtualContaImageView"
             app:srcCompat="@drawable/editar_dark" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,9 @@
 package com.example.kissmoney.contas
 
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.text.Html
@@ -9,10 +11,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kissmoney.R
 import com.example.kissmoney.contas.mensal.MovimentacaoMensal
@@ -47,17 +51,19 @@ class ContaListAdapter internal constructor(context: Context) :
     private val TAG = "MainActivity"
 
     //setando o mes de trabalho
-    lateinit var mesTrabalhado : Mes
+    lateinit var mesTrabalhado: Mes
 
 
-    fun setViewModel(contaViewModel: ContaViewModel, mesViewModel: MesViewModel, movimentacaoMensalViewModel: MovimentacaoMensalViewModel){
+    fun setViewModel(
+        contaViewModel: ContaViewModel,
+        mesViewModel: MesViewModel,
+        movimentacaoMensalViewModel: MovimentacaoMensalViewModel
+    ) {
         this.contaViewModel = contaViewModel
         this.mesViewModel = mesViewModel
         this.movimentacaoMensalViewModel = movimentacaoMensalViewModel
 
     }
-
-
 
 
     inner class ContaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -89,9 +95,9 @@ class ContaListAdapter internal constructor(context: Context) :
 
 
         holder.contaIconImageView.setImageResource(
-            if (current.tipoConta.equals(TiposDeConta.CARTEIRA.tipo)){
+            if (current.tipoConta.equals(TiposDeConta.CARTEIRA.tipo)) {
                 R.drawable.cofre_icon_list
-            } else if (current.tipoConta.equals(TiposDeConta.INVESTIMENTO.tipo)){
+            } else if (current.tipoConta.equals(TiposDeConta.INVESTIMENTO.tipo)) {
                 R.drawable.invest_icon_list
             } else {
                 R.drawable.creditcard_icon_list
@@ -102,67 +108,38 @@ class ContaListAdapter internal constructor(context: Context) :
         holder.constraint.setOnClickListener {
             val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
             //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
-            dialog.setContentView(R.layout.crud_conta_botton_sheet)
+            dialog.setContentView(R.layout.view_conta_botton_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.getWindow()?.setDimAmount(0F);
             dialog.setCancelable(false)
 
 
-            var tiposSpinner = dialog.findViewById<Spinner>(R.id.tipoContaSpinner2)
-            var nomeEditText = dialog.findViewById<EditText>(R.id.nomeContaBottonTextView)
-            var valorInicialEditText = dialog.findViewById<EditText>(R.id.saldoInicialEditText)
+            var tiposSpinner = dialog.findViewById<TextView>(R.id.tipoContaSpinner2)
+            var nomeEditText = dialog.findViewById<TextView>(R.id.nomeContaBottonTextView)
+            var valorInicialEditText = dialog.findViewById<TextView>(R.id.saldoInicialEditText)
             var valorAtualOuFinalEditText =
-                dialog.findViewById<EditText>(R.id.saldoAtualEditTextText)
+                dialog.findViewById<TextView>(R.id.saldoAtualEditTextText)
             var dataAtualizacaoTextView =
                 dialog.findViewById<TextView>(R.id.dataAtualizacaoTextView)
             var isEncerrada = dialog.findViewById<SwitchCompat>(R.id.isEncerradaSwitch)
             var tipoContaSpinnerImageView: ImageView? =
                 dialog.findViewById(R.id.tipoContaSpinnerImageView)
 
-            var adapterSpinner = ArrayAdapter(
-                holder.itemView.context as AppCompatActivity,
-                R.layout.spinner_item_white,
-                TiposDeConta.values()
-            )
-            adapterSpinner.setDropDownViewResource(R.layout.spinner_item_white)
-            tiposSpinner?.adapter = adapterSpinner
 
-            tiposSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    tipoContaSpinnerImageView?.setImageResource(
-                        if (tiposSpinner?.selectedItem.toString() == TiposDeConta.CARTEIRA.tipo) {
+            //hora de povoar os valores
+
+            nomeEditText?.setText(current.nomeConta)
+            tiposSpinner?.text = current.tipoConta
+
+            tipoContaSpinnerImageView?.setImageResource(
+                        if (current.tipoConta == TiposDeConta.CARTEIRA.tipo) {
                             R.drawable.cofre_icon_list_dark
-                        } else if (tiposSpinner?.selectedItem.toString() == TiposDeConta.INVESTIMENTO.tipo) {
+                        } else if (current.tipoConta == TiposDeConta.INVESTIMENTO.tipo) {
                             R.drawable.invest_icon_list_dark
                         } else {
                             R.drawable.creditcard_icon_list_dark
                         }
                     )
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    tipoContaSpinnerImageView?.setImageResource(R.color.darkblue_background)
-                }
-            }
-
-
-            //hora de povoar os valores
-
-            nomeEditText?.setText(current.nomeConta)
-            tiposSpinner?.setSelection(
-                if (current.tipoConta == TiposDeConta.CARTEIRA.tipo){
-                    0
-                } else if (current.tipoConta == TiposDeConta.DIVIDAS.tipo) {
-                    1
-                } else {
-                    2
-                }
-            )
 
             dataAtualizacaoTextView?.text = current.dataAtualizacao
 
@@ -171,104 +148,236 @@ class ContaListAdapter internal constructor(context: Context) :
             isEncerrada?.isChecked = current.isEncerrada
 
 
-            valorInicialEditText?.addTextChangedListener(
-                MoneyTextWatcher(
-                    valorInicialEditText,
-                    Locale("pt", "BR")
-                )
-            )
-
-            valorAtualOuFinalEditText?.addTextChangedListener(
-                MoneyTextWatcher(
-                    valorAtualOuFinalEditText,
-                    Locale("pt", "BR")
-                )
-            )
-
-            val saveBtn = dialog.findViewById<Button>(R.id.salvarButton)
             val cancelBtn = dialog.findViewById<Button>(R.id.cancelButton)
+            val deleteBtn = dialog.findViewById<ImageView>(R.id.deleteContaImageView)
+            val updateBtn = dialog.findViewById<ImageView>(R.id.updateValorAtualContaImageView)
+            val editBtn = dialog.findViewById<ImageView>(R.id.editContaImageView)
+
+            deleteBtn?.setOnClickListener {
+
+                val dialogIterno = Dialog(holder.itemView.context as AppCompatActivity)
+                dialogIterno.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialogIterno.setCancelable(false)
+                dialogIterno.setContentView(R.layout.delete_dialog)
+                dialogIterno.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                //val body = dialog.findViewById(R.id.body) as TextView
 
 
-            //apresentando o datapicker calendar
-            dataAtualizacaoTextView?.setOnClickListener {
-                val cal = Calendar.getInstance()
-                val year = cal[Calendar.YEAR]
-                val month = cal[Calendar.MONTH]
-                val day = cal[Calendar.DAY_OF_MONTH]
-                val dialog = DatePickerDialog(
-                    holder.itemView.context as AppCompatActivity,
-                    mDateSetListener,
-                    year, month, day
+                var msg = dialogIterno.findViewById(R.id.msgTextView) as TextView
+                msg.setText(
+                    Html.fromHtml("Você confirma que deseja apagar <b>${current.nomeConta.toUpperCase()}</b> e todos os seus registros (inclusive de todos os meses)?")
                 )
-                //dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                dialog.show()
-            }
-            mDateSetListener =
-                DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-                    var month = month
-                    month = month + 1
-                    Log.d(
-                        TAG,
-                        "onDateSet: mm/dd/yyy: $month/$day/$year"
+
+                var confirmaBtn = dialogIterno.findViewById(R.id.apagarButton) as Button
+
+                confirmaBtn.setOnClickListener {
+                    contaViewModel.delete(
+                        current.getConta()
                     )
 
-                    var mes = if (month < 10) "0" + month.toString() else month
-                    var dia = if (day < 10) "0" + day.toString() else day
 
-                    //val date = "$month/$day/$year"
-                    val date = "$dia/$mes/$year"
+                    val toast = Toast.makeText(
+                        holder.itemView.context as AppCompatActivity,
+                        Html.fromHtml("<font color='#e3f2fd' ><b>" + "Conta ${current.nomeConta} apagada com sucesso!" + "</b></font>"),
+                        Toast.LENGTH_LONG
+                    )
 
-                    dataAtualizacaoTextView?.text = date
+                    //colocando o toast verde
+                    toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+
+                    toast.show()
+                    dialogIterno.dismiss()
+                    dialog.dismiss()
+
+
+                }
+
+                var cancelarBtn = dialogIterno.findViewById(R.id.cancelarButton) as Button
+                cancelarBtn.setOnClickListener { dialogIterno.dismiss() }
+
+                dialogIterno.show()
+                setLarguraEAlturaInterno(dialogIterno){}
+
+                cancelBtn?.setOnClickListener { dialog.dismiss() }
+
+                dialog.show()
+            }
+
+
+            editBtn?.setOnClickListener {
+
+                //fecha o dialog de consulta e cria o de CRUD
+                dialog.dismiss()
+
+                val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+                //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
+                dialog.setContentView(R.layout.crud_conta_botton_sheet)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.getWindow()?.setDimAmount(0F);
+                dialog.setCancelable(false)
+
+
+                var tiposSpinner = dialog.findViewById<Spinner>(R.id.tipoContaSpinner2)
+                var nomeEditText = dialog.findViewById<EditText>(R.id.nomeContaBottonTextView)
+                var valorInicialEditText = dialog.findViewById<EditText>(R.id.saldoInicialEditText)
+                var valorAtualOuFinalEditText =
+                    dialog.findViewById<EditText>(R.id.saldoAtualEditTextText)
+                var dataAtualizacaoTextView =
+                    dialog.findViewById<TextView>(R.id.dataAtualizacaoTextView)
+                var isEncerrada = dialog.findViewById<SwitchCompat>(R.id.isEncerradaSwitch)
+                var tipoContaSpinnerImageView: ImageView? =
+                    dialog.findViewById(R.id.tipoContaSpinnerImageView)
+
+                var adapterSpinner = ArrayAdapter(
+                    holder.itemView.context as AppCompatActivity,
+                    R.layout.spinner_item_white,
+                    TiposDeConta.values()
+                )
+                adapterSpinner.setDropDownViewResource(R.layout.spinner_item_white)
+                tiposSpinner?.adapter = adapterSpinner
+
+                tiposSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        tipoContaSpinnerImageView?.setImageResource(
+                            if (tiposSpinner?.selectedItem.toString() == TiposDeConta.CARTEIRA.tipo) {
+                                R.drawable.cofre_icon_list_dark
+                            } else if (tiposSpinner?.selectedItem.toString() == TiposDeConta.INVESTIMENTO.tipo) {
+                                R.drawable.invest_icon_list_dark
+                            } else {
+                                R.drawable.creditcard_icon_list_dark
+                            }
+                        )
+                    }
+
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+                        tipoContaSpinnerImageView?.setImageResource(R.color.darkblue_background)
+                    }
                 }
 
 
-            saveBtn?.setOnClickListener {
+                //hora de povoar os valores
 
-                if (nomeEditText?.text.isNullOrEmpty()) {
-                    val toast = Toast.makeText(
+                nomeEditText?.setText(current.nomeConta)
+                tiposSpinner?.setSelection(
+                    if (current.tipoConta == TiposDeConta.CARTEIRA.tipo) {
+                        0
+                    } else if (current.tipoConta == TiposDeConta.DIVIDAS.tipo) {
+                        1
+                    } else {
+                        2
+                    }
+                )
+
+                dataAtualizacaoTextView?.text = current.dataAtualizacao
+
+                valorInicialEditText?.setText(formataParaBr(current.saldoInicial.toBigDecimal()))
+                valorAtualOuFinalEditText?.setText(formataParaBr(current.saldoAtualOuFinal.toBigDecimal()))
+                isEncerrada?.isChecked = current.isEncerrada
+
+
+                valorInicialEditText?.addTextChangedListener(
+                    MoneyTextWatcher(
+                        valorInicialEditText,
+                        Locale("pt", "BR")
+                    )
+                )
+
+                valorAtualOuFinalEditText?.addTextChangedListener(
+                    MoneyTextWatcher(
+                        valorAtualOuFinalEditText,
+                        Locale("pt", "BR")
+                    )
+                )
+
+                val saveBtn = dialog.findViewById<Button>(R.id.salvarButton)
+                val cancelBtn = dialog.findViewById<Button>(R.id.cancelButton)
+
+
+                //apresentando o datapicker calendar
+                dataAtualizacaoTextView?.setOnClickListener {
+                    val cal = Calendar.getInstance()
+                    val year = cal[Calendar.YEAR]
+                    val month = cal[Calendar.MONTH]
+                    val day = cal[Calendar.DAY_OF_MONTH]
+                    val dialog = DatePickerDialog(
                         holder.itemView.context as AppCompatActivity,
-                        Html.fromHtml("<font color='#e3f2fd' ><b>" + "Obrigatório informar um nome!" + "</b></font>"),
-                        Toast.LENGTH_LONG
+                        mDateSetListener,
+                        year, month, day
                     )
-                    //colocando o toast vermelho
-                    toast.view?.setBackgroundColor(Color.parseColor("#FF1A1A"))
+                    //dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                }
+                mDateSetListener =
+                    DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+                        var month = month
+                        month = month + 1
+                        Log.d(
+                            TAG,
+                            "onDateSet: mm/dd/yyy: $month/$day/$year"
+                        )
 
-                    toast.show()
-                } else {
+                        var mes = if (month < 10) "0" + month.toString() else month
+                        var dia = if (day < 10) "0" + day.toString() else day
 
-                    var nome = nomeEditText?.text.toString()
-                    var tipo = tiposSpinner?.selectedItem.toString()
-                    var valorInicial =
-                        limpaFormatacaoDeMoeda(valorInicialEditText?.text.toString()).trim()
-                            .toDouble()
-                    var valorAtual =
-                        limpaFormatacaoDeMoeda(valorAtualOuFinalEditText?.text.toString()).trim()
-                            .toDouble()
-                    var isEncerrada = isEncerrada?.isChecked
-                    var dataAtualizacao = dataAtualizacaoTextView?.text.toString()
+                        //val date = "$month/$day/$year"
+                        val date = "$dia/$mes/$year"
 
-                    var conta = Conta(current.contaId, nome, tipo, isEncerrada!!)
-                    var movimentacaoMensal = MovimentacaoMensal(
-                        current.movimentacaoId, current.mesId, current.contaId,
-                        valorInicial, valorAtual, dataAtualizacao
-                    )
-
-                    ContaManager.updateContaComMovimentacao(
-                        conta,
-                        movimentacaoMensal,
-                        contaViewModel,
-                        mesViewModel,
-                        movimentacaoMensalViewModel
-                    ) {
+                        dataAtualizacaoTextView?.text = date
+                    }
 
 
-                        GlobalScope.launch {
-                            //Background processing..."
-                            withContext(Dispatchers.Main) {
-                                //"Update UI here!")
+                saveBtn?.setOnClickListener {
 
-                                ContaJoinViewModel.setContasJoinNoMes(mesTrabalhado.mesId){
-                                    setContas(ContaJoinViewModel.contasJoinDoMes)
+                    if (nomeEditText?.text.isNullOrEmpty()) {
+                        val toast = Toast.makeText(
+                            holder.itemView.context as AppCompatActivity,
+                            Html.fromHtml("<font color='#e3f2fd' ><b>" + "Obrigatório informar um nome!" + "</b></font>"),
+                            Toast.LENGTH_LONG
+                        )
+                        //colocando o toast vermelho
+                        toast.view?.setBackgroundColor(Color.parseColor("#FF1A1A"))
+
+                        toast.show()
+                    } else {
+
+                        var nome = nomeEditText?.text.toString()
+                        var tipo = tiposSpinner?.selectedItem.toString()
+                        var valorInicial =
+                            limpaFormatacaoDeMoeda(valorInicialEditText?.text.toString()).trim()
+                                .toDouble()
+                        var valorAtual =
+                            limpaFormatacaoDeMoeda(valorAtualOuFinalEditText?.text.toString()).trim()
+                                .toDouble()
+                        var isEncerrada = isEncerrada?.isChecked
+                        var dataAtualizacao = dataAtualizacaoTextView?.text.toString()
+
+                        var conta = Conta(current.contaId, nome, tipo, isEncerrada!!)
+                        var movimentacaoMensal = MovimentacaoMensal(
+                            current.movimentacaoId, current.mesId, current.contaId,
+                            valorInicial, valorAtual, dataAtualizacao
+                        )
+
+                        ContaManager.updateContaComMovimentacao(
+                            conta,
+                            movimentacaoMensal,
+                            contaViewModel,
+                            mesViewModel,
+                            movimentacaoMensalViewModel
+                        ) {
+
+
+                            GlobalScope.launch {
+                                //Background processing..."
+                                withContext(Dispatchers.Main) {
+                                    //"Update UI here!")
+
+                                    ContaJoinViewModel.setContasJoinNoMes(mesTrabalhado.mesId) {
+                                        setContas(ContaJoinViewModel.contasJoinDoMes)
 //                                }
 //
 //                                ContaJoinViewModel.setAllContasJoin() {
@@ -277,27 +386,33 @@ class ContaListAdapter internal constructor(context: Context) :
 //                                        ContaJoinViewModel.allContasJoin // para poder rodar na tread principal
 //                                    setContas(contas)
 
-                                    val toast = Toast.makeText(
-                                        holder.itemView.context as AppCompatActivity,
-                                        Html.fromHtml("<font color='#e3f2fd' ><b>" + "${nomeEditText?.text.toString()} registrado com sucesso!" + "</b></font>"),
-                                        Toast.LENGTH_LONG
-                                    )
+                                        val toast = Toast.makeText(
+                                            holder.itemView.context as AppCompatActivity,
+                                            Html.fromHtml("<font color='#e3f2fd' ><b>" + "${nomeEditText?.text.toString()} registrado com sucesso!" + "</b></font>"),
+                                            Toast.LENGTH_LONG
+                                        )
 
-                                    //colocando o toast verde
-                                    toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+                                        //colocando o toast verde
+                                        toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
 
-                                    toast.show()
+                                        toast.show()
+                                    }
                                 }
                             }
                         }
+
+
+
+                        dialog.dismiss()
                     }
 
-
-
-                    dialog.dismiss()
                 }
 
+                cancelBtn?.setOnClickListener { dialog.dismiss() }
+
+                dialog.show()
             }
+
 
             cancelBtn?.setOnClickListener { dialog.dismiss() }
 
@@ -307,8 +422,218 @@ class ContaListAdapter internal constructor(context: Context) :
 
 
 
-    }
+//
+//
+//        holder.constraint.setOnClickListener {
+//            val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+//            //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
+//            dialog.setContentView(R.layout.crud_conta_botton_sheet)
+//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            dialog.getWindow()?.setDimAmount(0F);
+//            dialog.setCancelable(false)
+//
+//
+//            var tiposSpinner = dialog.findViewById<Spinner>(R.id.tipoContaSpinner2)
+//            var nomeEditText = dialog.findViewById<EditText>(R.id.nomeContaBottonTextView)
+//            var valorInicialEditText = dialog.findViewById<EditText>(R.id.saldoInicialEditText)
+//            var valorAtualOuFinalEditText =
+//                dialog.findViewById<EditText>(R.id.saldoAtualEditTextText)
+//            var dataAtualizacaoTextView =
+//                dialog.findViewById<TextView>(R.id.dataAtualizacaoTextView)
+//            var isEncerrada = dialog.findViewById<SwitchCompat>(R.id.isEncerradaSwitch)
+//            var tipoContaSpinnerImageView: ImageView? =
+//                dialog.findViewById(R.id.tipoContaSpinnerImageView)
+//
+//            var adapterSpinner = ArrayAdapter(
+//                holder.itemView.context as AppCompatActivity,
+//                R.layout.spinner_item_white,
+//                TiposDeConta.values()
+//            )
+//            adapterSpinner.setDropDownViewResource(R.layout.spinner_item_white)
+//            tiposSpinner?.adapter = adapterSpinner
+//
+//            tiposSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(
+//                    parent: AdapterView<*>?,
+//                    view: View?,
+//                    position: Int,
+//                    id: Long
+//                ) {
+//                    tipoContaSpinnerImageView?.setImageResource(
+//                        if (tiposSpinner?.selectedItem.toString() == TiposDeConta.CARTEIRA.tipo) {
+//                            R.drawable.cofre_icon_list_dark
+//                        } else if (tiposSpinner?.selectedItem.toString() == TiposDeConta.INVESTIMENTO.tipo) {
+//                            R.drawable.invest_icon_list_dark
+//                        } else {
+//                            R.drawable.creditcard_icon_list_dark
+//                        }
+//                    )
+//                }
+//
+//                override fun onNothingSelected(p0: AdapterView<*>?) {
+//                    tipoContaSpinnerImageView?.setImageResource(R.color.darkblue_background)
+//                }
+//            }
+//
+//
+//            //hora de povoar os valores
+//
+//            nomeEditText?.setText(current.nomeConta)
+//            tiposSpinner?.setSelection(
+//                if (current.tipoConta == TiposDeConta.CARTEIRA.tipo){
+//                    0
+//                } else if (current.tipoConta == TiposDeConta.DIVIDAS.tipo) {
+//                    1
+//                } else {
+//                    2
+//                }
+//            )
+//
+//            dataAtualizacaoTextView?.text = current.dataAtualizacao
+//
+//            valorInicialEditText?.setText(formataParaBr(current.saldoInicial.toBigDecimal()))
+//            valorAtualOuFinalEditText?.setText(formataParaBr(current.saldoAtualOuFinal.toBigDecimal()))
+//            isEncerrada?.isChecked = current.isEncerrada
+//
+//
+//            valorInicialEditText?.addTextChangedListener(
+//                MoneyTextWatcher(
+//                    valorInicialEditText,
+//                    Locale("pt", "BR")
+//                )
+//            )
+//
+//            valorAtualOuFinalEditText?.addTextChangedListener(
+//                MoneyTextWatcher(
+//                    valorAtualOuFinalEditText,
+//                    Locale("pt", "BR")
+//                )
+//            )
+//
+//            val saveBtn = dialog.findViewById<Button>(R.id.salvarButton)
+//            val cancelBtn = dialog.findViewById<Button>(R.id.cancelButton)
+//
+//
+//            //apresentando o datapicker calendar
+//            dataAtualizacaoTextView?.setOnClickListener {
+//                val cal = Calendar.getInstance()
+//                val year = cal[Calendar.YEAR]
+//                val month = cal[Calendar.MONTH]
+//                val day = cal[Calendar.DAY_OF_MONTH]
+//                val dialog = DatePickerDialog(
+//                    holder.itemView.context as AppCompatActivity,
+//                    mDateSetListener,
+//                    year, month, day
+//                )
+//                //dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//                dialog.show()
+//            }
+//            mDateSetListener =
+//                DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+//                    var month = month
+//                    month = month + 1
+//                    Log.d(
+//                        TAG,
+//                        "onDateSet: mm/dd/yyy: $month/$day/$year"
+//                    )
+//
+//                    var mes = if (month < 10) "0" + month.toString() else month
+//                    var dia = if (day < 10) "0" + day.toString() else day
+//
+//                    //val date = "$month/$day/$year"
+//                    val date = "$dia/$mes/$year"
+//
+//                    dataAtualizacaoTextView?.text = date
+//                }
+//
+//
+//            saveBtn?.setOnClickListener {
+//
+//                if (nomeEditText?.text.isNullOrEmpty()) {
+//                    val toast = Toast.makeText(
+//                        holder.itemView.context as AppCompatActivity,
+//                        Html.fromHtml("<font color='#e3f2fd' ><b>" + "Obrigatório informar um nome!" + "</b></font>"),
+//                        Toast.LENGTH_LONG
+//                    )
+//                    //colocando o toast vermelho
+//                    toast.view?.setBackgroundColor(Color.parseColor("#FF1A1A"))
+//
+//                    toast.show()
+//                } else {
+//
+//                    var nome = nomeEditText?.text.toString()
+//                    var tipo = tiposSpinner?.selectedItem.toString()
+//                    var valorInicial =
+//                        limpaFormatacaoDeMoeda(valorInicialEditText?.text.toString()).trim()
+//                            .toDouble()
+//                    var valorAtual =
+//                        limpaFormatacaoDeMoeda(valorAtualOuFinalEditText?.text.toString()).trim()
+//                            .toDouble()
+//                    var isEncerrada = isEncerrada?.isChecked
+//                    var dataAtualizacao = dataAtualizacaoTextView?.text.toString()
+//
+//                    var conta = Conta(current.contaId, nome, tipo, isEncerrada!!)
+//                    var movimentacaoMensal = MovimentacaoMensal(
+//                        current.movimentacaoId, current.mesId, current.contaId,
+//                        valorInicial, valorAtual, dataAtualizacao
+//                    )
+//
+//                    ContaManager.updateContaComMovimentacao(
+//                        conta,
+//                        movimentacaoMensal,
+//                        contaViewModel,
+//                        mesViewModel,
+//                        movimentacaoMensalViewModel
+//                    ) {
+//
+//
+//                        GlobalScope.launch {
+//                            //Background processing..."
+//                            withContext(Dispatchers.Main) {
+//                                //"Update UI here!")
+//
+//                                ContaJoinViewModel.setContasJoinNoMes(mesTrabalhado.mesId){
+//                                    setContas(ContaJoinViewModel.contasJoinDoMes)
+////                                }
+////
+////                                ContaJoinViewModel.setAllContasJoin() {
+//
+////                                    contas =
+////                                        ContaJoinViewModel.allContasJoin // para poder rodar na tread principal
+////                                    setContas(contas)
+//
+//                                    val toast = Toast.makeText(
+//                                        holder.itemView.context as AppCompatActivity,
+//                                        Html.fromHtml("<font color='#e3f2fd' ><b>" + "${nomeEditText?.text.toString()} registrado com sucesso!" + "</b></font>"),
+//                                        Toast.LENGTH_LONG
+//                                    )
+//
+//                                    //colocando o toast verde
+//                                    toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+//
+//                                    toast.show()
+//                                }
+//                            }
+//                        }
+//                    }
+//
+//
+//
+//                    dialog.dismiss()
+//                }
+//
+//            }
+//
+//            cancelBtn?.setOnClickListener { dialog.dismiss() }
+//
+//            dialog.show()
+//        }
+//
 
+
+
+
+    }
     internal  fun setContas(contas: List<ContaJoin>){
         this.contas = contas
         notifyDataSetChanged()
@@ -319,5 +644,28 @@ class ContaListAdapter internal constructor(context: Context) :
     }
 
     override fun getItemCount() = contas.size
+
+    fun setLarguraEAlturaInterno(dialog: Dialog, callback: () -> Unit) {
+        //var height = getHeight {}
+        val width = getWidth {}
+
+        //height = (height*0.6).toInt()
+
+        dialog.window?.setLayout(width,500)
+        callback()
+
+    }
+
+    private fun getHeight(callback: () -> Unit): Int {
+        val height = Resources.getSystem().getDisplayMetrics().heightPixels
+        return height
+        callback()
+    }
+
+    private fun getWidth(callback: () -> Unit): Int {
+        val width: Int = Resources.getSystem().getDisplayMetrics().widthPixels
+        return width
+        callback()
+    }
 
 }

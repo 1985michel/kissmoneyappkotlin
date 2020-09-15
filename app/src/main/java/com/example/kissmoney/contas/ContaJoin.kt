@@ -44,4 +44,8 @@ class ContaJoin(conta: Conta, movimentacaoMensal: MovimentacaoMensal, mes: Mes){
         println("DATA ATUALIZACAO ${dataAtualizacao}")
         return ""
     }
+
+    fun getConta(): Conta {
+        return Conta(this.contaId, this.nomeConta, this.tipoConta, this.isEncerrada)
+    }
 }
