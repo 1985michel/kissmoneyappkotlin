@@ -198,9 +198,9 @@ class ContaListAdapter internal constructor(context: Context) :
                 dialogIterno.show()
                 setLarguraEAlturaInterno(dialogIterno){}
 
-                cancelBtn?.setOnClickListener { dialog.dismiss() }
+                //cancelBtn?.setOnClickListener { dialog.dismiss() }
 
-                dialog.show()
+                //dialog.show()
             }
 
 
@@ -411,6 +411,100 @@ class ContaListAdapter internal constructor(context: Context) :
                 cancelBtn?.setOnClickListener { dialog.dismiss() }
 
                 dialog.show()
+            }
+
+            updateBtn?.setOnClickListener {
+
+                val dialogIterno = Dialog(holder.itemView.context as AppCompatActivity)
+                dialogIterno.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialogIterno.setCancelable(false)
+                dialogIterno.setContentView(R.layout.updateconta)
+                dialogIterno.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
+                var valorET = dialogIterno.findViewById(R.id.updateContaSaldoAtualOuFInalEditText) as EditText
+                var nomeConta = dialogIterno.findViewById(R.id.nomeContaTextView) as TextView
+                nomeConta.text = current.nomeConta
+
+                valorET.addTextChangedListener(
+                    MoneyTextWatcher(
+                        valorET,
+                        Locale("pt", "BR")
+                    )
+                )
+
+                valorET?.setText("R$ 0,00")
+
+
+                var dataSaldoTextView = dialogIterno.findViewById(R.id.dataSaldoTextView) as TextView
+
+                dataSaldoTextView?.text = getDataHojeString()
+
+
+                //apresentando o datapicker calendar
+                dataSaldoTextView?.setOnClickListener {
+                    val cal = Calendar.getInstance()
+                    val year = cal[Calendar.YEAR]
+                    val month = cal[Calendar.MONTH]
+                    val day = cal[Calendar.DAY_OF_MONTH]
+                    val dialog = DatePickerDialog(
+                        holder.itemView.context as AppCompatActivity,
+                        mDateSetListener,
+                        year, month, day
+                    )
+                    //dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                }
+                mDateSetListener =
+                    DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+                        var month = month
+                        month = month + 1
+                        Log.d(
+                            TAG,
+                            "onDateSet: mm/dd/yyy: $month/$day/$year"
+                        )
+
+                        var mes = if (month < 10) "0" + month.toString() else month
+                        var dia = if (day < 10) "0" + day.toString() else day
+
+                        //val date = "$month/$day/$year"
+                        val date = "$dia/$mes/$year"
+
+                        dataSaldoTextView?.text = date
+                    }
+
+                var confirmaBtn = dialogIterno.findViewById(R.id.salvaUpdateBtn) as Button
+
+                confirmaBtn.setOnClickListener {
+
+                    current.saldoAtualOuFinal = limpaFormatacaoDeMoeda(valorET?.text.toString()).trim().toDouble()
+                    current.dataAtualizacao = dataSaldoTextView?.text.toString()
+
+                    movimentacaoMensalViewModel.update(
+                        current.getMovimentacao()
+                    )
+
+                    val toast = Toast.makeText(
+                        holder.itemView.context as AppCompatActivity,
+                        Html.fromHtml("<font color='#e3f2fd' ><b>" + "Conta ${current.nomeConta} atualizada com sucesso!" + "</b></font>"),
+                        Toast.LENGTH_LONG
+                    )
+
+                    //colocando o toast verde
+                    toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+
+                    toast.show()
+                    dialogIterno.dismiss()
+                    dialog.dismiss()
+
+
+                }
+
+                var cancelarBtn = dialogIterno.findViewById(R.id.cancelButton2) as Button
+                cancelarBtn.setOnClickListener { dialogIterno.dismiss() }
+
+                dialogIterno.show()
+                setLarguraEAlturaInterno(dialogIterno){}
             }
 
 

@@ -48,4 +48,8 @@ class ContaJoin(conta: Conta, movimentacaoMensal: MovimentacaoMensal, mes: Mes){
     fun getConta(): Conta {
         return Conta(this.contaId, this.nomeConta, this.tipoConta, this.isEncerrada)
     }
+
+    fun getMovimentacao(): MovimentacaoMensal {
+        return MovimentacaoMensal(this.movimentacaoId, this.mesId, this.contaId, this.saldoInicial, this.saldoAtualOuFinal, this.dataAtualizacao )
+    }
 }
