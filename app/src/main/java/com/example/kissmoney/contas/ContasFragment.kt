@@ -76,9 +76,6 @@ class ContasFragment : Fragment() {
         adapter.setViewModel(contaViewModel, mesViewModel, movimentacaoMensalViewModel)
 
 
-
-        //setaContasNoAdapter()
-
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity as AppCompatActivity)
 
@@ -92,22 +89,46 @@ class ContasFragment : Fragment() {
         // se tiver recebido um id, vou ao banco buscar o nome
         if (idMes != 0L){
             mesViewModel.getById(mesAtual){
-                binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes).toString()
-                setaContasNoAdapter(mesAtual.mesId)
-                setMesAnteriorEMesPosterior(binding)
+
+
+
+                GlobalScope.launch {
+                    //Background processing..."
+                    withContext(Dispatchers.Main) {
+                        binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes).toString()
+
+                        ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId){
+                            setaContasNoAdapter(mesAtual.mesId)
+                            setaValoresNaView(binding)
+                        }
+
+                        setMesAnteriorEMesPosterior(binding)
+
+                    }
+                }
+
+
 
             }
         } else { // se não tiver recebido um id, vou ao banco buscar por nome, se não tiver ele cria
             mesViewModel.getByName(mesAtual){
-                binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
-                setaContasNoAdapter(mesAtual.mesId)
-                setMesAnteriorEMesPosterior(binding)
+
+
+                GlobalScope.launch {
+                    //Background processing..."
+                    withContext(Dispatchers.Main) {
+                        binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes).toString()
+                        ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId){
+                            setaContasNoAdapter(mesAtual.mesId)
+                            setaValoresNaView(binding)
+                        }
+
+                        setMesAnteriorEMesPosterior(binding)
+
+                    }
+                }
             }
         }
-
-//        mesAnteriorImageViewCaixa.findNavController().navigate(ContasFragmentDirections.actionContasFragmentSelf(mesAnterior.mesId))
-//        mesPosteriorImageViewCaixa.findNavController().navigate(ContasFragmentDirections.actionContasFragmentSelf(mesPosterior.mesId))
-
 
         //fim navegação entre meses
 
@@ -158,20 +179,6 @@ class ContasFragment : Fragment() {
                 }
             }
 
-
-//            tiposSpinner?.onItemSelectedListener { view, b ->
-//                tipoContaSpinnerImageView?.setImageResource(
-//                if (tiposSpinner?.selectedItem.toString() == TiposDeConta.CARTEIRA.tipo){
-//                    R.drawable.cofre_icon_list
-//                } else if (tiposSpinner?.selectedItem.toString() == TiposDeConta.INVESTIMENTO.tipo){
-//                    R.drawable.invest_icon_list
-//                } else if (tiposSpinner?.selectedItem.toString() == TiposDeConta.DIVIDAS.tipo){
-//                    R.drawable.creditcard_icon_list
-//                }else {
-//                    R.color.darkblue_background
-//                }
-//            )
-//            }
 
             dataAtualizacaoTextView?.text = getDataHojeString()
 
@@ -315,9 +322,23 @@ class ContasFragment : Fragment() {
 
 
 
+
+
         (activity as AppCompatActivity).supportActionBar?.title = "Kiss"
 
         return binding.root
+    }
+
+    private fun setaValoresNaView(binding: FragmentContasBinding) {
+        var total = 0.0
+        var inicial = 0.0
+        for (cj in ContaJoinViewModel.contasJoinDoMes) {
+            total += cj.saldoAtualOuFinal
+            inicial += cj.saldoInicial
+        }
+
+        binding.saldoTextView.text = formataParaBr(total.toBigDecimal())
+        binding.valorVariacaoEmReaisTextView.text = formataParaBr((total - inicial).toBigDecimal())
     }
 
     private fun setMesAnteriorEMesPosterior(binding: FragmentContasBinding) {
@@ -369,9 +390,12 @@ class ContasFragment : Fragment() {
 
                 adapter.setMesTrabalhado(mesAtual)
 
-                ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId){
-                    adapter.setContas(ContaJoinViewModel.contasJoinDoMes)
-                }
+//                ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId){
+//                    adapter.setContas(ContaJoinViewModel.contasJoinDoMes)
+//                }
+
+                adapter.setContas(ContaJoinViewModel.contasJoinDoMes)
+
             }
         }
 
