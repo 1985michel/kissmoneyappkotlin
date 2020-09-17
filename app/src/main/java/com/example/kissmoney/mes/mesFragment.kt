@@ -110,8 +110,8 @@ class mesFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_mesFragment_to_gastosFragment)
         }
 
-        (activity as AppCompatActivity).supportActionBar?.title ="Kiss"
-        (activity as AppCompatActivity).supportActionBar?.subtitle = Html.fromHtml("<font color='#808080'><small>Mantenha simples. Mantenha o controle.</small> </font>")
+        (activity as AppCompatActivity).supportActionBar?.title =""
+//        (activity as AppCompatActivity).supportActionBar?.subtitle = Html.fromHtml("<font color='#808080'><small>Mantenha simples. Mantenha o controle.</small> </font>")
 
 
 

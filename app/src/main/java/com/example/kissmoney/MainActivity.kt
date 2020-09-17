@@ -57,6 +57,11 @@ class MainActivity : AppCompatActivity() {
         //abaixo sem o menu lateral
         NavigationUI.setupActionBarWithNavController(this, navController)
 
+        //colocando o Logo no actionbar
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true);
+        getSupportActionBar()?.setLogo(R.drawable.kiss_logo_2);
+        getSupportActionBar()?.setDisplayUseLogoEnabled(true);
+
 
 
     }
