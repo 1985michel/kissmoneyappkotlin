@@ -9,7 +9,7 @@
         android:id="@+id/logoFragment"
         android:name="com.example.kissmoney.logo.LogoFragment"
         android:label="fragment_logo"
-        tools:layout="@layout/fragment_logo" >
+        tools:layout="@layout/fragment_logo">
         <action
             android:id="@+id/action_logoFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
@@ -23,7 +23,7 @@
         android:id="@+id/chatFragment"
         android:name="com.example.kissmoney.interacao.chatFragment"
         android:label="fragment_boasvindas"
-        tools:layout="@layout/fragment_chat" >
+        tools:layout="@layout/fragment_chat">
         <argument
             android:name="msgs"
             app:argType="string" />
@@ -32,7 +32,7 @@
         android:id="@+id/mesFragment"
         android:name="com.example.kissmoney.mes.mesFragment"
         android:label="fragment_mes"
-        tools:layout="@layout/fragment_mes" >
+        tools:layout="@layout/fragment_mes">
         <action
             android:id="@+id/action_mesFragment_to_contasFragment"
             app:destination="@id/contasFragment" />
@@ -50,7 +50,7 @@
         android:id="@+id/contasFragment"
         android:name="com.example.kissmoney.contas.ContasFragment"
         android:label="fragment_contas"
-        tools:layout="@layout/fragment_contas" >
+        tools:layout="@layout/fragment_contas">
         <argument
             android:name="idMes"
             android:defaultValue="0L"
@@ -66,8 +66,20 @@
     </fragment>
     <fragment
         android:id="@+id/ganhosFragment"
-        android:name="com.example.kissmoney.ganhos.GatnhosFragment"
-        android:label="GanhosFragment" />
+        android:name="com.example.kissmoney.ganhos.GanhosFragment"
+        android:label="GanhosFragment">
+        <argument
+            android:name="idMes"
+            android:defaultValue="0L"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_ganhosFragment_self"
+            app:destination="@id/ganhosFragment">
+            <argument
+                android:name="idMes"
+                app:argType="long" />
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/compromissosFragment"
         android:name="com.example.kissmoney.compromissos.CompromissosFragment"

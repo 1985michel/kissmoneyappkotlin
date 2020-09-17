@@ -23,6 +23,9 @@ import com.example.kissmoney.contas.ContaViewModel
 import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
 import com.example.kissmoney.database.KissmoneyDatabase
 import com.example.kissmoney.databinding.ActivityMainBinding
+import com.example.kissmoney.ganhos.GanhoJoinViewModel
+import com.example.kissmoney.ganhos.GanhoViewModel
+import com.example.kissmoney.ganhos.mensal.GanhoMensalViewModel
 import com.example.kissmoney.mes.MesViewModel
 import kotlinx.coroutines.CoroutineScope
 
@@ -47,8 +50,16 @@ class MainActivity : AppCompatActivity() {
 
         cjvm.setMyOwner(this){
             cjvm.setApplicationObject(contaViewModel, mesViewModel, movimentacaoMensalViewModel){
-                cjvm.setAllContasJoin(){}
+                //cjvm.setAllContasJoin(){}
             }
+        }
+
+        var gjvm = GanhoJoinViewModel
+
+        var ganhoViewModel = ViewModelProvider(this).get(GanhoViewModel::class.java)
+        var ganhoMesViewModel = ViewModelProvider(this).get(GanhoMensalViewModel::class.java)
+        gjvm.setMyOwner(this){
+            gjvm.setApplicationObject(ganhoViewModel, ganhoMesViewModel, mesViewModel){}
         }
 
         //botão de navegação superior

@@ -61,6 +61,7 @@ class ContasFragment : Fragment() {
         mesViewModel = ViewModelProvider(this).get(MesViewModel::class.java)
         movimentacaoMensalViewModel =
             ViewModelProvider(this).get(MovimentacaoMensalViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -128,7 +129,7 @@ class ContasFragment : Fragment() {
             //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
             dialog.setContentView(R.layout.crud_conta_botton_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialog.getWindow()?.setDimAmount(0F);
+            //dialog.getWindow()?.setDimAmount(0F);
             dialog.setCancelable(false)
 
 
@@ -372,13 +373,13 @@ class ContasFragment : Fragment() {
         }
     }
 
-    private fun getNomeMesPorExtensoComAno(nomeMes: String): String {
-
-        for (mes in NomesMeses.values()){
-            if (nomeMes.substring(0,2).equals(mes.numero.toString())){
-                return "${mes.name} / ${nomeMes.substring(3)}"
-            }
-        }
-        return ""
-    }
+//    private fun getNomeMesPorExtensoComAno(nomeMes: String): String {
+//
+//        for (mes in NomesMeses.values()){
+//            if (nomeMes.substring(0,2).equals(mes.numero.toString())){
+//                return "${mes.name} / ${nomeMes.substring(3)}"
+//            }
+//        }
+//        return ""
+//    }
 }

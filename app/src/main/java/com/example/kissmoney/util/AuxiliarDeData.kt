@@ -1,5 +1,6 @@
 package com.example.kissmoney.util
 
+import com.example.kissmoney.mes.NomesMeses
 import java.util.*
 
 fun getDataHojeString(): String {
@@ -60,4 +61,24 @@ fun getNomeMesAtual(): String {
 
 
     return "${mes}/${year}"
+}
+
+fun getNomeMesPorExtensoComAno(nomeMes: String): String {
+
+    for (mes in NomesMeses.values()){
+        if (nomeMes.substring(0,2).equals(mes.numero.toString())){
+            return "${mes.name} / ${nomeMes.substring(3)}"
+        }
+    }
+    return ""
+}
+
+fun getNomeMesPorExtenso(nomeMes: String): String {
+
+    for (mes in NomesMeses.values()){
+        if (nomeMes.substring(0,2).equals(mes.numero.toString())){
+            return "${mes.name}}"
+        }
+    }
+    return ""
 }
