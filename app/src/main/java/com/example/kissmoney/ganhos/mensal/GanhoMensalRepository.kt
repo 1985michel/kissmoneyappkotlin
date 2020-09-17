@@ -13,6 +13,10 @@ class GanhoMensalRepository (private val ganhoMensalDao: GanhoMensalDao) {
         return ganhoMensalDao.insert(ganhoMensal)
     }
 
+    fun insertMonitorado (ganhoMensal: GanhoMensal): Long {
+        return ganhoMensalDao.insert(ganhoMensal)
+    }
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun update (ganhoMensal: GanhoMensal) {

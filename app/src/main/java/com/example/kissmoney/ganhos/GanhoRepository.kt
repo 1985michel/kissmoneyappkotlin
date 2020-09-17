@@ -13,6 +13,11 @@ class GanhoRepository(private val ganhoDao: GanhoDao) {
         return ganhoDao.insert(ganho)
     }
 
+    fun insertMonitorado(ganho: Ganho): Long {
+        var id = ganhoDao.insert(ganho)
+        return id
+    }
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun update(ganho: Ganho) {

@@ -66,7 +66,7 @@ fun getNomeMesAtual(): String {
 fun getNomeMesPorExtensoComAno(nomeMes: String): String {
 
     for (mes in NomesMeses.values()){
-        if (nomeMes.substring(0,2).equals(mes.numero.toString())){
+        if (nomeMes.substring(0,2).equals(mes.numero)){
             return "${mes.name} / ${nomeMes.substring(3)}"
         }
     }
@@ -76,8 +76,8 @@ fun getNomeMesPorExtensoComAno(nomeMes: String): String {
 fun getNomeMesPorExtenso(nomeMes: String): String {
 
     for (mes in NomesMeses.values()){
-        if (nomeMes.substring(0,2).equals(mes.numero.toString())){
-            return "${mes.name}}"
+        if (nomeMes.substring(3,5).equals(mes.numero)){
+            return "${mes.name}"
         }
     }
     return ""

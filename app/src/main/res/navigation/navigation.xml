@@ -74,7 +74,8 @@
             app:argType="long" />
         <action
             android:id="@+id/action_ganhosFragment_self"
-            app:destination="@id/ganhosFragment">
+            app:destination="@id/ganhosFragment"
+            app:popUpTo="@id/mesFragment">
             <argument
                 android:name="idMes"
                 app:argType="long" />

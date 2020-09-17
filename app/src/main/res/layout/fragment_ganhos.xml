@@ -9,19 +9,19 @@
         android:background="@color/darkblue_background">
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_feedback"
-            android:layout_width="0dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
-            android:background="@color/shadowtick"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fab"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/item_relatorio" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerView_feedback"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="76dp"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            android:background="@color/shadowtick"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/fab"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            tools:listitem="@layout/item_relatorio" />-->
 
         <ImageView
             android:id="@+id/mesAnteriorImageViewCaixa2"
@@ -41,7 +41,7 @@
             android:layout_marginBottom="16dp"
             android:text="Setembro / 2020"
             android:textColor="@color/lightgreybackground"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerView_feedback"
+            app:layout_constraintBottom_toTopOf="@+id/fab"
             app:layout_constraintEnd_toStartOf="@+id/mesPosteriorImageViewCaixa2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/mesAnteriorImageViewCaixa2"

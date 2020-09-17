@@ -25,6 +25,10 @@ class GanhoMensalViewModel (application: Application) : AndroidViewModel(applica
         repository.insert(ganhoMensal)
     }
 
+    fun insertMonitorado (ganhoMensal: GanhoMensal, callback: () -> Unit) {
+        repository.insertMonitorado(ganhoMensal)
+    }
+
     fun update(ganhoMensal: GanhoMensal) = viewModelScope.launch(Dispatchers.IO) {
         repository.update(ganhoMensal)
     }

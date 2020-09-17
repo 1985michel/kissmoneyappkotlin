@@ -25,6 +25,12 @@ class GanhoViewModel (application: Application) : AndroidViewModel(application) 
         ganho.ganhoId = id
     }
 
+    fun insertMonitorado(ganho: Ganho, callback: () -> Unit)  {
+        var id = repository.insertMonitorado(ganho)
+        ganho.ganhoId = id
+        callback()
+    }
+
     fun update(ganho: Ganho) = viewModelScope.launch(Dispatchers.IO) {
         repository.update(ganho)
     }

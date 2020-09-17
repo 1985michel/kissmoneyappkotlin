@@ -26,10 +26,10 @@ data class GanhoMensal (
     var ganhoMensalId: Long = 0L,
 
     @ColumnInfo(name = "mesId")
-    val mesId: Long,
+    var mesId: Long,
 
     @ColumnInfo(name = "ganhoId")
-    val ganhoId: Long,
+    var ganhoId: Long,
 
     @ColumnInfo(name = "valor")
     val valor: Double = 0.00,

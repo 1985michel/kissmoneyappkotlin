@@ -41,7 +41,7 @@ class GanhoJoin (ganho: Ganho, ganhoMensal: GanhoMensal, mes: Mes) {
         println("Is Encerrada: $isEncerrado")
         println("Ganho Mensal ID: $ganhoMensalId")
         println("MES ID $mesId")
-        println("MES NOME $mesNome = mes.nomeMes")
+        println("MES NOME $mesNome")
         println("VALOR $valor")
         println("DATA RECEBIMENTO $dataRecebimento")
         println("IS RECEBIDO $isRecebido")

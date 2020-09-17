@@ -78,7 +78,7 @@ class GanhoListAdapter internal constructor(context: Context) :
 
         holder.tipoDeGanhoIV.setImageResource(
             if (current.isRendaPassiva) {
-                R.drawable.renda_passiva_icon
+                R.drawable.renda_passiva_icon_2
             } else {
                 R.drawable.trabalho_icon
             }
