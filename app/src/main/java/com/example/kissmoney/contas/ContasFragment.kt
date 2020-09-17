@@ -39,15 +39,17 @@ class ContasFragment : Fragment() {
 
     //do pickdate
     private var mDateSetListener: DatePickerDialog.OnDateSetListener? = null
-    private val TAG = "MainActivity" //do pickdate
+    private val TAG = "MainActivity"
 
-    //viewmodel
+    //viewmodels
     lateinit var contaViewModel: ContaViewModel
     lateinit var mesViewModel: MesViewModel
     lateinit var movimentacaoMensalViewModel: MovimentacaoMensalViewModel
 
+    //adapter do recyclerview
     lateinit var adapter: ContaListAdapter
 
+    //variáveis base para exibição dos dados
     lateinit var mesAtual: Mes
     lateinit var mesAnterior: Mes
     lateinit var mesPosterior: Mes
@@ -70,12 +72,10 @@ class ContasFragment : Fragment() {
             inflater, R.layout.fragment_contas, container, false
         )
 
+        //setando adapter e variáveis no recyclerview
         val recyclerView = binding.recyclerViewCaixa
         adapter = ContaListAdapter(activity as Activity)
-
         adapter.setViewModel(contaViewModel, mesViewModel, movimentacaoMensalViewModel)
-
-
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity as AppCompatActivity)
 
@@ -86,50 +86,38 @@ class ContasFragment : Fragment() {
 
         mesAtual = Mes(idMes, getNomeMesAtual())
 
-        // se tiver recebido um id, vou ao banco buscar o nome
+            // se tiver recebido um id, vou ao banco buscar o nome do mês
         if (idMes != 0L){
             mesViewModel.getById(mesAtual){
 
-
-
                 GlobalScope.launch {
                     //Background processing..."
                     withContext(Dispatchers.Main) {
-                        binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes).toString()
 
                         ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId){
                             setaContasNoAdapter(mesAtual.mesId)
                             setaValoresNaView(binding)
                         }
-
                         setMesAnteriorEMesPosterior(binding)
-
                     }
                 }
-
-
-
             }
-        } else { // se não tiver recebido um id, vou ao banco buscar por nome, se não tiver ele cria
+        } else { // se não tiver recebido um id, vou ao banco buscar por nome, se não existir registro, o viewmodel cria
             mesViewModel.getByName(mesAtual){
-
 
                 GlobalScope.launch {
                     //Background processing..."
                     withContext(Dispatchers.Main) {
-                        binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes).toString()
+
                         ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId){
                             setaContasNoAdapter(mesAtual.mesId)
                             setaValoresNaView(binding)
                         }
-
                         setMesAnteriorEMesPosterior(binding)
-
                     }
                 }
             }
         }
-
         //fim navegação entre meses
 
 
@@ -320,11 +308,7 @@ class ContasFragment : Fragment() {
             dialog.show()
         }
 
-
-
-
-
-        (activity as AppCompatActivity).supportActionBar?.title = "Kiss"
+        (activity as AppCompatActivity).supportActionBar?.title = ""
 
         return binding.root
     }
@@ -337,6 +321,7 @@ class ContasFragment : Fragment() {
             inicial += cj.saldoInicial
         }
 
+        binding.nomeDoMestextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
         binding.saldoTextView.text = formataParaBr(total.toBigDecimal())
         binding.valorVariacaoEmReaisTextView.text = formataParaBr((total - inicial).toBigDecimal())
     }
@@ -351,8 +336,7 @@ class ContasFragment : Fragment() {
             //Background processing..."
             withContext(Dispatchers.Main) {
                 //"Update UI here!")
-              //  ContaJoinViewModel.setAllContasJoin() {
-                    // para poder rodar na tread principal
+                // para poder rodar na tread principal
                     binding.mesAnteriorImageViewCaixa.setOnClickListener {
                         Navigation.findNavController(requireView())
                             .navigate(ContasFragmentDirections.actionContasFragmentSelf(mesAnterior.mesId))
@@ -361,26 +345,18 @@ class ContasFragment : Fragment() {
                         Navigation.findNavController(requireView())
                             .navigate(ContasFragmentDirections.actionContasFragmentSelf(mesPosterior.mesId))
                     }
-              //  }
             }
-        }
-    }
-
-    private fun getMesIdPeloNome(nomeMes: String, mesViewModel: MesViewModel, callback: () -> Unit ) {
-        var mes = Mes(0L, nomeMes)
-        mesViewModel.getByName(mes){
-            callback()
         }
     }
 
     private fun setaContasNoAdapter(mesId: Long) {
 
 //        GlobalScope.launch {
-//            //TODO("Background processing...")
+//            "Background processing..."
 //            withContext(Dispatchers.Main) {
-//                // TODO("Update UI here!")
+//                //"Update UI here!"
 //            }
-//            TODO("Continue background processing...")
+//           "Continue background processing..."
 //        }
 
         GlobalScope.launch {
@@ -390,25 +366,10 @@ class ContasFragment : Fragment() {
 
                 adapter.setMesTrabalhado(mesAtual)
 
-//                ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId){
-//                    adapter.setContas(ContaJoinViewModel.contasJoinDoMes)
-//                }
-
                 adapter.setContas(ContaJoinViewModel.contasJoinDoMes)
 
             }
         }
-
-    }
-
-    private fun getNomeMesPorExtenso(nomeMes: String): String {
-
-        for (mes in NomesMeses.values()){
-            if (nomeMes.substring(0,2).equals(mes.numero.toString())){
-                return mes.name
-            }
-        }
-        return NomesMeses.Abril.name
     }
 
     private fun getNomeMesPorExtensoComAno(nomeMes: String): String {
