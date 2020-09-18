@@ -21,6 +21,17 @@ object GanhoManager {
         }
     }
 
+    fun updateGanhoComGanhoMensal(ganho: Ganho, ganhoMensal: GanhoMensal,
+                                ganhoViewModel: GanhoViewModel, ganhoMensalViewModel: GanhoMensalViewModel, mesViewModel: MesViewModel,
+                                callback: () -> Unit) {
+        setaMes(ganhoMensal, mesViewModel) {
+            println(">>>>>>>>>>>>>>> Vamos atualizar o ganho: ${ganho.nomeGanho}")
+            ganhoViewModel.update(ganho)
+            ganhoMensalViewModel.update(ganhoMensal)
+            callback()
+        }
+    }
+
     private fun setaMes( ganhoMensal: GanhoMensal, mesViewModel: MesViewModel, callback: () -> Unit) {
         var mes = Mes(0L, recebeDataRetornaMes(ganhoMensal.dataRecebimento))
         mesViewModel.getByName(mes){

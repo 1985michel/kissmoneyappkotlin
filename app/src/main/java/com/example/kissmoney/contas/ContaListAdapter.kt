@@ -388,7 +388,7 @@ class ContaListAdapter internal constructor(context: Context) :
 
                                         val toast = Toast.makeText(
                                             holder.itemView.context as AppCompatActivity,
-                                            Html.fromHtml("<font color='#e3f2fd' ><b>" + "${nomeEditText?.text.toString()} registrado com sucesso!" + "</b></font>"),
+                                            Html.fromHtml("<font color='#e3f2fd' ><b>" + "${nomeEditText?.text.toString()} atualizado com sucesso!" + "</b></font>"),
                                             Toast.LENGTH_LONG
                                         )
 

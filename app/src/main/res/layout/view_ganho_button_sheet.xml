@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/darkblue_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageView
+            android:id="@+id/editContaImageView2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/deleteContaImageView2"
+            app:layout_constraintTop_toBottomOf="@+id/observacoesEditText"
+            app:srcCompat="@drawable/editar_dark" />
+
+        <ImageView
+            android:id="@+id/deleteContaImageView2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toStartOf="@+id/editContaImageView2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/observacoesEditText"
+            app:srcCompat="@drawable/lixeira_dark_2" />
+
+        <TextView
+            android:id="@+id/nomeGanhoBottonEditText"
+            style="@style/subtituloTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/lightgreybackground"
+            android:textColorHint="@color/lightgreybackground"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/cancelarBtn"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <Button
+            android:id="@+id/cancelarBtn"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/close_button_white_transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/palavra_valor"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Valor:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nomeGanhoBottonEditText" />
+
+        <TextView
+            android:id="@+id/editTextTextPersonName"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:digits="0123456789-.,"
+            android:ems="10"
+            android:hint="R$ 0,00"
+            android:inputType="numberSigned|numberDecimal"
+            android:textColor="@color/lightgreybackground"
+            app:layout_constraintEnd_toEndOf="@+id/nomeGanhoBottonEditText"
+            app:layout_constraintStart_toEndOf="@+id/palavra_valor"
+            app:layout_constraintTop_toBottomOf="@+id/nomeGanhoBottonEditText" />
+
+        <Switch
+            android:id="@+id/is_renda_passiva_switch"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:clickable="false"
+            android:text="Renda passiva:"
+            app:layout_constraintEnd_toStartOf="@+id/is_ganho_regular_switch"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+        <Switch
+            android:id="@+id/is_ganho_regular_switch"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:clickable="false"
+            android:text="Ganho Regular:"
+            app:layout_constraintBaseline_toBaselineOf="@+id/is_renda_passiva_switch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/is_renda_passiva_switch" />
+
+        <Switch
+            android:id="@+id/is_recebido_switch"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:checked="true"
+            android:clickable="false"
+            android:text="Foi recebido:"
+            app:layout_constraintBaseline_toBaselineOf="@+id/data_recebimento_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/data_recebimento_tv" />
+
+        <TextView
+            android:id="@+id/palavra_data_recebimento"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Data do Recebimento:"
+            app:layout_constraintEnd_toStartOf="@+id/data_recebimento_tv"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/is_renda_passiva_switch" />
+
+        <TextView
+            android:id="@+id/data_recebimento_tv"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:clickable="false"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="01/01/2000"
+            app:layout_constraintBaseline_toBaselineOf="@+id/palavra_data_recebimento"
+            app:layout_constraintEnd_toStartOf="@+id/is_recebido_switch"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/palavra_data_recebimento" />
+
+        <TextView
+            android:id="@+id/palavra_observacao"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Observação:"
+            app:layout_constraintStart_toStartOf="@+id/palavra_data_recebimento"
+            app:layout_constraintTop_toBottomOf="@+id/is_recebido_switch" />
+
+        <TextView
+            android:id="@+id/observacoesEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/darkblue_background"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:textColor="@color/lightgreybackground"
+            android:textColorLink="@color/lightgreybackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/palavra_observacao"
+            app:layout_constraintTop_toBottomOf="@+id/palavra_observacao" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="46dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/is_renda_passiva_switch"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/palavra_valor"
+            app:layout_constraintTop_toBottomOf="@+id/palavra_valor" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@ class GanhoJoin (ganho: Ganho, ganhoMensal: GanhoMensal, mes: Mes) {
     var ganhoId = 0L
     var nomeGanho = ""
     var isRendaPassiva = false
-    var isEncerrado = false
+    var isGanhoRegular = false
     var ganhoMensalId = 0L
     var mesId: Long = 0L
     var mesNome = ""
@@ -23,7 +23,7 @@ class GanhoJoin (ganho: Ganho, ganhoMensal: GanhoMensal, mes: Mes) {
         ganhoId = ganho.ganhoId
         nomeGanho = ganho.nomeGanho
         isRendaPassiva = ganho.isRendaPassiva
-        isEncerrado = ganho.isEncerrado
+        isGanhoRegular = ganho.isEncerrado
         ganhoMensalId = ganhoMensal.ganhoMensalId
         mesId = ganhoMensal.mesId
         mesNome = mes.nomeMes
@@ -38,7 +38,7 @@ class GanhoJoin (ganho: Ganho, ganhoMensal: GanhoMensal, mes: Mes) {
         println("GANHO ID: $ganhoId")
         println("Nome Ganho: $nomeGanho")
         println("Is Renda Passiva: $isRendaPassiva")
-        println("Is Encerrada: $isEncerrado")
+        println("Is Encerrada: $isGanhoRegular")
         println("Ganho Mensal ID: $ganhoMensalId")
         println("MES ID $mesId")
         println("MES NOME $mesNome")
@@ -50,7 +50,7 @@ class GanhoJoin (ganho: Ganho, ganhoMensal: GanhoMensal, mes: Mes) {
     }
 
     fun getGanho(): Ganho {
-        return Ganho(this.ganhoId, this.nomeGanho, this.isRendaPassiva, this.isEncerrado)
+        return Ganho(this.ganhoId, this.nomeGanho, this.isRendaPassiva, this.isGanhoRegular)
     }
 
     fun getGanhoMensal(): GanhoMensal {
