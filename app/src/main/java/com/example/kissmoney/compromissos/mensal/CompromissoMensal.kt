@@ -27,10 +27,10 @@ data class CompromissoMensal (
     var compromissoMensalId: Long = 0L,
 
     @ColumnInfo(name = "mesId")
-    val mesId: Long,
+    var mesId: Long,
 
     @ColumnInfo(name = "compromissoId")
-    val compromissoId: Long,
+    var compromissoId: Long,
 
     @ColumnInfo(name = "valor")
     val valor: Double = 0.00,

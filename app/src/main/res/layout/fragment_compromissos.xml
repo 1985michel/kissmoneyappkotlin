@@ -6,7 +6,38 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/darkblue_background">
+
+        <TextView
+            android:id="@+id/nomeDoMestextView4"
+            style="@style/subtituloTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Setembro / 2020"
+            android:textColor="@color/lightgreybackground"
+            app:layout_constraintBottom_toTopOf="@+id/fab"
+            app:layout_constraintEnd_toStartOf="@+id/mesPosteriorImageViewCaixa4"
+            app:layout_constraintStart_toEndOf="@+id/mesAnteriorImageViewCaixa4" />
+
+        <ImageView
+            android:id="@+id/mesPosteriorImageViewCaixa4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/totheright"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCompromissos" />
+
+        <ImageView
+            android:id="@+id/mesAnteriorImageViewCaixa4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/totheleft"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCompromissos" />
 
         <TextView
             android:id="@+id/textView14"
@@ -16,6 +47,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:text="Compromissos"
+            android:textColor="@color/lightgreybackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,6 +59,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="Total:"
+            android:textColor="@color/lightgreybackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -38,6 +71,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="R$ 3.250,00"
+            android:textColor="@color/lightgreybackground"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView17"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView17" />
@@ -50,6 +84,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="A pagar:"
+            android:textColor="@color/lightgreybackground"
             app:layout_constraintStart_toStartOf="@+id/textView17"
             app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -61,116 +96,42 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="R$ 0,00"
+            android:textColor="@color/lightgreybackground"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView22"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView22" />
 
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerView"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="76dp"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:layout_marginBottom="4dp"-->
+<!--            android:background="@color/shadowtick"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/fab"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            tools:listitem="@layout/item_relatorio" />-->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCompromissos"
             android:layout_width="0dp"
-            android:layout_height="261dp"
+            android:layout_height="0dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/lightgreybackground"
+            app:layout_constraintBottom_toTopOf="@+id/nomeDoMestextView4"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView22"
+            app:layout_constraintVertical_bias="0.0"
             tools:listItem="@layout/item_compromisso"
             tools:listitem="@layout/item_compromisso" />
-
-        <TextView
-            android:id="@+id/textView27"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="Água"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCompromissos" />
-
-        <TextView
-            android:id="@+id/textView28"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Data do Vencimento:"
-            app:layout_constraintBottom_toTopOf="@+id/switchRecorrente"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView27" />
-
-        <TextView
-            android:id="@+id/textView29"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="01/01/2000"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView28"
-            app:layout_constraintStart_toEndOf="@+id/textView28" />
-
-        <Switch
-            android:id="@+id/switchRecorrente"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Despesa Recorrente?"
-            android:textColor="@color/greyfont"
-            android:textColorHighlight="@color/green"
-            android:textColorLink="@color/green"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-            app:layout_constraintStart_toStartOf="@+id/textView28"
-            app:layout_constraintTop_toBottomOf="@+id/textView28"
-            tools:checked="true" />
-
-        <Switch
-            android:id="@+id/switchIsPago"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Foi pago?"
-            android:textColor="@color/greyfont"
-            android:textOff="Devendo"
-            android:textOn="Pago"
-            app:layout_constraintBaseline_toBaselineOf="@+id/switchRecorrente"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/switchRecorrente" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
-            android:background="@color/shadowtick"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fab"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/item_relatorio" />
-
-        <TextView
-            android:id="@+id/textView30"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Valor:"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView29"
-            app:layout_constraintStart_toStartOf="@+id/switchIsPago" />
-
-        <TextView
-            android:id="@+id/valorTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="R$ 200,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView30"
-            app:layout_constraintStart_toEndOf="@+id/textView30" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

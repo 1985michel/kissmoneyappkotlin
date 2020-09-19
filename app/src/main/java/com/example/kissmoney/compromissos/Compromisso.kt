@@ -7,21 +7,13 @@ import androidx.room.PrimaryKey
 import com.example.kissmoney.mes.Mes
 
 
-@Entity(tableName = "compromisso_table", foreignKeys = arrayOf(
-    ForeignKey(entity = Mes::class,
-        parentColumns = arrayOf("mesId"),
-        childColumns = arrayOf("mesId"),
-        onDelete = ForeignKey.CASCADE
-    )
-))
+@Entity(tableName = "compromisso_table")
 data class Compromisso (
 
     @PrimaryKey(autoGenerate = true)
     var compromissoId: Long = 0L,
 
     @ColumnInfo(name = "nome_compromisso")
-    val nomeCompromisso: String,
+    val nomeCompromisso: String
 
-    @ColumnInfo(name = "mesId")
-    val mesId: Long
 )

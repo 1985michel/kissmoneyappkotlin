@@ -14,6 +14,10 @@ class CompromissoRepository (private val compromissoDao: CompromissoDao) {
         return compromissoDao.insert(compromisso)
     }
 
+    fun insertMonitorado(compromisso: Compromisso) : Long {
+        return compromissoDao.insert(compromisso)
+    }
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun update(compromisso: Compromisso) {

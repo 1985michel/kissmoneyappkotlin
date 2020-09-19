@@ -24,6 +24,11 @@ class CompromissoMensalViewModel  (application: Application) : AndroidViewModel(
         repository.insert(compromissoMensal)
     }
 
+    fun insertMonitorado (compromissoMensal: CompromissoMensal, callback: () -> Unit) {
+        compromissoMensal.compromissoMensalId = repository.insertMonitorado(compromissoMensal)
+        callback()
+    }
+
     fun update(compromissoMensal: CompromissoMensal) = viewModelScope.launch(Dispatchers.IO) {
         repository.update(compromissoMensal)
     }

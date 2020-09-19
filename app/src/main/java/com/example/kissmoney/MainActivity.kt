@@ -18,6 +18,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.kissmoney.compromissos.CompromissoJoinViewModel
+import com.example.kissmoney.compromissos.CompromissoViewModel
+import com.example.kissmoney.compromissos.mensal.CompromissoMensalViewModel
 import com.example.kissmoney.contas.ContaJoinViewModel
 import com.example.kissmoney.contas.ContaViewModel
 import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
@@ -60,6 +63,15 @@ class MainActivity : AppCompatActivity() {
         var ganhoMesViewModel = ViewModelProvider(this).get(GanhoMensalViewModel::class.java)
         gjvm.setMyOwner(this){
             gjvm.setApplicationObject(ganhoViewModel, ganhoMesViewModel, mesViewModel){}
+        }
+
+        var compjvm = CompromissoJoinViewModel
+
+        var compromissoViewModel = ViewModelProvider(this).get(CompromissoViewModel::class.java)
+        var compromissoMensalViewModel = ViewModelProvider(this).get(CompromissoMensalViewModel::class.java)
+
+        compjvm.setMyOwner(this) {
+            compjvm.setApplicationObject(compromissoViewModel, compromissoMensalViewModel, mesViewModel){}
         }
 
         //botão de navegação superior

@@ -13,6 +13,10 @@ class CompromissoMensalRepository (private val compromissoMensalDao: Compromisso
         return compromissoMensalDao.insert(compromissoMensal)
     }
 
+    fun insertMonitorado (compromissoMensal: CompromissoMensal) : Long {
+        return compromissoMensalDao.insert(compromissoMensal)
+    }
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun update (compromissoMensal: CompromissoMensal) {

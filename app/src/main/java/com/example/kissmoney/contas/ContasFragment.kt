@@ -263,9 +263,7 @@ class ContasFragment : Fragment() {
                         mesViewModel,
                         movimentacaoMensalViewModel
                     ) {
-                        println(">>>>>>>>>>>>>>>>>>>>>>>> a conta foi criada <<<<<<<<<<<<<< ")
-                        //ContaJoinViewModel.setAllContasJoin(){
-                        println(">>>>>>>>>>>>>>>>>>>>>>>> setando o novo adapter <<<<<<<<<<<<<< ")
+
 
 //                        MainScope().launch {
 //                            withContext(Dispatchers.Default) {

@@ -85,7 +85,20 @@
         android:id="@+id/compromissosFragment"
         android:name="com.example.kissmoney.compromissos.CompromissosFragment"
         android:label="fragment_compromissos"
-        tools:layout="@layout/fragment_compromissos" />
+        tools:layout="@layout/fragment_compromissos" >
+        <argument
+            android:name="idMes"
+            app:argType="long"
+            android:defaultValue="0L" />
+        <action
+            android:id="@+id/action_compromissosFragment_self"
+            app:destination="@id/compromissosFragment"
+            app:popUpTo="@id/mesFragment" >
+            <argument
+                android:name="idMes"
+                app:argType="long" />
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/gastosFragment"
         android:name="com.example.kissmoney.gastos.GastosFragment"
