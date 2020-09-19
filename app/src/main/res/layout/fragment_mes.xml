@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_shadow_end_color">
+        android:background="@color/light_none">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -183,12 +183,12 @@
 
         <TextView
             android:id="@+id/textView7"
+            style="@style/tituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="32dp"
             android:text="Balanço"
-            style="@style/tituloTextView"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toTopOf="parent" />
 
