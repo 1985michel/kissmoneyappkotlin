@@ -81,11 +81,7 @@ class GanhoListAdapter internal constructor(context: Context) :
 
         holder.nomeGanhoTV.text = current.nomeGanho
         holder.valorTV.text = formataParaBr(current.valor.toBigDecimal())
-        holder.dataRecebimentoTV.text = "${current.dataRecebimento.substring(
-            0,
-            2
-        )} / ${getNomeMesPorExtenso(current.dataRecebimento)}"
-
+        holder.dataRecebimentoTV.text = "${current.dataRecebimento.substring(0,2)} / ${getNomeMesPorExtenso(current.dataRecebimento)}"
 
         holder.tipoDeGanhoIV.setImageResource(
             if (current.isRendaPassiva) {
@@ -98,7 +94,6 @@ class GanhoListAdapter internal constructor(context: Context) :
         holder.constraint.setOnClickListener {
 
             val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
-            //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
             dialog.setContentView(R.layout.view_ganho_button_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             //dialog.getWindow()?.setDimAmount(0F);
@@ -128,11 +123,9 @@ class GanhoListAdapter internal constructor(context: Context) :
                 tipoContaIV?.setImageResource(R.drawable.trabalho_icon_3)
             }
 
-
             var cancelBtn = dialog.findViewById<Button>(R.id.cancelarBtn)
             val deleteBtn = dialog.findViewById<ImageView>(R.id.deleteContaImageView2)
             val editBtn = dialog.findViewById<ImageView>(R.id.editContaImageView2)
-
 
             deleteBtn?.setOnClickListener {
 
@@ -141,8 +134,6 @@ class GanhoListAdapter internal constructor(context: Context) :
                 dialogIterno.setCancelable(false)
                 dialogIterno.setContentView(R.layout.delete_dialog)
                 dialogIterno.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                //val body = dialog.findViewById(R.id.body) as TextView
-
 
                 var msg = dialogIterno.findViewById(R.id.msgTextView) as TextView
                 msg.setText(
@@ -156,7 +147,6 @@ class GanhoListAdapter internal constructor(context: Context) :
                         current.getGanho()
                     )
 
-
                     val toast = Toast.makeText(
                         holder.itemView.context as AppCompatActivity,
                         Html.fromHtml("<font color='#e3f2fd' ><b>" + "Conta ${current.nomeGanho} apagada com sucesso!" + "</b></font>"),
@@ -169,21 +159,15 @@ class GanhoListAdapter internal constructor(context: Context) :
                     toast.show()
                     dialogIterno.dismiss()
                     dialog.dismiss()
-
                 }
 
                 var cancelarBtn = dialogIterno.findViewById(R.id.cancelarButton) as Button
+
                 cancelarBtn.setOnClickListener { dialogIterno.dismiss() }
 
                 dialogIterno.show()
                 setLarguraEAlturaInterno(dialogIterno){}
-
-                //cancelBtn?.setOnClickListener { dialog.dismiss() }
-
-                //dialog.show()
             }
-
-
 
             editBtn?.setOnClickListener {
 
@@ -221,8 +205,6 @@ class GanhoListAdapter internal constructor(context: Context) :
                     tipoContaIV?.setImageResource(R.drawable.trabalho_icon_3)
                 }
 
-
-
                 valorET?.addTextChangedListener(
                     MoneyTextWatcher(
                         valorET,
@@ -252,7 +234,6 @@ class GanhoListAdapter internal constructor(context: Context) :
                         mDateSetListener,
                         year, month, day
                     )
-                    //dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
                 }
                 mDateSetListener =
@@ -308,7 +289,6 @@ class GanhoListAdapter internal constructor(context: Context) :
                                     GanhoJoinViewModel.setGanhosJoinNoMes(mesTrabalhado.mesId){
                                         setGanhos(GanhoJoinViewModel.ganhosJoinDoMes)
 
-
                                         val toast = Toast.makeText(
                                             holder.itemView.context as AppCompatActivity,
                                             Html.fromHtml("<font color='#e3f2fd' ><b>" + "${nomeET?.text.toString()} atualizado com sucesso!" + "</b></font>"),
@@ -317,29 +297,17 @@ class GanhoListAdapter internal constructor(context: Context) :
 
                                         //colocando o toast verde
                                         toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
-
                                         toast.show()
-
-
-
                                     }
                                 }
                             }
                         }
-
-
-
                         dialog.dismiss()
-
                     }
                 }
-
                 cancelBtn?.setOnClickListener { dialog.dismiss() }
                 dialog.show()
-
             }
-
-
             cancelBtn?.setOnClickListener { dialog.dismiss() }
             dialog.show()
         }
@@ -364,7 +332,6 @@ class GanhoListAdapter internal constructor(context: Context) :
 
         dialog.window?.setLayout(width, 500)
         callback()
-
     }
 
     private fun getHeight(callback: () -> Unit): Int {

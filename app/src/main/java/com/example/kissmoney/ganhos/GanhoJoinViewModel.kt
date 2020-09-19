@@ -55,16 +55,11 @@ object GanhoJoinViewModel {
                 }
                 if (ganhoMensal.mesId == mesId) {
                     ganhosJoinDoMes.add(GanhoJoin(ganhoW, ganhoMensal, mesW))
-                    println(">>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<< linha do gjvm 58 >>> ${ganhosJoinDoMes.size}")
-
                     for (g in ganhosJoinDoMes){
                         print(g)
                     }
-                } else {
-                    println(">>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<< linha do gjvm 59 >>> ")
                 }
             }
-
             callback()
         }
     }
@@ -79,7 +74,6 @@ object GanhoJoinViewModel {
         mesList.clear()
         ganhoMensalList.clear()
         getGanhosMensais(ganhoMensalList){
-            println(">>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<< linha do gjvm 68 >>> ${ganhoMensalList.size}")
             getMeses(mesList){
                 getGanhos(ganhoList){
                     callback()
@@ -112,5 +106,4 @@ object GanhoJoinViewModel {
             callback()
         })
     }
-
 }

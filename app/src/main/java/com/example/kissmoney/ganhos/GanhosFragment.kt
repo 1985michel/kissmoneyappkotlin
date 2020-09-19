@@ -66,7 +66,6 @@ class GanhosFragment : Fragment() {
         mesViewModel = ViewModelProvider(this).get(MesViewModel::class.java)
         ganhoMensalViewModel =
             ViewModelProvider(this).get(GanhoMensalViewModel::class.java)
-
     }
 
     override fun onCreateView(
@@ -91,19 +90,14 @@ class GanhosFragment : Fragment() {
 
         mesAtual = Mes(idMes, getNomeMesAtual())
 
-        println(">>>>>>>>>>>>>>>>>>> linha 94 do ganhosfragment")
-
         //se tiver recebido um id, vou ao banco buscar o nome do mes
         if (idMes != 0L) {
-            println(">>>>>>>>>>>>>>>>>>> linha 98 do ganhosfragment")
+
             mesViewModel.getById(mesAtual) {
                 GlobalScope.launch {
                     //Background processing..."
                     withContext(Dispatchers.Main) {
-
                         GanhoJoinViewModel.setGanhosJoinNoMes(mesAtual.mesId) {
-                            println(">>>>>>>>>>>>>>>>>>> linha 105 do ganhosfragment")
-                            println(">>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<< ENCONTRAMOS ${GanhoJoinViewModel.ganhosJoinDoMes.size}")
                             setaGanhosNoAdapter()
                             setaValoresNaView(binding)
                         }
@@ -112,14 +106,11 @@ class GanhosFragment : Fragment() {
                 }
             }
         } else { //se não tiver recebido um id, vou ao banco buscar por nome
-            println(">>>>>>>>>>>>>>>>>>> linha 114 do ganhosfragment")
+
             mesViewModel.getByName(mesAtual) {
                 GlobalScope.launch {
                     //Background processing..."
                     withContext(Dispatchers.Main) {
-                        println(">>>>>>>>>>>>>>>>>>> linha 120 do ganhosfragment")
-                        println(">>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<< ENCONTRAMOS ${GanhoJoinViewModel.ganhosJoinDoMes.size}")
-
                         GanhoJoinViewModel.setGanhosJoinNoMes(mesAtual.mesId) {
                             setaGanhosNoAdapter()
                             setaValoresNaView(binding)
@@ -134,7 +125,6 @@ class GanhosFragment : Fragment() {
         binding.fab.setOnClickListener {
 
             val dialog = BottomSheetDialog(activity as AppCompatActivity)
-            //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
             dialog.setContentView(R.layout.crud_ganho_button_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             //dialog.getWindow()?.setDimAmount(0F);
@@ -182,7 +172,6 @@ class GanhosFragment : Fragment() {
                     mDateSetListener,
                     year, month, day
                 )
-                //dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.show()
             }
             mDateSetListener =
@@ -315,6 +304,4 @@ class GanhosFragment : Fragment() {
             }
         }
     }
-
-
 }
