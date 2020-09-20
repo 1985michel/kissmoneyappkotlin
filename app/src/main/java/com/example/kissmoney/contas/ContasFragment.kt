@@ -4,23 +4,22 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.SwitchCompat
-import androidx.core.graphics.toColor
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kissmoney.R
@@ -29,11 +28,12 @@ import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
 import com.example.kissmoney.databinding.FragmentContasBinding
 import com.example.kissmoney.mes.Mes
 import com.example.kissmoney.mes.MesViewModel
-import com.example.kissmoney.mes.NomesMeses
 import com.example.kissmoney.util.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.fragment_contas.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 
@@ -87,6 +87,7 @@ class ContasFragment : Fragment() {
         var itemDecoration = DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(getDrawable(this.requireContext(), R.drawable.divider)!!)
         recyclerView.addItemDecoration(itemDecoration)
+
 
         // início navegação entre meses
         val args = ContasFragmentArgs.fromBundle(requireArguments())
