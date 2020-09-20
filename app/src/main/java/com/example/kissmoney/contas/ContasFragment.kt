@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.graphics.toColor
 import androidx.databinding.DataBindingUtil
@@ -20,6 +21,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kissmoney.R
 import com.example.kissmoney.contas.mensal.MovimentacaoMensal
@@ -80,6 +82,11 @@ class ContasFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity as AppCompatActivity)
 
+        //linha divisória
+        //recyclerView.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
+        var itemDecoration = DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
+        itemDecoration.setDrawable(getDrawable(this.requireContext(), R.drawable.divider)!!)
+        recyclerView.addItemDecoration(itemDecoration)
 
         // início navegação entre meses
         val args = ContasFragmentArgs.fromBundle(requireArguments())

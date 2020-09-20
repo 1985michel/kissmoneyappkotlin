@@ -13,9 +13,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kissmoney.R
 import com.example.kissmoney.compromissos.mensal.CompromissoMensal
@@ -81,6 +83,16 @@ class CompromissosFragment : Fragment() {
         adapter.setViewModel(compromissoViewModel, compromissoMensalViewModel, mesViewModel)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity as AppCompatActivity)
+
+        //linha divisória
+        //recyclerView.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
+        var itemDecoration = DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
+        itemDecoration.setDrawable(
+            AppCompatResources.getDrawable(
+                this.requireContext(),
+                R.drawable.divider
+            )!!)
+        recyclerView.addItemDecoration(itemDecoration)
 
         // início navegação entre meses
         val args = GanhosFragmentArgs.fromBundle(requireArguments())
