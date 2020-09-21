@@ -66,6 +66,7 @@ class SplashActivity : AppCompatActivity() {
                 println(">>>>>>>>>>> ESTATISTICA STRING >>>>>>>>>>>>>>")
                 Estatisticas.toString()
                 startActivity(intent)
+                finish() //encerra a splash
             }
         }
 

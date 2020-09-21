@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kissmoney.R
 import com.example.kissmoney.contas.ContaJoinViewModel
@@ -67,7 +68,11 @@ class mesFragment : Fragment() {
         val recyclerView = binding.recyclerviewmes
         var adapter = MesListAdapter(requireActivity())
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        //recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        val mLayoutManager = LinearLayoutManager(requireActivity())
+        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        recyclerView.layoutManager = mLayoutManager
+        recyclerView.itemAnimator = DefaultItemAnimator()
 
         AcompanhamentoDeMeta.setValues {
             adapter.setDados(AcompanhamentoDeMeta.metaJoinList)
