@@ -14,6 +14,7 @@ class MesViewModel (application: Application) : AndroidViewModel(application) {
 
     val allMeses: LiveData<List<Mes>>
 
+
     init {
         val mesDao = KissmoneyDatabase.getDatabase(application, viewModelScope).mesDao()
         repository = MesRepository(mesDao)

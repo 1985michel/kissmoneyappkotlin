@@ -82,3 +82,9 @@ fun getNomeMesPorExtenso(nomeMes: String): String {
     }
     return ""
 }
+
+fun getDiaHojeNoMes(): Int {
+    val cal = Calendar.getInstance()
+    val day = cal[Calendar.DAY_OF_MONTH]
+    return day
+}

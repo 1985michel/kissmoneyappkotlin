@@ -33,6 +33,35 @@ object GanhoJoinViewModel {
         callback()
     }
 
+
+    fun setAllGanhosJoin (callback: () -> Unit) {
+
+        var ganhoList = ArrayList<Ganho>()
+        var ganhoMensalList = ArrayList<GanhoMensal>()
+        var mesList = ArrayList<Mes>()
+
+        getData(ganhoList, mesList, ganhoMensalList) {
+
+            allGanhosJoin.clear()
+
+            var mesW = Mes(0L, "")
+            var ganhoW = Ganho(0L, "", false, false)
+
+            for (ganhoMensal in ganhoMensalList) {
+
+                for (mes in mesList) {
+                    if (mes.mesId == ganhoMensal.mesId) mesW = mes
+                }
+                for (ganho in ganhoList) {
+                    if (ganho.ganhoId == ganhoMensal.ganhoId) ganhoW = ganho
+                }
+                allGanhosJoin.add(GanhoJoin(ganhoW, ganhoMensal, mesW))
+            }
+
+            callback()
+        }
+    }
+
     fun setGanhosJoinNoMes(mesId: Long, callback: () -> Unit) {
 
         var ganhoMensalList = ArrayList<GanhoMensal>()
@@ -55,9 +84,9 @@ object GanhoJoinViewModel {
                 }
                 if (ganhoMensal.mesId == mesId) {
                     ganhosJoinDoMes.add(GanhoJoin(ganhoW, ganhoMensal, mesW))
-                    for (g in ganhosJoinDoMes){
-                        print(g)
-                    }
+//                    for (g in ganhosJoinDoMes){
+//                        print(g)
+//                    }
                 }
             }
             callback()

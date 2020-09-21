@@ -29,11 +29,85 @@ import com.example.kissmoney.databinding.ActivityMainBinding
 import com.example.kissmoney.ganhos.GanhoJoinViewModel
 import com.example.kissmoney.ganhos.GanhoViewModel
 import com.example.kissmoney.ganhos.mensal.GanhoMensalViewModel
+import com.example.kissmoney.mes.Estatisticas
 import com.example.kissmoney.mes.MesViewModel
-import kotlinx.coroutines.CoroutineScope
+import com.example.kissmoney.meta.MetaViewModel
+import kotlinx.coroutines.*
 
 
 class MainActivity : AppCompatActivity() {
+
+
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//        //setContentView(R.layout.activity_main)
+//
+//        @Suppress("UNUSED_VARIABLE")
+//        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+//
+//        var cjvm = ContaJoinViewModel
+//
+//        var contaViewModel = ViewModelProvider(this).get(ContaViewModel::class.java)
+//        var mesViewModel = ViewModelProvider(this).get(MesViewModel::class.java)
+//        var movimentacaoMensalViewModel= ViewModelProvider(this).get(MovimentacaoMensalViewModel::class.java)
+//
+//        cjvm.setMyOwner(this){
+//            cjvm.setApplicationObject(contaViewModel, mesViewModel, movimentacaoMensalViewModel){
+//                //cjvm.setAllContasJoin(){}
+//            }
+//        }
+//
+//        var metaViewModel = ViewModelProvider(this).get(MetaViewModel::class.java)
+//
+//        Estatisticas.setViewModels(mesViewModel, metaViewModel) {
+//            Estatisticas.processa(){
+//                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+//                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+//                println(">>>>>>>>>>> ESTATISTICA STRING >>>>>>>>>>>>>>")
+//                Estatisticas.toString()
+//            }
+//        }
+//
+//        var gjvm = GanhoJoinViewModel
+//
+//        var ganhoViewModel = ViewModelProvider(this).get(GanhoViewModel::class.java)
+//        var ganhoMesViewModel = ViewModelProvider(this).get(GanhoMensalViewModel::class.java)
+//        gjvm.setMyOwner(this){
+//            gjvm.setApplicationObject(ganhoViewModel, ganhoMesViewModel, mesViewModel){}
+//        }
+//
+//        var compjvm = CompromissoJoinViewModel
+//
+//        var compromissoViewModel = ViewModelProvider(this).get(CompromissoViewModel::class.java)
+//        var compromissoMensalViewModel = ViewModelProvider(this).get(CompromissoMensalViewModel::class.java)
+//
+//        compjvm.setMyOwner(this) {
+//            compjvm.setApplicationObject(compromissoViewModel, compromissoMensalViewModel, mesViewModel){}
+//        }
+//
+//
+//
+//
+//
+//
+//        //botão de navegação superior
+//        val navController = this.findNavController(R.id.myNavHostFragment)
+//
+//        //abaixo sem o menu lateral
+//        NavigationUI.setupActionBarWithNavController(this, navController)
+//
+//        //colocando o Logo no actionbar
+//        getSupportActionBar()?.setDisplayShowHomeEnabled(true);
+//        getSupportActionBar()?.setLogo(R.drawable.kiss_logo_2);
+//        getSupportActionBar()?.setDisplayUseLogoEnabled(true);
+//
+//
+//
+//    }
+//
+
 
 
 
@@ -42,14 +116,25 @@ class MainActivity : AppCompatActivity() {
 
         //setContentView(R.layout.activity_main)
 
-        @Suppress("UNUSED_VARIABLE")
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+//        @Suppress("UNUSED_VARIABLE")
+//        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        var cjvm = ContaJoinViewModel
+
+
+        var mesViewModel = ViewModelProvider(this).get(MesViewModel::class.java)
 
         var contaViewModel = ViewModelProvider(this).get(ContaViewModel::class.java)
-        var mesViewModel = ViewModelProvider(this).get(MesViewModel::class.java)
         var movimentacaoMensalViewModel= ViewModelProvider(this).get(MovimentacaoMensalViewModel::class.java)
+
+        var ganhoViewModel = ViewModelProvider(this).get(GanhoViewModel::class.java)
+        var ganhoMesViewModel = ViewModelProvider(this).get(GanhoMensalViewModel::class.java)
+
+        var compromissoViewModel = ViewModelProvider(this).get(CompromissoViewModel::class.java)
+        var compromissoMensalViewModel = ViewModelProvider(this).get(CompromissoMensalViewModel::class.java)
+
+        var metaViewModel = ViewModelProvider(this).get(MetaViewModel::class.java)
+
+        var cjvm = ContaJoinViewModel
 
         cjvm.setMyOwner(this){
             cjvm.setApplicationObject(contaViewModel, mesViewModel, movimentacaoMensalViewModel){
@@ -59,20 +144,34 @@ class MainActivity : AppCompatActivity() {
 
         var gjvm = GanhoJoinViewModel
 
-        var ganhoViewModel = ViewModelProvider(this).get(GanhoViewModel::class.java)
-        var ganhoMesViewModel = ViewModelProvider(this).get(GanhoMensalViewModel::class.java)
         gjvm.setMyOwner(this){
             gjvm.setApplicationObject(ganhoViewModel, ganhoMesViewModel, mesViewModel){}
         }
 
         var compjvm = CompromissoJoinViewModel
 
-        var compromissoViewModel = ViewModelProvider(this).get(CompromissoViewModel::class.java)
-        var compromissoMensalViewModel = ViewModelProvider(this).get(CompromissoMensalViewModel::class.java)
-
         compjvm.setMyOwner(this) {
             compjvm.setApplicationObject(compromissoViewModel, compromissoMensalViewModel, mesViewModel){}
         }
+//
+//
+//
+//        Estatisticas.setViewModels(mesViewModel, metaViewModel) {
+//            Estatisticas.processa(){
+//                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+//                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+//                println(">>>>>>>>>>> ESTATISTICA STRING >>>>>>>>>>>>>>")
+//                Estatisticas.toString()
+//
+//            }
+//        }
+
+
+
+
+
+        @Suppress("UNUSED_VARIABLE")
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         //botão de navegação superior
         val navController = this.findNavController(R.id.myNavHostFragment)
@@ -84,6 +183,7 @@ class MainActivity : AppCompatActivity() {
         getSupportActionBar()?.setDisplayShowHomeEnabled(true);
         getSupportActionBar()?.setLogo(R.drawable.kiss_logo_2);
         getSupportActionBar()?.setDisplayUseLogoEnabled(true);
+
 
 
 

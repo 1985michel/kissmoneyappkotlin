@@ -26,6 +26,8 @@ object ContaJoinViewModel {
 
     lateinit var owner : LifecycleOwner
 
+    var qtdDeMesesComRegistro = 0
+
 
     fun setApplicationObject(contaViewModel: ContaViewModel, mesViewModel: MesViewModel, movimentacaoMensalViewModel: MovimentacaoMensalViewModel, callback: () -> Unit) {
 
@@ -46,6 +48,9 @@ object ContaJoinViewModel {
         var contaList = ArrayList<Conta>()
         var mesList = ArrayList<Mes>()
 
+
+        var mesesComRegistros = ArrayList<Long>()
+
         getData(moviList, mesList, contaList){
 
             allContasJoin.clear()
@@ -55,13 +60,23 @@ object ContaJoinViewModel {
 
             for (movi in moviList){
                 for (mes in mesList) {
-                    if(mes.mesId == movi.mesId) mesW = mes
+                    if(mes.mesId == movi.mesId) {
+                        mesW = mes
+                        mesesComRegistros.add(mes.mesId)
+                    }
                 }
                 for (conta in contaList){
                     if (conta.contaId == movi.contaId) contaW = conta
                 }
                 allContasJoin.add(ContaJoin(contaW,movi,mesW))
             }
+
+            var mesesFiltrado = ArrayList<Long>()
+            for (id in mesesComRegistros) {
+                if (!mesesFiltrado.contains(id)) mesesFiltrado.add(id)
+            }
+
+            qtdDeMesesComRegistro = mesesFiltrado.size
 
             callback()
         }
