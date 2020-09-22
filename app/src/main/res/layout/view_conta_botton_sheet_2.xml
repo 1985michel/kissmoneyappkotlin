@@ -13,7 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
-        android:layout_height="398dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/round_darkblue"
@@ -162,16 +162,17 @@
 
         <ImageView
             android:id="@+id/updateValorAtualContaImageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="55dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/editContaImageView"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/deleteContaImageView"
-            app:layout_constraintTop_toBottomOf="@+id/saldoAtualEditTextText"
-            app:layout_constraintVertical_bias="0.244"
-            app:srcCompat="@drawable/update_dark_destaque" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            app:layout_constraintVertical_bias="0.211"
+            app:srcCompat="@drawable/update_dark" />
 
         <ImageView
             android:id="@+id/deleteContaImageView"
@@ -202,8 +203,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="63dp"
-            android:layout_marginBottom="12dp"
-            app:layout_constraintBottom_toTopOf="@+id/updateValorAtualContaImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView32"
             app:srcCompat="@drawable/switch_ativa" />
