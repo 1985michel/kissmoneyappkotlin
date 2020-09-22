@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lightgreybackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="fill_parent"
+        android:layout_height="398dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/round_darkblue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/saldoAtualEditTextText"
+            style="sub"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:digits="0123456789-.,"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:gravity="right"
+            android:hint="R$ 0,00"
+            android:inputType="numberSigned|numberDecimal"
+            android:textColor="@color/cardview_light_background"
+            android:textColorHint="@color/cardview_light_background"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="@+id/saldoInicialEditText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/saldoInicialEditText" />
+
+        <TextView
+            android:id="@+id/dataAtualizacaoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="63dp"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="01/01/2000"
+            android:textColor="@color/shadow"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/saldoTextView"
+            style="@style/padraoTextViewWhite"
+            android:layout_marginStart="55dp"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="Saldo Inicial:"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintBottom_toTopOf="@+id/textView32"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/tipoContaSpinner2"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="false"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:gravity="left"
+            android:textColor="@color/shadow"
+            app:layout_constraintEnd_toEndOf="@+id/nomeContaBottonTextView"
+            app:layout_constraintStart_toEndOf="@+id/tipoContaSpinnerImageView"
+            app:layout_constraintTop_toBottomOf="@+id/nomeContaBottonTextView" />
+
+        <TextView
+            android:id="@+id/nomeContaBottonTextView"
+            style="@style/subtituloTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:hint="Nome da Conta"
+            android:textColor="@color/lightgreybackground"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintEnd_toStartOf="@+id/cancelButton"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView32"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="Atualizado em:"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintBottom_toTopOf="@+id/imageView5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/saldoTextView" />
+
+        <TextView
+            android:id="@+id/saldoInicialEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="63dp"
+            android:digits="0123456789-.,"
+            android:ems="10"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:gravity="right"
+            android:hint="R$ 0,00"
+            android:inputType="numberSigned|numberDecimal"
+            android:textColor="@color/shadow"
+            android:textColorHighlight="@color/lightgreybackground"
+            android:textColorHint="@color/shadow"
+            app:layout_constraintBaseline_toBaselineOf="@+id/saldoTextView"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="Saldo Atual:"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintBottom_toTopOf="@+id/saldoTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tipoContaSpinnerImageView" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/close_button_white_transparent"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/tipoContaSpinnerImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="36dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tipoContaSpinner2"
+            app:layout_constraintStart_toStartOf="@+id/nomeContaBottonTextView"
+            app:layout_constraintTop_toTopOf="@+id/tipoContaSpinner2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/updateValorAtualContaImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editContaImageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/deleteContaImageView"
+            app:layout_constraintTop_toBottomOf="@+id/saldoAtualEditTextText"
+            app:layout_constraintVertical_bias="0.244"
+            app:srcCompat="@drawable/update_dark_destaque" />
+
+        <ImageView
+            android:id="@+id/deleteContaImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/updateValorAtualContaImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/updateValorAtualContaImageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/updateValorAtualContaImageView"
+            app:srcCompat="@drawable/lixeira_dark_2" />
+
+        <ImageView
+            android:id="@+id/editContaImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/updateValorAtualContaImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/updateValorAtualContaImageView"
+            app:layout_constraintTop_toTopOf="@+id/updateValorAtualContaImageView"
+            app:srcCompat="@drawable/editar_dark" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="63dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/updateValorAtualContaImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView32"
+            app:srcCompat="@drawable/switch_ativa" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

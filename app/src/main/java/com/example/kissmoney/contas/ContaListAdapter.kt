@@ -108,9 +108,18 @@ class ContaListAdapter internal constructor(context: Context) :
 
 
         holder.constraint.setOnClickListener {
-            val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+//            val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+//            //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
+//            dialog.setContentView(R.layout.view_conta_botton_sheet_2)
+//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            dialog.getWindow()?.setDimAmount(0F);
+//            dialog.setCancelable(false)
+
             //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
-            dialog.setContentView(R.layout.view_conta_botton_sheet)
+            var dialog = BottomSheetDialog(holder.itemView.context, R.style.BottomSheetDialog)
+            dialog.setContentView(R.layout.view_conta_botton_sheet_2)
+//            dialog.setContentView(view)
+            //dialog.setContentView(R.layout.crud_conta_botton_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.getWindow()?.setDimAmount(0F);
             dialog.setCancelable(false)
@@ -123,10 +132,12 @@ class ContaListAdapter internal constructor(context: Context) :
                 dialog.findViewById<TextView>(R.id.saldoAtualEditTextText)
             var dataAtualizacaoTextView =
                 dialog.findViewById<TextView>(R.id.dataAtualizacaoTextView)
-            var isEncerrada = dialog.findViewById<SwitchCompat>(R.id.isEncerradaSwitch)
+//            var isEncerrada = dialog.findViewById<SwitchCompat>(R.id.isEncerradaSwitch)
             var tipoContaSpinnerImageView: ImageView? =
                 dialog.findViewById(R.id.tipoContaSpinnerImageView)
 
+            var isEncerrada: ImageView? =
+                dialog.findViewById(R.id.imageView5)
 
             //hora de povoar os valores
 
@@ -134,20 +145,26 @@ class ContaListAdapter internal constructor(context: Context) :
             tiposSpinner?.text = current.tipoConta
 
             tipoContaSpinnerImageView?.setImageResource(
-                        if (current.tipoConta == TiposDeConta.CARTEIRA.tipo) {
-                            R.drawable.cofre_icon_list_dark
-                        } else if (current.tipoConta == TiposDeConta.INVESTIMENTO.tipo) {
-                            R.drawable.invest_icon_list_dark
-                        } else {
-                            R.drawable.creditcard_icon_list_dark
-                        }
-                    )
+                if (current.tipoConta == TiposDeConta.CARTEIRA.tipo) {
+                    R.drawable.cofre_icon_list_dark
+                } else if (current.tipoConta == TiposDeConta.INVESTIMENTO.tipo) {
+                    R.drawable.invest_icon_list_dark
+                } else {
+                    R.drawable.creditcard_icon_list_dark
+                }
+            )
 
             dataAtualizacaoTextView?.text = current.dataAtualizacao
 
             valorInicialEditText?.setText(formataParaBr(current.saldoInicial.toBigDecimal()))
             valorAtualOuFinalEditText?.setText(formataParaBr(current.saldoAtualOuFinal.toBigDecimal()))
-            isEncerrada?.isChecked = current.isEncerrada
+            isEncerrada?.setImageResource(
+                if (current.isEncerrada) {
+                    R.drawable.switch_encerrada
+                } else {
+                    R.drawable.switch_ativa
+                }
+            )
 
 
             val cancelBtn = dialog.findViewById<Button>(R.id.cancelButton)
@@ -198,7 +215,7 @@ class ContaListAdapter internal constructor(context: Context) :
                 cancelarBtn.setOnClickListener { dialogIterno.dismiss() }
 
                 dialogIterno.show()
-                setLarguraEAlturaInterno(dialogIterno){}
+                setLarguraEAlturaInterno(dialogIterno) {}
 
                 //cancelBtn?.setOnClickListener { dialog.dismiss() }
 
@@ -424,7 +441,8 @@ class ContaListAdapter internal constructor(context: Context) :
                 dialogIterno.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
 
-                var valorET = dialogIterno.findViewById(R.id.updateContaSaldoAtualOuFInalEditText) as EditText
+                var valorET =
+                    dialogIterno.findViewById(R.id.updateContaSaldoAtualOuFInalEditText) as EditText
                 var nomeConta = dialogIterno.findViewById(R.id.nomeContaTextView) as TextView
                 nomeConta.text = current.nomeConta
 
@@ -438,7 +456,8 @@ class ContaListAdapter internal constructor(context: Context) :
                 valorET?.setText("R$ 0,00")
 
 
-                var dataSaldoTextView = dialogIterno.findViewById(R.id.dataSaldoTextView) as TextView
+                var dataSaldoTextView =
+                    dialogIterno.findViewById(R.id.dataSaldoTextView) as TextView
 
                 dataSaldoTextView?.text = getDataHojeString()
 
@@ -479,7 +498,8 @@ class ContaListAdapter internal constructor(context: Context) :
 
                 confirmaBtn.setOnClickListener {
 
-                    current.saldoAtualOuFinal = limpaFormatacaoDeMoeda(valorET?.text.toString()).trim().toDouble()
+                    current.saldoAtualOuFinal =
+                        limpaFormatacaoDeMoeda(valorET?.text.toString()).trim().toDouble()
                     current.dataAtualizacao = dataSaldoTextView?.text.toString()
 
                     movimentacaoMensalViewModel.update(
@@ -506,7 +526,7 @@ class ContaListAdapter internal constructor(context: Context) :
                 cancelarBtn.setOnClickListener { dialogIterno.dismiss() }
 
                 dialogIterno.show()
-                setLarguraEAlturaInterno(dialogIterno){}
+                setLarguraEAlturaInterno(dialogIterno) {}
             }
 
 
@@ -517,7 +537,8 @@ class ContaListAdapter internal constructor(context: Context) :
 
 
     }
-    internal  fun setContas(contas: List<ContaJoin>){
+
+    internal fun setContas(contas: List<ContaJoin>) {
         this.contas = contas
         notifyDataSetChanged()
     }
@@ -534,7 +555,7 @@ class ContaListAdapter internal constructor(context: Context) :
 
         //height = (height*0.6).toInt()
 
-        dialog.window?.setLayout(width,500)
+        dialog.window?.setLayout(width, 500)
         callback()
 
     }

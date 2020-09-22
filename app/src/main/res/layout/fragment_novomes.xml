@@ -7,14 +7,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_none">
+        android:background="@color/lightgreybackground">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:background="@drawable/base_botton3"
+            android:layout_height="80dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/botton_1_darkblue_no_hole"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -142,6 +145,7 @@
                 style="@style/padraoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:text="Setembro, 2020"
                 app:layout_constraintBottom_toTopOf="@+id/valorBalancoTextView"
                 app:layout_constraintStart_toStartOf="@+id/valorBalancoTextView"
@@ -164,6 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:text="dias"
                 app:layout_constraintEnd_toEndOf="@+id/variacaoDiasMesTextView"
                 app:layout_constraintStart_toStartOf="@+id/variacaoDiasMesTextView"
@@ -188,6 +193,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:text="Balanço"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toTopOf="parent" />
