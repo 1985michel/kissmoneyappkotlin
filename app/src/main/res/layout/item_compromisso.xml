@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/lightgreybackground"
     android:orientation="vertical">
 
 
@@ -13,7 +12,6 @@
         android:layout_height="87dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:background="@drawable/cleanwhitesquare"
         android:clickable="true"
         android:paddingBottom="8dp">
 
@@ -22,13 +20,15 @@
             style="@style/subtituloTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="16dp"
             android:text="Conta de Água"
             app:layout_constraintBottom_toBottomOf="@+id/isRecorrenteImageView"
             app:layout_constraintEnd_toStartOf="@+id/atencaoImageView"
-            app:layout_constraintStart_toEndOf="@+id/isRecorrenteImageView" />
+            app:layout_constraintStart_toEndOf="@+id/isRecorrenteImageView"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/atencaoImageView"
@@ -44,7 +44,9 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/nomeCompromissoTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/despesa_recorrente_2" />
@@ -63,10 +65,10 @@
             style="@style/subtituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="2dp"
-            android:layout_marginEnd="16dp"
             android:text="R$ 123.000,00"
-            app:layout_constraintEnd_toEndOf="@+id/nomeCompromissoTextView"
+            app:layout_constraintStart_toEndOf="@+id/dataVencimentoTextView"
             app:layout_constraintTop_toBottomOf="@+id/nomeCompromissoTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

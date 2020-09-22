@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkblue_background">
+        android:background="@color/light_none">
 
 
         <TextView
@@ -17,7 +17,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:text="Contas"
-            android:textColor="@color/lightgreybackground"
+            android:textColor="@color/design_default_color_on_secondary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +29,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="Saldo:"
-            android:textColor="@color/lightgreybackground"
+            android:textColor="@color/design_default_color_on_secondary"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -42,7 +42,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="R$ 0,00"
-            android:textColor="@color/lightgreybackground"
+            android:textColor="@color/design_default_color_on_secondary"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView9" />
@@ -52,16 +52,16 @@
 
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="4dp"
-
-            android:orientation="vertical"
+            android:layout_marginStart="24dp"
 
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp"
-            android:background="@color/darkblue_background"
+
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/round_outline"
+            android:orientation="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbarSize="5dp"
-            android:scrollbarThumbVertical="@android:color/background_dark"
+            android:scrollbarThumbVertical="@android:color/darker_gray"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@+id/nomeDoMestextView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Setembro / 2020"
-            android:textColor="@color/lightgreybackground"
+            android:textColor="@color/design_default_color_on_secondary"
             app:layout_constraintBottom_toTopOf="@+id/palavraVariacaoEmReaisTextView"
             app:layout_constraintEnd_toStartOf="@+id/mesPosteriorImageViewCaixa"
             app:layout_constraintStart_toEndOf="@+id/mesAnteriorImageViewCaixa"
@@ -104,6 +104,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="Variação:"
+            android:textColor="@color/design_default_color_on_secondary"
             app:layout_constraintBottom_toTopOf="@+id/palavraVariacaoEmReaisTextView2"
             app:layout_constraintStart_toEndOf="@+id/mesAnteriorImageViewCaixa"
             app:layout_constraintTop_toBottomOf="@+id/nomeDoMestextView" />
@@ -116,6 +117,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
             android:text="Variação em Dias:"
+            android:textColor="@color/design_default_color_on_secondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/palavraVariacaoEmReaisTextView"
             app:layout_constraintTop_toBottomOf="@+id/palavraVariacaoEmReaisTextView" />
@@ -126,6 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="R$ 0,00"
+            android:textColor="@color/design_default_color_on_secondary"
             app:layout_constraintBaseline_toBaselineOf="@+id/palavraVariacaoEmReaisTextView"
             app:layout_constraintStart_toStartOf="@+id/valorVariacaoEmDiasTextView" />
 
@@ -136,6 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="0 dias"
+            android:textColor="@color/design_default_color_on_secondary"
             app:layout_constraintBaseline_toBaselineOf="@+id/palavraVariacaoEmReaisTextView2"
             app:layout_constraintStart_toEndOf="@+id/palavraVariacaoEmReaisTextView2" />
 

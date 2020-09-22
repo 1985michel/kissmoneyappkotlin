@@ -133,12 +133,15 @@ class ContasFragment : Fragment() {
 
         binding.fab.setOnClickListener {
 
-            val dialog = BottomSheetDialog(activity as AppCompatActivity)
-            //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
-            dialog.setContentView(R.layout.crud_conta_botton_sheet)
+            //val dialog = BottomSheetDialog(activity as AppCompatActivity)
+            val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
+            var dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
+            dialog.setContentView(view)
+            //dialog.setContentView(R.layout.crud_conta_botton_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            //dialog.getWindow()?.setDimAmount(0F);
+            dialog.getWindow()?.setDimAmount(0F);
             dialog.setCancelable(false)
+
 
 
             var tiposSpinner = dialog.findViewById<Spinner>(R.id.tipoContaSpinner2)
