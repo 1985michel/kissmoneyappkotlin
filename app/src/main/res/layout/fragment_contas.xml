@@ -9,43 +9,86 @@
         android:background="@color/light_none">
 
 
-        <TextView
-            android:id="@+id/textView8"
-            style="@style/tituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="Contas"
-            android:textColor="@color/design_default_color_on_secondary"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView9"
-            style="@style/tituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="Saldo:"
-            android:textColor="@color/design_default_color_on_secondary"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-        <TextView
-            android:id="@+id/saldoTextView"
-            style="@style/tituloTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="R$ 0,00"
-            android:textColor="@color/design_default_color_on_secondary"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/round_darkblue_3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView9" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView9"
+                style="@style/tituloTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/roboto_condensed_light"
+                android:text=" SALDO TOTAL"
+                android:textColor="@color/light_none"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/saldoTextView"
+                app:layout_constraintHorizontal_bias="0.55"
+                app:layout_constraintStart_toStartOf="@+id/saldoTextView"
+                app:layout_constraintTop_toTopOf="@+id/saldoTextView" />
+
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/tituloTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="Contas"
+                android:textColor="@color/design_default_color_background"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/saldoTextView"
+                style="@style/tituloTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="37dp"
+                android:text="R$ 0,00"
+                android:textColor="@color/design_default_color_background"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/valorVariacaoEmReaisTextView"
+                style="@style/padraoTextViewWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="R$ 0,00"
+                android:textColor="@color/design_default_color_surface"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/saldoTextView" />
+
+            <TextView
+                android:id="@+id/palavraVariacaoEmReaisTextView"
+                style="@style/padraoTextViewWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:layout_marginBottom="56dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="Variação:"
+                android:textColor="@color/design_default_color_surface"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/valorVariacaoEmReaisTextView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCaixa"
@@ -54,112 +97,90 @@
             android:layout_height="0dp"
             android:layout_marginStart="24dp"
 
-            android:layout_marginTop="16dp"
-
+            android:layout_marginTop="150dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/round_outline"
             android:orientation="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true"
-            android:scrollbarSize="5dp"
+            android:scrollbarSize="2dp"
             android:scrollbarThumbVertical="@android:color/darker_gray"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/nomeDoMestextView"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/saldoTextView"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout3"
             tools:listitem="@layout/item_contas" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="Nova Conta"
-            app:backgroundTint="@color/cardview_light_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_add_black_24dp" />
 
         <TextView
             android:id="@+id/nomeDoMestextView"
             style="@style/subtituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_condensed_light"
             android:text="Setembro / 2020"
-            android:textColor="@color/design_default_color_on_secondary"
-            app:layout_constraintBottom_toTopOf="@+id/palavraVariacaoEmReaisTextView"
-            app:layout_constraintEnd_toStartOf="@+id/mesPosteriorImageViewCaixa"
-            app:layout_constraintStart_toEndOf="@+id/mesAnteriorImageViewCaixa"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
-
-        <TextView
-            android:id="@+id/palavraVariacaoEmReaisTextView"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="Variação:"
-            android:textColor="@color/design_default_color_on_secondary"
-            app:layout_constraintBottom_toTopOf="@+id/palavraVariacaoEmReaisTextView2"
-            app:layout_constraintStart_toEndOf="@+id/mesAnteriorImageViewCaixa"
-            app:layout_constraintTop_toBottomOf="@+id/nomeDoMestextView" />
-
-        <TextView
-            android:id="@+id/palavraVariacaoEmReaisTextView2"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp"
-            android:text="Variação em Dias:"
-            android:textColor="@color/design_default_color_on_secondary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/palavraVariacaoEmReaisTextView"
-            app:layout_constraintTop_toBottomOf="@+id/palavraVariacaoEmReaisTextView" />
-
-        <TextView
-            android:id="@+id/valorVariacaoEmReaisTextView"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="R$ 0,00"
-            android:textColor="@color/design_default_color_on_secondary"
-            app:layout_constraintBaseline_toBaselineOf="@+id/palavraVariacaoEmReaisTextView"
-            app:layout_constraintStart_toStartOf="@+id/valorVariacaoEmDiasTextView" />
-
-        <TextView
-            android:id="@+id/valorVariacaoEmDiasTextView"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="0 dias"
-            android:textColor="@color/design_default_color_on_secondary"
-            app:layout_constraintBaseline_toBaselineOf="@+id/palavraVariacaoEmReaisTextView2"
-            app:layout_constraintStart_toEndOf="@+id/palavraVariacaoEmReaisTextView2" />
-
-        <ImageView
-            android:id="@+id/mesAnteriorImageViewCaixa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:src="@drawable/totheleft"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
-
-        <ImageView
-            android:id="@+id/mesPosteriorImageViewCaixa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:src="@drawable/totheright"
+            android:textColor="@color/greyfont"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa"
+            app:layout_constraintVertical_bias="0.625" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/botton_1_darkblue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="16dp"
+                android:layout_marginStart="337dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="176dp"
+                android:layout_marginBottom="28dp"
+                android:contentDescription="Nova Conta"
+                android:foregroundGravity="center_vertical|clip_horizontal|center"
+                app:backgroundTint="@color/cardview_light_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_add_black_24dp" />
+
+            <ImageView
+                android:id="@+id/mesPosteriorImageViewCaixa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:src="@drawable/next_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/mesAnteriorImageViewCaixa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:src="@drawable/previous_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
