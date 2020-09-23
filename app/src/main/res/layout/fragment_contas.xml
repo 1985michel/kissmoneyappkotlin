@@ -12,7 +12,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="170dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -26,9 +26,9 @@
                 style="@style/tituloTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="19dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="35dp"
                 android:fontFamily="@font/roboto_condensed_light"
-                android:text=" SALDO TOTAL"
+                android:text="Saldo Atual"
                 android:textColor="@color/light_none"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="@+id/saldoTextView"
@@ -41,7 +41,7 @@
                 style="@style/tituloTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/roboto_condensed_bold"
                 android:text="Contas"
@@ -97,7 +97,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="24dp"
 
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="130dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="32dp"
             android:background="@drawable/round_outline"
@@ -108,9 +108,10 @@
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout3"
+            app:layout_constraintVertical_bias="1.0"
             tools:listitem="@layout/item_contas" />
 
         <TextView
@@ -132,11 +133,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
             android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
-            android:background="@drawable/botton_1_darkblue"
+            android:background="@drawable/botton_dark_70_no_hole_100"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
