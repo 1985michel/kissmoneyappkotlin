@@ -18,7 +18,6 @@ limitations under the License. -->
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/lightgreybackground"
     android:orientation="vertical">
 
 
@@ -28,7 +27,6 @@ limitations under the License. -->
         android:layout_height="87dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:background="@drawable/cleanwhitesquare"
         android:clickable="true"
         android:paddingBottom="8dp">
 

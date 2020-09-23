@@ -6,120 +6,149 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkblue_background">
+        android:background="@color/light_none">
 
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recyclerView_feedback"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="76dp"-->
-<!--            android:layout_marginStart="4dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:layout_marginBottom="4dp"-->
-<!--            android:background="@color/shadowtick"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/fab"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            tools:listitem="@layout/item_relatorio" />-->
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/recyclerView_feedback"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="76dp"-->
+        <!--            android:layout_marginStart="4dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            android:layout_marginBottom="4dp"-->
+        <!--            android:background="@color/shadowtick"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/fab"-->
+        <!--            app:layout_constraintHorizontal_bias="0.5"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            tools:listitem="@layout/item_relatorio" />-->
 
-        <ImageView
-            android:id="@+id/mesAnteriorImageViewCaixa2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:src="@drawable/totheleft"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/round_darkblue_3"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/nomeDoMestextView2" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/tituloTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/roboto_condensed_light"
+                android:text="Total"
+                android:textColor="@color/light_none"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/valor_total_tv"
+                app:layout_constraintStart_toStartOf="@+id/valor_total_tv"
+                app:layout_constraintTop_toTopOf="@+id/valor_total_tv" />
+
+            <TextView
+                android:id="@+id/valor_total_tv"
+                style="@style/destaque_value_fragment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="37dp"
+                android:text="R$ 0,00"
+                android:textColor="@color/lightgreybackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/fragment_title_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="Ganhos"
+                android:textColor="@color/lightgreybackground"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/nomeDoMestextView2"
-            style="@style/subtituloTextView"
+            style="@style/nome_mes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="4dp"
             android:text="Setembro / 2020"
-            android:textColor="@color/lightgreybackground"
-            app:layout_constraintBottom_toTopOf="@+id/fab"
-            app:layout_constraintEnd_toStartOf="@+id/mesPosteriorImageViewCaixa2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/mesAnteriorImageViewCaixa2"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewGanho" />
-
-        <ImageView
-            android:id="@+id/mesPosteriorImageViewCaixa2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:src="@drawable/totheright"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/nomeDoMestextView2" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewGanho"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toTopOf="@+id/nomeDoMestextView2"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="132dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/round_outline"
+            app:layout_constraintBottom_toBottomOf="@+id/nomeDoMestextView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/valor_total_tv"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout5"
             tools:listitem="@layout/item_ganhos" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="Novo Ganho"
-            app:backgroundTint="@color/cardview_light_background"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout6"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/botton_dark_70_no_hole_100"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_add_black_24dp" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/textView10"
-            style="@style/tituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="Ganhos"
-            android:textColor="@color/lightgreybackground"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:contentDescription="Novo Ganho"
+                app:backgroundTint="@color/cardview_light_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_add_black_24dp" />
 
-        <TextView
-            android:id="@+id/palavra_total_tv"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="Total:"
-            android:textColor="@color/lightgreybackground"
-            app:layout_constraintStart_toStartOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            <ImageView
+                android:id="@+id/mesAnteriorImageViewCaixa2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:src="@drawable/previous_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/valor_total_tv"
-            style="@style/tituloTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="R$ 0,00"
-            android:textColor="@color/lightgreybackground"
-            app:layout_constraintBaseline_toBaselineOf="@+id/palavra_total_tv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/palavra_total_tv" />
+            <ImageView
+                android:id="@+id/mesPosteriorImageViewCaixa2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:src="@drawable/next_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

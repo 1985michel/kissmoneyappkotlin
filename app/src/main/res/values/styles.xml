@@ -69,6 +69,34 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="fragment_title_white" parent="tituloTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:fontFamily">@font/roboto_condensed_bold</item>
+        <item name="android:textColor">@color/design_default_color_background</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="destaque_value_fragment" parent="tituloTextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">27dp</item>
+        <item name="android:layout_marginEnd">37dp</item>
+        <item name="android:textColor">@color/design_default_color_background</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="nome_mes" parent="subtituloTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_condensed_light</item>
+        <item name="android:textColor">@color/greyfont</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
 
     style="@style/padraoTextView"
     android:textColor="@android:color/primary_text_light"
