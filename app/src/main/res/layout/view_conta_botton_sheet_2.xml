@@ -54,8 +54,9 @@
             android:id="@+id/saldoTextView"
             style="@style/padraoTextViewWhite"
             android:layout_marginStart="55dp"
-            android:fontFamily="@font/roboto_condensed_regular"
             android:text="Saldo Inicial:"
+            android:fontFamily="@font/roboto_condensed_regular"
+
             android:textColor="@android:color/darker_gray"
             app:layout_constraintBottom_toTopOf="@+id/textView32"
             app:layout_constraintStart_toStartOf="parent"
@@ -202,8 +203,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="63dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView32"
             app:srcCompat="@drawable/switch_ativa" />
 

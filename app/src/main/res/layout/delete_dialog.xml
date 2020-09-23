@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/buttoncancel">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/cornerlesssquare">
 
     <TextView
         android:id="@+id/textView2"
@@ -12,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_condensed_bold"
         android:text="Atenção!"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,6 +29,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:fontFamily="@font/roboto_condensed_regular"
         android:gravity="center"
         android:text="Você confirma que deseja apagar ... e todos os seus registros?"
         android:textSize="18sp"
@@ -35,10 +39,12 @@
 
     <Button
         android:id="@+id/cancelarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/buttoncancel"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/cornerlesssquare"
         android:text="Cancelar"
         app:layout_constraintEnd_toStartOf="@+id/apagarButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -47,12 +53,18 @@
 
     <Button
         android:id="@+id/apagarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/buttonred"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/cornerlesssquare"
         android:text="Apagar"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cancelarButton"
         app:layout_constraintTop_toTopOf="@+id/cancelarButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
