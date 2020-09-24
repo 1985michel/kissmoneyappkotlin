@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kissmoney.R
@@ -93,17 +94,23 @@ class GanhoListAdapter internal constructor(context: Context) :
 
         holder.constraint.setOnClickListener {
 
-            val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+//            val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+//            dialog.setContentView(R.layout.view_ganho_button_sheet)
+//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            //dialog.getWindow()?.setDimAmount(0F);
+//            dialog.setCancelable(false)
+
+            var dialog = BottomSheetDialog(holder.itemView.context, R.style.BottomSheetDialog)
             dialog.setContentView(R.layout.view_ganho_button_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            //dialog.getWindow()?.setDimAmount(0F);
+            dialog.getWindow()?.setDimAmount(0F);
             dialog.setCancelable(false)
 
             var nomeET = dialog.findViewById<TextView>(R.id.nomeGanhoBottonEditText)
             var valorET = dialog.findViewById<TextView>(R.id.editTextTextPersonName)
-            var isRendaPassivaSwitch = dialog.findViewById<Switch>(R.id.is_renda_passiva_switch)
-            var isGanhoRegularSwitch = dialog.findViewById<Switch>(R.id.is_ganho_regular_switch)
-            var isRecebidoSwitch = dialog.findViewById<Switch>(R.id.is_recebido_switch)
+            var isRendaPassivaSwitch = dialog.findViewById<SwitchCompat>(R.id.is_renda_passiva_switch)
+            var isGanhoRegularSwitch = dialog.findViewById<SwitchCompat>(R.id.is_ganho_regular_switch)
+            var isRecebidoSwitch = dialog.findViewById<SwitchCompat>(R.id.is_recebido_switch)
             var dataRecebimentoTV = dialog.findViewById<TextView>(R.id.data_recebimento_tv)
             var observacaoET = dialog.findViewById<TextView>(R.id.observacoesEditText)
 
@@ -174,18 +181,25 @@ class GanhoListAdapter internal constructor(context: Context) :
                 //fecho o dialog de exibição
                 dialog.dismiss()
 
+//                val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+//                //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
+//                dialog.setContentView(R.layout.crud_ganho_button_sheet)
+//                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//                //dialog.getWindow()?.setDimAmount(0F);
+//                dialog.setCancelable(false)
+
                 val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
                 //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
                 dialog.setContentView(R.layout.crud_ganho_button_sheet)
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                //dialog.getWindow()?.setDimAmount(0F);
+                dialog.getWindow()?.setDimAmount(0F);
                 dialog.setCancelable(false)
 
                 var nomeET = dialog.findViewById<EditText>(R.id.nomeGanhoBottonEditText)
                 var valorET = dialog.findViewById<EditText>(R.id.editTextTextPersonName)
-                var isRendaPassivaSwitch = dialog.findViewById<Switch>(R.id.is_renda_passiva_switch)
-                var isGanhoRegularSwitch = dialog.findViewById<Switch>(R.id.is_ganho_regular_switch)
-                var isRecebidoSwitch = dialog.findViewById<Switch>(R.id.is_recebido_switch)
+                var isRendaPassivaSwitch = dialog.findViewById<SwitchCompat>(R.id.is_renda_passiva_switch)
+                var isGanhoRegularSwitch = dialog.findViewById<SwitchCompat>(R.id.is_ganho_regular_switch)
+                var isRecebidoSwitch = dialog.findViewById<SwitchCompat>(R.id.is_recebido_switch)
                 var dataRecebimentoTV = dialog.findViewById<TextView>(R.id.data_recebimento_tv)
                 var observacaoET = dialog.findViewById<EditText>(R.id.observacoesEditText)
 

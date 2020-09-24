@@ -101,13 +101,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:text="Renda passiva:"
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/nomeGanhoBottonEditText"
             app:thumbTint="@color/switch_thumb_selector_desejavel"
-            app:trackTint="@color/switch_track_selector_desejavel"/>
+            app:trackTint="@color/switch_track_selector_desejavel" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/is_ganho_regular_switch"
@@ -115,6 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:text="Ganho Regular:"
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp"
@@ -129,6 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:text="Foi recebido:"
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp"
