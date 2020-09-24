@@ -29,17 +29,18 @@
                 android:layout_marginTop="4dp"
                 android:src="@drawable/downrow_dark_2"
                 app:layout_constraintBottom_toBottomOf="@+id/cardImageView"
-                app:layout_constraintEnd_toStartOf="@+id/cardImageView"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/ganhosImageView"
-                app:layout_constraintTop_toTopOf="@+id/cardImageView" />
+                app:layout_constraintStart_toEndOf="@+id/cardImageView"
+                app:layout_constraintTop_toTopOf="@+id/cardImageView"
+                app:layout_constraintVertical_bias="0.625" />
 
             <ImageView
                 android:id="@+id/ganhosImageView"
                 android:layout_width="54dp"
                 android:layout_height="40dp"
                 android:src="@drawable/uprow_dark_2"
-                app:layout_constraintEnd_toStartOf="@+id/gastosImageView"
+                app:layout_constraintEnd_toStartOf="@+id/walletImageView"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/gastosImageView" />
@@ -51,10 +52,11 @@
                 android:layout_marginBottom="16dp"
                 android:src="@drawable/creditcard_5"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/walletImageView"
+                app:layout_constraintEnd_toStartOf="@+id/gastosImageView"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/gastosImageView"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/walletImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.166" />
 
             <ImageView
                 android:id="@+id/walletImageView"
@@ -63,10 +65,11 @@
                 android:layout_marginBottom="16dp"
                 android:src="@drawable/wallet_5"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cardImageView"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/cardImageView"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/ganhosImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView12"
