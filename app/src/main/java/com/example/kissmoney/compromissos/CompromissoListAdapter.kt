@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kissmoney.R
@@ -101,17 +102,32 @@ class CompromissoListAdapter internal constructor(context: Context) :
 
         holder.constraint.setOnClickListener {
 
-            val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+//            val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+//            dialog.setContentView(R.layout.view_compromisso_botton_sheet)
+//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            //dialog.getWindow()?.setDimAmount(0F);
+//            dialog.setCancelable(false)
+
+            var dialog = BottomSheetDialog(holder.itemView.context, R.style.BottomSheetDialog)
             dialog.setContentView(R.layout.view_compromisso_botton_sheet)
+//            dialog.setContentView(view)
+            //dialog.setContentView(R.layout.crud_conta_botton_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            //dialog.getWindow()?.setDimAmount(0F);
+            dialog.getWindow()?.setDimAmount(0F);
             dialog.setCancelable(false)
 
             var nomeET = dialog.findViewById<TextView>(R.id.editTextTextPersonName2)
             var valorET = dialog.findViewById<TextView>(R.id.editTextTextPersonName3)
-            var isPago = dialog.findViewById<Switch>(R.id.switch1)
-            var isRecorrente = dialog.findViewById<Switch>(R.id.switch2)
+            var isPago = dialog.findViewById<SwitchCompat>(R.id.switch1)
+            var isRecorrente = dialog.findViewById<SwitchCompat>(R.id.switch2)
             var dataVencimentoTV = dialog.findViewById<TextView>(R.id.textView18)
+            var imgRecorrente = dialog.findViewById<ImageView>(R.id.imageView7)
+
+            if (current.isRecorrente) {
+                imgRecorrente?.setImageResource(R.drawable.update_dark)
+            } else {
+                imgRecorrente?.setImageResource(R.color.darkblue_background)
+            }
 
 
             dataVencimentoTV?.text = current.dataVencimento
@@ -171,17 +187,25 @@ class CompromissoListAdapter internal constructor(context: Context) :
                 //fecho o dialog de exibição
                 dialog.dismiss()
 
+//                val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+//                dialog.setContentView(R.layout.crud_compromisso_botton_sheet)
+//                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//                //dialog.getWindow()?.setDimAmount(0F);
+//                dialog.setCancelable(false)
+
                 val dialog = BottomSheetDialog(holder.itemView.context as AppCompatActivity)
+                //val view = layoutInflater.inflate(R.layout.crud_conta_botton_sheet, null)
                 dialog.setContentView(R.layout.crud_compromisso_botton_sheet)
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                //dialog.getWindow()?.setDimAmount(0F);
+                dialog.getWindow()?.setDimAmount(0F);
                 dialog.setCancelable(false)
 
                 var nomeET = dialog.findViewById<EditText>(R.id.editTextTextPersonName2)
                 var valorET = dialog.findViewById<EditText>(R.id.editTextTextPersonName3)
                 var dataVencimentoTV = dialog.findViewById<TextView>(R.id.textView18)
-                var isRecorrenteSwitch = dialog.findViewById<Switch>(R.id.switch2)
-                var isPagoSwitch = dialog.findViewById<Switch>(R.id.switch1)
+                var isRecorrenteSwitch = dialog.findViewById<SwitchCompat>(R.id.switch2)
+                var isPagoSwitch = dialog.findViewById<SwitchCompat>(R.id.switch1)
+                var imgRecorrente = dialog.findViewById<ImageView>(R.id.imageView6)
 
                 dataVencimentoTV?.text = getDataHojeString()
 
@@ -193,11 +217,25 @@ class CompromissoListAdapter internal constructor(context: Context) :
                     )
                 )
 
+
+
                 nomeET?.setText(current.nomeCompromisso)
                 valorET?.setText(formataParaBr(current.valor.toBigDecimal()))
                 dataVencimentoTV?.setText(current.dataVencimento)
                 isRecorrenteSwitch?.isChecked = current.isRecorrente
                 isPagoSwitch?.isChecked = current.isPago
+
+                if (current.isRecorrente) {
+                    imgRecorrente?.setImageResource(R.drawable.update_dark)
+                }
+
+                isRecorrenteSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (isChecked) {
+                        imgRecorrente?.setImageResource(R.drawable.update_dark)
+                    } else {
+                        imgRecorrente?.setImageResource(R.color.darkblue_background)
+                    }
+                }
 
 
 

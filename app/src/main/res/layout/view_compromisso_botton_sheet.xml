@@ -13,24 +13,55 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
+        <TextView
+            android:id="@+id/textView36"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="Vencimento:"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintStart_toStartOf="@+id/textView33"
+            app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+        <TextView
+            android:id="@+id/textView33"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="Valor:"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
         <ImageView
             android:id="@+id/editContaImageView3"
             android:layout_width="29dp"
             android:layout_height="31dp"
-            android:layout_marginTop="14dp"
-            app:layout_constraintEnd_toStartOf="@+id/cancelarBtn2"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/deleteContaImageView3"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7"
             app:srcCompat="@drawable/editar_dark" />
 
         <ImageView
             android:id="@+id/deleteContaImageView3"
             android:layout_width="29dp"
             android:layout_height="25dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editContaImageView3"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch2"
             app:srcCompat="@drawable/lixeira_dark_2" />
 
         <Button
@@ -48,80 +79,83 @@
             style="@style/subtituloTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
-            android:fontFamily="@font/roboto"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:hint="Read Book"
             android:inputType="textPersonName"
             android:textColor="@color/lightgreybackground"
-            android:textColorHint="@color/light_none"
+            android:textColorHint="@color/lightgreybackground"
             app:layout_constraintEnd_toStartOf="@+id/cancelarBtn2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editContaImageView3" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/editTextTextPersonName3"
             style="@style/subtituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:digits="0123456789-.,"
             android:ems="10"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:gravity="right"
             android:hint="R$ 0,00"
             android:inputType="numberSigned|numberDecimal"
             android:textColor="@color/lightgreybackground"
             android:textColorHighlight="@color/light_none"
             android:textColorHint="@color/light_none"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView33"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch1"
             style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:clickable="false"
             android:fontFamily="@font/roboto"
             android:text="Pago:"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView36"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
+            app:thumbTint="@color/switch_thumb_selector_desejavel"
+            app:trackTint="@color/switch_track_selector_neutro" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch2"
             style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="17dp"
+            android:layout_marginTop="24dp"
             android:clickable="false"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:text="Recorrente:"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/switch1" />
-
-        <TextView
-            android:id="@+id/palavradatavencimentocompromisso"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Data Vencimento:"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintStart_toStartOf="@+id/textView36"
+            app:layout_constraintTop_toBottomOf="@+id/textView36"
+            app:thumbTint="@color/switch_thumb_selector_neutro"
+            app:trackTint="@color/switch_track_selector_neutro" />
 
         <TextView
             android:id="@+id/textView18"
             style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp"
             android:clickable="false"
             android:text="01/01/2000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView36"
+            app:layout_constraintEnd_toStartOf="@+id/switch1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView36" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="22dp"
+            app:layout_constraintStart_toEndOf="@+id/switch2"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

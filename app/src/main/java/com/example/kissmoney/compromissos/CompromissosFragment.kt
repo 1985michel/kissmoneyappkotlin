@@ -155,6 +155,7 @@ class CompromissosFragment : Fragment() {
             var dataVencimentoTV = dialog.findViewById<TextView>(R.id.textView18)
             var isRecorrenteSwitch = dialog.findViewById<SwitchCompat>(R.id.switch2)
             var isPagoSwitch = dialog.findViewById<SwitchCompat>(R.id.switch1)
+            var imgRecorrente = dialog.findViewById<ImageView>(R.id.imageView6)
 
             dataVencimentoTV?.text = getDataHojeString()
 
@@ -165,6 +166,14 @@ class CompromissosFragment : Fragment() {
                     Locale("pt", "BR")
                 )
             )
+
+            isRecorrenteSwitch?.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    imgRecorrente?.setImageResource(R.drawable.update_dark)
+                } else {
+                    imgRecorrente?.setImageResource(R.color.darkblue_background)
+                }
+            }
 
             val saveBtn = dialog.findViewById<Button>(R.id.salver_btn2)
             val cancelBtn = dialog.findViewById<Button>(R.id.cancelarBtn2)

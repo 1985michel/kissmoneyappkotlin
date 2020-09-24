@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="52dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/roboto_condensed_regular"
             android:text="Valor:"
             android:textColor="@android:color/darker_gray"
@@ -35,7 +35,7 @@
             style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/roboto_condensed_regular"
             android:text="Data vencimento:"
             android:textColor="@android:color/darker_gray"
@@ -108,15 +108,15 @@
             style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/roboto_condensed_regular"
             android:text="Pago:"
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/textView27"
+            app:layout_constraintEnd_toEndOf="@+id/textView18"
             app:layout_constraintTop_toBottomOf="@+id/textView27"
             app:thumbTint="@color/switch_thumb_selector_desejavel"
-            app:trackTint="@color/switch_track_selector_neutro"/>
+            app:trackTint="@color/switch_track_selector_neutro" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch2"
@@ -128,9 +128,9 @@
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/switch1"
-            app:layout_constraintEnd_toEndOf="@+id/textView18"
+            app:layout_constraintStart_toStartOf="@+id/textView27"
             app:thumbTint="@color/switch_thumb_selector_neutro"
-            app:trackTint="@color/switch_track_selector_neutro"/>
+            app:trackTint="@color/switch_track_selector_neutro" />
 
         <TextView
             android:id="@+id/textView18"
@@ -146,5 +146,14 @@
             android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView27"
             app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="22dp"
+            app:layout_constraintStart_toEndOf="@+id/switch2"
+            app:layout_constraintTop_toBottomOf="@+id/textView27" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
