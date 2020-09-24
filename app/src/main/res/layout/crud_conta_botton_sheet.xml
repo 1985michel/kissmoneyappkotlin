@@ -33,6 +33,7 @@
             android:id="@+id/dataAtualizacaoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:paddingTop="10dp"
             android:paddingRight="0dp"
             android:paddingBottom="10dp"
@@ -57,12 +58,14 @@
 
         <EditText
             android:id="@+id/nomeContaBottonTextView"
+            style="@style/crud_botton_sheet_nome_style"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:hint="Nome da Conta"
+            android:inputType="textCapWords"
             app:layout_constraintEnd_toStartOf="@+id/cancelButton"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/crud_botton_sheet_nome_style" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView32"
@@ -84,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:text="Encerrada"
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp"

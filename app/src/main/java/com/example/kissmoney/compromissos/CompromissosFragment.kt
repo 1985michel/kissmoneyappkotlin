@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.SwitchCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -135,17 +136,25 @@ class CompromissosFragment : Fragment() {
 
         binding.fab.setOnClickListener {
 
-            val dialog = BottomSheetDialog(activity as AppCompatActivity)
-            dialog.setContentView(R.layout.crud_compromisso_botton_sheet)
+//            val dialog = BottomSheetDialog(activity as AppCompatActivity)
+//            dialog.setContentView(R.layout.crud_compromisso_botton_sheet)
+//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            //dialog.getWindow()?.setDimAmount(0F);
+//            dialog.setCancelable(false)
+
+            val view = layoutInflater.inflate(R.layout.crud_compromisso_botton_sheet, null)
+            var dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
+            dialog.setContentView(view)
+            //dialog.setContentView(R.layout.crud_conta_botton_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            //dialog.getWindow()?.setDimAmount(0F);
+            dialog.getWindow()?.setDimAmount(0F);
             dialog.setCancelable(false)
 
             var nomeET = dialog.findViewById<EditText>(R.id.editTextTextPersonName2)
             var valorET = dialog.findViewById<EditText>(R.id.editTextTextPersonName3)
             var dataVencimentoTV = dialog.findViewById<TextView>(R.id.textView18)
-            var isRecorrenteSwitch = dialog.findViewById<Switch>(R.id.switch2)
-            var isPagoSwitch = dialog.findViewById<Switch>(R.id.switch1)
+            var isRecorrenteSwitch = dialog.findViewById<SwitchCompat>(R.id.switch2)
+            var isPagoSwitch = dialog.findViewById<SwitchCompat>(R.id.switch1)
 
             dataVencimentoTV?.text = getDataHojeString()
 

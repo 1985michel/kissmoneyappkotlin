@@ -7,11 +7,41 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/darkblue_background"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/round_darkblue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView30"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="Valor:"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+        <TextView
+            android:id="@+id/textView27"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="Data vencimento:"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintStart_toStartOf="@+id/textView30"
+            app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
         <Button
             android:id="@+id/salver_btn2"
@@ -19,13 +49,16 @@
             android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@color/lightgreybackground"
             android:text="Salvar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
         <Button
             android:id="@+id/cancelarBtn2"
@@ -39,78 +72,79 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName2"
-            style="@style/subtituloTextView"
+            style="@style/crud_botton_sheet_nome_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
+            android:capitalize="words"
             android:ems="10"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:hint="Nome Compromisso"
-            android:inputType="textPersonName"
-            android:textColor="@color/lightgreybackground"
-            android:textColorHint="@color/light_none"
+            android:inputType="textPersonName|textCapWords"
             app:layout_constraintEnd_toStartOf="@+id/cancelarBtn2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editTextTextPersonName3"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
+            style="@style/crud_botton_sheet_valor_style"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
+            android:layout_marginStart="16dp"
             android:digits="0123456789-.,"
+            android:ems="10"
             android:hint="R$ 0,00"
             android:inputType="numberSigned|numberDecimal"
-            android:textColor="@color/lightgreybackground"
-            android:textColorHighlight="@color/light_none"
-            android:textColorHint="@color/light_none"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView30"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+            app:layout_constraintStart_toEndOf="@+id/textView30" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch1"
             style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:text="Pago:"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/textView27"
+            app:layout_constraintTop_toBottomOf="@+id/textView27"
+            app:thumbTint="@color/switch_thumb_selector_desejavel"
+            app:trackTint="@color/switch_track_selector_neutro"/>
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch2"
             style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="17dp"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:text="Recorrente:"
-            app:layout_constraintBottom_toBottomOf="@+id/textView18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/switch1"
-            app:layout_constraintTop_toBottomOf="@+id/switch1" />
-
-        <TextView
-            android:id="@+id/palavradatavencimentocompromisso"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Data Vencimento:"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/switch1"
+            app:layout_constraintEnd_toEndOf="@+id/textView18"
+            app:thumbTint="@color/switch_thumb_selector_neutro"
+            app:trackTint="@color/switch_track_selector_neutro"/>
 
         <TextView
             android:id="@+id/textView18"
-            style="@style/padraoTextViewWhite"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:text="01/01/2000"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+            android:textColor="@color/lightgreybackground"
+            android:textColorHint="@color/lightgreybackground"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView27"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
