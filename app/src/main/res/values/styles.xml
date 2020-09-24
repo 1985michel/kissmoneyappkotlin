@@ -44,6 +44,10 @@
         <item name="android:state_checked">@color/red</item>
     </style>
 
+    <style name="switch_desejavel" >
+        <item name="android:state_checked">@color/green</item>
+    </style>
+
 
 
     <style name="tituloTextView" >
@@ -95,6 +99,29 @@
         <item name="android:textColor">@color/greyfont</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="crud_botton_sheet_nome_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/lightgreybackground</item>
+        <item name="android:textColorHint">@color/greyfont</item>
+    </style>
+
+    <style name="crud_botton_sheet_valor_style" parent="padraoTextViewWhite">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:digits">0123456789-.,</item>
+        <item name="android:gravity">right</item>
+        <item name="android:inputType">numberSigned|numberDecimal</item>
+        <item name="android:textColor">@color/lightgreybackground</item>
+        <item name="android:textColorHint">@color/greyfont</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 

@@ -23,17 +23,8 @@
 
         <EditText
             android:id="@+id/saldoAtualEditTextText"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:digits="0123456789-.,"
-            android:gravity="right"
+            style="@style/crud_botton_sheet_valor_style"
             android:hint="R$ 0,00"
-            android:inputType="numberSigned|numberDecimal"
-            android:textColor="@color/lightgreybackground"
-            android:textColorHint="@color/greyfont"
-            android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="@+id/saldoInicialEditText"
             app:layout_constraintStart_toStartOf="@+id/saldoInicialEditText" />
@@ -66,19 +57,12 @@
 
         <EditText
             android:id="@+id/nomeContaBottonTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:background="@null"
             android:hint="Nome da Conta"
-            android:textColor="@color/lightgreybackground"
-            android:textColorHint="@color/greyfont"
             app:layout_constraintEnd_toStartOf="@+id/cancelButton"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/crud_botton_sheet_nome_style" />
 
         <TextView
             android:id="@+id/textView32"
@@ -95,16 +79,17 @@
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/isEncerradaSwitch"
+
             style="@style/meu_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="16dp"
             android:text="Encerrada"
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/salvarButton"
             app:layout_constraintEnd_toEndOf="@+id/dataAtualizacaoTextView"
+            app:layout_constraintHorizontal_bias="0.519"
             app:layout_constraintStart_toStartOf="@+id/tipoContaSpinnerImageView"
             app:layout_constraintTop_toBottomOf="@+id/textView32"
             app:thumbTint="@color/switch_thumb_selector"

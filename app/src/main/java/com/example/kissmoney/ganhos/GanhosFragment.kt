@@ -136,17 +136,25 @@ class GanhosFragment : Fragment() {
 
         binding.fab.setOnClickListener {
 
-            val dialog = BottomSheetDialog(activity as AppCompatActivity)
-            dialog.setContentView(R.layout.crud_ganho_button_sheet)
+//            val dialog = BottomSheetDialog(activity as AppCompatActivity)
+//            dialog.setContentView(R.layout.crud_ganho_button_sheet)
+//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            //dialog.getWindow()?.setDimAmount(0F);
+//            dialog.setCancelable(false)
+
+            val view = layoutInflater.inflate(R.layout.crud_ganho_button_sheet, null)
+            var dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
+            dialog.setContentView(view)
+            //dialog.setContentView(R.layout.crud_conta_botton_sheet)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            //dialog.getWindow()?.setDimAmount(0F);
+            dialog.getWindow()?.setDimAmount(0F);
             dialog.setCancelable(false)
 
             var nomeET = dialog.findViewById<EditText>(R.id.nomeGanhoBottonEditText)
             var valorET = dialog.findViewById<EditText>(R.id.editTextTextPersonName)
-            var isRendaPassivaSwitch = dialog.findViewById<Switch>(R.id.is_renda_passiva_switch)
-            var isGanhoRegularSwitch = dialog.findViewById<Switch>(R.id.is_ganho_regular_switch)
-            var isRecebidoSwitch = dialog.findViewById<Switch>(R.id.is_recebido_switch)
+            var isRendaPassivaSwitch = dialog.findViewById<SwitchCompat>(R.id.is_renda_passiva_switch)
+            var isGanhoRegularSwitch = dialog.findViewById<SwitchCompat>(R.id.is_ganho_regular_switch)
+            var isRecebidoSwitch = dialog.findViewById<SwitchCompat>(R.id.is_recebido_switch)
             var dataRecebimentoTV = dialog.findViewById<TextView>(R.id.data_recebimento_tv)
             var observacaoET = dialog.findViewById<EditText>(R.id.observacoesEditText)
 

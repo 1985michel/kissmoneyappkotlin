@@ -6,25 +6,68 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/darkblue_background"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/round_darkblue"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <TextView
+            android:id="@+id/saldoTextView2"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="Observação:"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintBottom_toTopOf="@+id/observacoesEditText"
+            app:layout_constraintStart_toStartOf="@+id/is_recebido_switch"
+            app:layout_constraintTop_toBottomOf="@+id/is_recebido_switch" />
+
+        <TextView
+            android:id="@+id/textView24"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="Atualizado em:"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintBottom_toTopOf="@+id/is_recebido_switch"
+            app:layout_constraintStart_toStartOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+        <TextView
+            android:id="@+id/textView22"
+            style="@style/padraoTextViewWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:text="Valor:"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@color/lightgreybackground"
+            app:layout_constraintBottom_toTopOf="@+id/textView24"
+            app:layout_constraintStart_toStartOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
         <EditText
             android:id="@+id/nomeGanhoBottonEditText"
+            style="@style/crud_botton_sheet_nome_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
+            android:hint="Nome do Ganho"
             android:textColor="@color/lightgreybackground"
-            android:textColorHint="@color/lightgreybackground"
+            android:textColorHint="#737373"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/palavra_nome_ganho"
             app:layout_constraintEnd_toStartOf="@+id/cancelarBtn"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/palavra_nome_ganho" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/cancelarBtn"
@@ -36,97 +79,78 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/palavra_valor"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Valor:"
-            app:layout_constraintBaseline_toBaselineOf="@+id/editTextTextPersonName"
-            app:layout_constraintStart_toStartOf="@+id/palavra_nome_ganho" />
-
         <EditText
             android:id="@+id/editTextTextPersonName"
-            style="@style/subtituloTextView"
+            style="@style/crud_botton_sheet_valor_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="4dp"
             android:digits="0123456789-.,"
             android:ems="10"
             android:hint="R$ 0,00"
             android:inputType="numberSigned|numberDecimal"
             android:textColor="@color/lightgreybackground"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView22"
             app:layout_constraintEnd_toEndOf="@+id/nomeGanhoBottonEditText"
-            app:layout_constraintStart_toStartOf="@+id/nomeGanhoBottonEditText"
-            app:layout_constraintTop_toBottomOf="@+id/nomeGanhoBottonEditText" />
+            app:layout_constraintStart_toEndOf="@+id/textView22" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/is_renda_passiva_switch"
-            style="@style/padraoTextViewWhite"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
             android:text="Renda passiva:"
-            app:layout_constraintEnd_toStartOf="@+id/is_ganho_regular_switch"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="@+id/imageView4" />
+            app:layout_constraintTop_toBottomOf="@+id/nomeGanhoBottonEditText"
+            app:thumbTint="@color/switch_thumb_selector_desejavel"
+            app:trackTint="@color/switch_track_selector_desejavel"/>
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/is_ganho_regular_switch"
-            style="@style/padraoTextViewWhite"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="8dp"
             android:text="Ganho Regular:"
-            app:layout_constraintBaseline_toBaselineOf="@+id/is_renda_passiva_switch"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/is_renda_passiva_switch" />
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/is_recebido_switch"
+            app:layout_constraintEnd_toStartOf="@+id/cancelarBtn"
+            app:thumbTint="@color/switch_thumb_selector_desejavel"
+            app:trackTint="@color/switch_track_selector_desejavel" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/is_recebido_switch"
-            style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:checked="true"
             android:text="Foi recebido:"
-            app:layout_constraintStart_toStartOf="@+id/palavra_data_recebimento"
-            app:layout_constraintTop_toBottomOf="@+id/palavra_data_recebimento" />
-
-        <TextView
-            android:id="@+id/palavra_data_recebimento"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Data do Recebimento:"
-            app:layout_constraintStart_toStartOf="@+id/palavra_valor"
-            app:layout_constraintTop_toBottomOf="@+id/is_renda_passiva_switch" />
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/saldoTextView2"
+            app:layout_constraintStart_toStartOf="@+id/textView24"
+            app:layout_constraintTop_toBottomOf="@+id/textView24"
+            app:thumbTint="@color/switch_thumb_selector_desejavel"
+            app:trackTint="@color/switch_track_selector_desejavel" />
 
         <TextView
             android:id="@+id/data_recebimento_tv"
             style="@style/padraoTextViewWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:text="01/01/2000"
-            app:layout_constraintBaseline_toBaselineOf="@+id/palavra_data_recebimento"
-            app:layout_constraintStart_toEndOf="@+id/palavra_data_recebimento" />
-
-        <TextView
-            android:id="@+id/palavra_observacao"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Observação:"
-            app:layout_constraintStart_toStartOf="@+id/is_recebido_switch"
-            app:layout_constraintTop_toBottomOf="@+id/is_recebido_switch" />
+            android:textColor="@color/lightgreybackground"
+            android:textColorHint="@color/lightgreybackground"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView24"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName" />
 
         <EditText
             android:id="@+id/observacoesEditText"
@@ -134,26 +158,14 @@
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/lightgreybackground"
+            android:background="@color/light_none"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/palavra_observacao"
-            app:layout_constraintTop_toBottomOf="@+id/palavra_observacao" />
-
-        <TextView
-            android:id="@+id/palavra_nome_ganho"
-            style="@style/padraoTextViewWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="Nome do\nGanho:"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/data_recebimento_tv"
+            app:layout_constraintStart_toStartOf="@+id/saldoTextView2"
+            app:layout_constraintTop_toBottomOf="@+id/saldoTextView2" />
 
         <Button
             android:id="@+id/salver_btn"
@@ -161,7 +173,7 @@
             android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:background="@color/lightgreybackground"
@@ -175,11 +187,11 @@
             android:id="@+id/imageView4"
             android:layout_width="46dp"
             android:layout_height="43dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/is_renda_passiva_switch"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/palavra_valor"
-            app:layout_constraintTop_toBottomOf="@+id/palavra_valor" />
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView22"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nomeGanhoBottonEditText" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
