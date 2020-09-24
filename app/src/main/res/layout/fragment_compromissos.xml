@@ -7,144 +7,174 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkblue_background">
+        android:background="@color/light_none">
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/recyclerView"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="76dp"-->
+        <!--            android:layout_marginStart="4dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            android:layout_marginBottom="4dp"-->
+        <!--            android:background="@color/shadowtick"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/fab"-->
+        <!--            app:layout_constraintHorizontal_bias="0.5"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            tools:listitem="@layout/item_relatorio" />-->
 
         <TextView
             android:id="@+id/nomeDoMestextView4"
-            style="@style/subtituloTextView"
+            style="@style/nome_mes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:text="Setembro / 2020"
-            android:textColor="@color/lightgreybackground"
-            app:layout_constraintBottom_toTopOf="@+id/fab"
-            app:layout_constraintEnd_toStartOf="@+id/mesPosteriorImageViewCaixa4"
-            app:layout_constraintStart_toEndOf="@+id/mesAnteriorImageViewCaixa4" />
-
-        <ImageView
-            android:id="@+id/mesPosteriorImageViewCaixa4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:src="@drawable/totheright"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCompromissos" />
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/mesAnteriorImageViewCaixa4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:src="@drawable/totheleft"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCompromissos" />
-
-        <TextView
-            android:id="@+id/textView14"
-            style="@style/tituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="Compromissos"
-            android:textColor="@color/lightgreybackground"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView17"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="Total:"
-            android:textColor="@color/lightgreybackground"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-        <TextView
-            android:id="@+id/totalTextView"
-            style="@style/tituloTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="R$ 3.250,00"
-            android:textColor="@color/lightgreybackground"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView17"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView17" />
-
-        <TextView
-            android:id="@+id/textView22"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout9"
+            android:layout_width="0sp"
+            android:layout_height="170dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="A pagar:"
-            android:textColor="@color/lightgreybackground"
-            app:layout_constraintStart_toStartOf="@+id/textView17"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-        <TextView
-            android:id="@+id/textView25"
-            style="@style/subtituloTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="R$ 0,00"
-            android:textColor="@color/lightgreybackground"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView22"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/round_darkblue_3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView22" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recyclerView"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="76dp"-->
-<!--            android:layout_marginStart="4dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:layout_marginBottom="4dp"-->
-<!--            android:background="@color/shadowtick"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/fab"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            tools:listitem="@layout/item_relatorio" />-->
+            <TextView
+                android:id="@+id/palavraVariacaoEmReaisTextView2"
+                style="@style/padraoTextViewWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="Pendente"
+                android:textColor="@color/design_default_color_surface"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView25"
+                app:layout_constraintEnd_toStartOf="@+id/textView25" />
+
+            <TextView
+                android:id="@+id/textView17"
+                style="@style/tituloTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/roboto_condensed_light"
+                android:text="Total"
+                android:textColor="@color/light_none"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/totalTextView"
+                app:layout_constraintStart_toStartOf="@+id/totalTextView"
+                app:layout_constraintTop_toTopOf="@+id/totalTextView" />
+
+            <TextView
+                android:id="@+id/totalTextView"
+                style="@style/destaque_value_fragment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="37dp"
+                android:text="R$ 0,00"
+                android:textColor="@color/lightgreybackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView25"
+                style="@style/subtituloTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="R$ 0,00"
+                android:textColor="@color/lightgreybackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/totalTextView" />
+
+            <TextView
+                android:id="@+id/textView14"
+                style="@style/fragment_title_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="Compromissos"
+                android:textColor="@color/lightgreybackground"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout8"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/botton_dark_70_no_hole_100"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:contentDescription="Novo Compromisso"
+                app:backgroundTint="@color/cardview_light_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_add_black_24dp" />
+
+            <ImageView
+                android:id="@+id/mesPosteriorImageViewCaixa4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:src="@drawable/next_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/mesAnteriorImageViewCaixa4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:src="@drawable/previous_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCompromissos"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="130dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/round_outline"
-            app:layout_constraintBottom_toTopOf="@+id/nomeDoMestextView4"
+            app:layout_constraintBottom_toBottomOf="@+id/nomeDoMestextView4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout9"
             tools:listItem="@layout/item_compromisso"
             tools:listitem="@layout/item_compromisso" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="Novo Compromisso"
-            app:backgroundTint="@color/cardview_light_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_add_black_24dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
