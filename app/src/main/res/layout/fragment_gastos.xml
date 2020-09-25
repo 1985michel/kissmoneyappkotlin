@@ -9,6 +9,26 @@
 
 
         <TextView
+            android:id="@+id/valorCompromissosTextView2"
+            style="@style/padraoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="R$ 2.000,00"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView38"
+            app:layout_constraintStart_toEndOf="@+id/textView35" />
+
+        <TextView
+            android:id="@+id/textView38"
+            style="@style/padraoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Compromissos:"
+            app:layout_constraintStart_toStartOf="@+id/textView31"
+            app:layout_constraintTop_toBottomOf="@+id/comparacaoMesAnteriorGastoTotalTextView" />
+
+        <TextView
             android:id="@+id/textView20"
             style="@style/tituloTextView"
             android:layout_width="wrap_content"
@@ -67,7 +87,7 @@
             style="@style/padraoTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="em relação ao mês anterior (proporcional)."
+            android:text="% em relação ao mês anterior (proporcional)."
             app:layout_constraintBaseline_toBaselineOf="@+id/comparacaoMesAnteriorGastoTotalTextView"
             app:layout_constraintStart_toEndOf="@+id/comparacaoMesAnteriorGastoTotalTextView" />
 
@@ -79,7 +99,7 @@
             android:layout_marginTop="16dp"
             android:text="Compromissos Pendentes:"
             app:layout_constraintStart_toStartOf="@+id/textView31"
-            app:layout_constraintTop_toBottomOf="@+id/comparacaoMesAnteriorGastoTotalTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
         <TextView
             android:id="@+id/valorCompromissosPendentesTextView"

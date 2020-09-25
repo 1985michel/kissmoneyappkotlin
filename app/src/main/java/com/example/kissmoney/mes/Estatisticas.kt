@@ -1,6 +1,8 @@
 package com.example.kissmoney.mes
 
 import androidx.lifecycle.LiveData
+import com.example.kissmoney.compromissos.CompromissoJoinViewModel
+import com.example.kissmoney.compromissos.CompromissoViewModel
 import com.example.kissmoney.contas.Conta
 import com.example.kissmoney.contas.ContaJoinViewModel
 import com.example.kissmoney.ganhos.GanhoJoinViewModel
@@ -8,6 +10,7 @@ import com.example.kissmoney.meta.Meta
 import com.example.kissmoney.meta.MetaViewModel
 import com.example.kissmoney.util.getDiaHojeNoMes
 import com.example.kissmoney.util.getNomeMesAtual
+import com.example.kissmoney.util.recebeNomeMesRetornaNomeMesAnterior
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,6 +21,7 @@ object Estatisticas {
     private lateinit var metas: List<Meta>
 
     private lateinit var mesAtual: Mes
+    private lateinit var mesAnterior: Mes
 
     private lateinit var mesViewModel: MesViewModel
     private lateinit var metaViewModel: MetaViewModel
@@ -30,11 +34,17 @@ object Estatisticas {
     var totalGanhoTodoHistorico = 0.0
 
     var totalGastoNoMes = 0.0
-    var totalGastoTodoHistorico = 0.0
     var gastoDiarioNoMes = 0.0
+    var totalGastoTodoHistorico = 0.0
     var gastoDiarioTodoHistorico = 0.0
 
-    var totalCompromissosPendentes = 0.0
+//    var totalGastoNoMesAnterior = 0.0
+
+    var totalCompromissosDoMes = 0.0
+    var totalCompromissosPendentesDoMes = 0.0
+
+//    var totalCompromissosDoMesAnterior = 0.0
+//    var totalCompromissosPendentesDoMesAnterior = 0.0
 
 
     var qtdMesesComRegistros = 0
@@ -84,7 +94,10 @@ object Estatisticas {
                                                 setMyAbastanca {
 //                                                    println(">>>>> setMyAbastanca retornou")
 //                                                    println(">>>>>>>>>>>>>>>>> EM ESTATÍSTICAS ESTAMOS SETANDO A ABASTANCA EM $abastanca")
-                                                    callback()
+                                                    setMyCompromissosDoMes {
+                                                        callback()
+                                                    }
+
                                                 }
                                             }
                                         }
@@ -96,9 +109,17 @@ object Estatisticas {
                 }
             }
 
+//            mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
+//            mesViewModel.getByName(mesAnterior) {
+//
+//                GlobalScope.launch {
+//                    //Background processing..."
+//                    withContext(Dispatchers.Main) {
+//                        setMyCompromissosDoMesAnterior {}
+//                    }
+//                }
+//            }
         }
-
-
     }
 
     fun setMyMetas(callback: () -> Unit) {
@@ -139,6 +160,7 @@ object Estatisticas {
         callback()
     }
 
+
     fun setMyTotalGanhoTodoHistorico(callback: () -> Unit) {
         totalGanhoTodoHistorico = 0.0
         GanhoJoinViewModel.setAllGanhosJoin() {
@@ -150,6 +172,32 @@ object Estatisticas {
             callback()
         }
     }
+
+    fun setMyCompromissosDoMes(callback: () -> Unit) {
+        totalCompromissosDoMes = 0.0
+        totalCompromissosPendentesDoMes = 0.0
+
+        CompromissoJoinViewModel.setCompromissosJoinNoMes(mesAtual.mesId) {
+            for (comp in CompromissoJoinViewModel.compromissosJoinDoMes) {
+                totalCompromissosDoMes += comp.valor
+                if (!comp.isPago) totalCompromissosPendentesDoMes += comp.valor
+            }
+            callback()
+        }
+
+    }
+
+//    fun setMyCompromissosDoMesAnterior(callback: () -> Unit) {
+//        totalCompromissosDoMesAnterior = 0.0
+//        totalCompromissosPendentesDoMesAnterior
+//        CompromissoJoinViewModel.setCompromissosJoinNoMes(mesAtual.mesId) {
+//            for (comp in CompromissoJoinViewModel.compromissosJoinDoMes) {
+//                totalCompromissosDoMes += comp.valor
+//                if (!comp.isPago) totalCompromissosPendentesDoMes += comp.valor
+//            }
+//            callback()
+//        }
+//    }
 
 
     fun setMyTotalGastoTodoHistorico(callback: () -> Unit) {

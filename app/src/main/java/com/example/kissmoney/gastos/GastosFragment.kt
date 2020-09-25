@@ -63,16 +63,11 @@ class GastosFragment : Fragment() {
 
             mesViewModel.getById(mesAtual) {
 
-                binding.nomeMesTextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
-
-                binding.valorGastoTotalTextView.text = formataParaBr(Estatisticas.totalGastoNoMes.toBigDecimal())
-//                binding.valorCompromissosPendentesTextView.text = formataParaBr(Estatisticas.)
-
+                setDadosNaView(binding)
             }
         } else {
-
-
             mesViewModel.getByName(mesAtual) {
+                setDadosNaView(binding)
 
             }
 
@@ -82,6 +77,34 @@ class GastosFragment : Fragment() {
         return binding.root
 
 
+
+    }
+
+    private fun setDadosNaView(binding: FragmentGastosBinding) {
+
+
+        GlobalScope.launch {
+            //Background processing..."
+            withContext(Dispatchers.Main) {
+                //"Update UI here!")
+
+                binding.nomeMesTextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
+
+                binding.valorGastoTotalTextView.text =
+                    formataParaBr(Estatisticas.totalGastoNoMes.toBigDecimal())
+                binding.valorCompromissosPendentesTextView.text =
+                    formataParaBr(Estatisticas.totalCompromissosPendentesDoMes.toBigDecimal())
+                binding.valorCompromissosTextView2.text =
+                    formataParaBr(Estatisticas.totalCompromissosDoMes.toBigDecimal())
+                binding.valorPrevisaoMensalTextView.text =
+                    formataParaBr((Estatisticas.totalCompromissosPendentesDoMes + Estatisticas.totalGastoNoMes).toBigDecimal())
+                binding.custoDeVidaDiariotextView.text =
+                    formataParaBr(Estatisticas.gastoDiarioNoMes.toBigDecimal())
+
+
+
+            }
+        }
 
     }
 
