@@ -25,12 +25,18 @@ object Estatisticas {
     var totalEmCaixa = 0.0
     var totalEmCaixaNoInicioDoMes = 0.0
     var totalEmCaixaNoInicioDosRegistros = 0.0
+
     var totalGanhoNoMes = 0.0
     var totalGanhoTodoHistorico = 0.0
+
     var totalGastoNoMes = 0.0
     var totalGastoTodoHistorico = 0.0
     var gastoDiarioNoMes = 0.0
     var gastoDiarioTodoHistorico = 0.0
+
+    var totalCompromissosPendentes = 0.0
+
+
     var qtdMesesComRegistros = 0
     var abastanca = 0 //qtd de dias de liberdade financeira
     var totalInvestido = 0.0
@@ -62,22 +68,22 @@ object Estatisticas {
                 //Background processing..."
                 withContext(Dispatchers.Main) {
                     setMyTotalEmCaixa() {
-                        println(">>>>> setMyTotalEmCaixa retornou")
+//                        println(">>>>> setMyTotalEmCaixa retornou")
                         setMyTotalGanhoNoMes() {
-                            println(">>>>> setMyTotalGanhoNoMes retornou")
+//                            println(">>>>> setMyTotalGanhoNoMes retornou")
                             setMyTotalGastoNoMes {
-                                println(">>>>> setMyTotalGastoNoMes retornou")
+//                                println(">>>>> setMyTotalGastoNoMes retornou")
                                 setMyGastoDiarioNoMes {
-                                    println(">>>>> setMyGastoDiarioNoMes retornou")
+//                                    println(">>>>> setMyGastoDiarioNoMes retornou")
                                     setMyTotalGanhoTodoHistorico() {
-                                        println(">>>>> setMyTotalGanhoTodoHistorico retornou")
+//                                        println(">>>>> setMyTotalGanhoTodoHistorico retornou")
                                         setMyTotalGastoTodoHistorico {
-                                            println(">>>>> setMyTotalGastoTodoHistorico retornou")
+//                                            println(">>>>> setMyTotalGastoTodoHistorico retornou")
                                             setMyGastoDiarioTodoHistorico {
-                                                println(">>>>> setMyGastoDiarioTodoHistorico retornou")
+//                                                println(">>>>> setMyGastoDiarioTodoHistorico retornou")
                                                 setMyAbastanca {
-                                                    println(">>>>> setMyAbastanca retornou")
-                                                    println(">>>>>>>>>>>>>>>>> EM ESTATÍSTICAS ESTAMOS SETANDO A ABASTANCA EM $abastanca")
+//                                                    println(">>>>> setMyAbastanca retornou")
+//                                                    println(">>>>>>>>>>>>>>>>> EM ESTATÍSTICAS ESTAMOS SETANDO A ABASTANCA EM $abastanca")
                                                     callback()
                                                 }
                                             }
@@ -107,6 +113,8 @@ object Estatisticas {
 
     fun setMyAbastanca(callback: () -> Unit) {
         abastanca = (totalEmCaixa / gastoDiarioTodoHistorico).toInt()
+//        println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
+//        println(">>>> Estatísicas 109: Abastança ($abastanca) = total em Caixa ($totalEmCaixa) / gasto diario todo historico ($gastoDiarioTodoHistorico)")
         callback()
     }
 
@@ -120,6 +128,8 @@ object Estatisticas {
     fun setMyGastoDiarioTodoHistorico(callback: () -> Unit) {
         var qtdDias = (qtdMesesComRegistros - 1) * 30
         gastoDiarioTodoHistorico = totalGastoTodoHistorico / (qtdDias + getDiaHojeNoMes())
+//        println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
+//        println(">>>> Estatísicas 126: Gasto Diario de todo o historico ($gastoDiarioTodoHistorico) = total gasto todo historico ($totalGastoTodoHistorico) / qtdDias (${qtdDias + getDiaHojeNoMes()})")
         callback()
     }
 
@@ -133,6 +143,8 @@ object Estatisticas {
         totalGanhoTodoHistorico = 0.0
         GanhoJoinViewModel.setAllGanhosJoin() {
             for (gj in GanhoJoinViewModel.allGanhosJoin) {
+//                println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
+//                println(">>>>>>>>>>> ESTATISTICAS 141:  valores ganhos: ${gj.valor}")
                 totalGanhoTodoHistorico += gj.valor
             }
             callback()
@@ -142,8 +154,11 @@ object Estatisticas {
 
     fun setMyTotalGastoTodoHistorico(callback: () -> Unit) {
 
-        totalGanhoTodoHistorico =
+        totalGastoTodoHistorico =
             totalEmCaixaNoInicioDosRegistros - totalEmCaixa + totalGanhoTodoHistorico
+//        println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
+//        println(">>>> Estatísicas 152: totalGastoTodoHistorico ($totalGastoTodoHistorico) = totalEmCaixaNoInicioDosRegistros ($totalEmCaixaNoInicioDosRegistros) " +
+//                "- totalEmCaixa ($totalEmCaixa) + totalGanhoTodoHistorico ($totalGanhoTodoHistorico)")
         callback()
 
     }

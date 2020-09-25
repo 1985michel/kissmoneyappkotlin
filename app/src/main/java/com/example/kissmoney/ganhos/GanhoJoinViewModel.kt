@@ -114,6 +114,7 @@ object GanhoJoinViewModel {
 
     private fun getGanhos(ganhoList: ArrayList<Ganho>, callback: () -> Unit) {
         allGanhos.observe(owner, Observer {ganhos ->
+
             ganhoList.clear()
             ganhoList.addAll(ganhos)
             callback()

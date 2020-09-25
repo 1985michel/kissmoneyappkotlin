@@ -61,10 +61,10 @@ class SplashActivity : AppCompatActivity() {
 
         Estatisticas.setViewModels(mesViewModel, metaViewModel) {
             Estatisticas.processa(){
-                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-                println(">>>>>>>>>>> ESTATISTICA STRING >>>>>>>>>>>>>>")
-                Estatisticas.toString()
+//                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+//                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+//                println(">>>>>>>>>>> ESTATISTICA STRING >>>>>>>>>>>>>>")
+//                Estatisticas.toString()
                 startActivity(intent)
                 finish() //encerra a splash
             }

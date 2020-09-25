@@ -103,5 +103,18 @@
         android:id="@+id/gastosFragment"
         android:name="com.example.kissmoney.gastos.GastosFragment"
         android:label="fragment_gastos"
-        tools:layout="@layout/fragment_gastos" />
+        tools:layout="@layout/fragment_gastos" >
+        <argument
+            android:name="idMes"
+            app:argType="long"
+            android:defaultValue="0L" />
+        <action
+            android:id="@+id/action_gastosFragment_self"
+            app:destination="@id/gastosFragment"
+            app:popUpTo="@id/mesFragment" >
+            <argument
+                android:name="idMes"
+                app:argType="long" />
+        </action>
+    </fragment>
 </navigation>
