@@ -1,11 +1,14 @@
 package com.example.kissmoney.meta
 
 import android.media.browse.MediaBrowser
+import com.example.kissmoney.mes.CentralEstatistica
 import com.example.kissmoney.mes.Estatisticas
+import com.example.kissmoney.mes.Mes
 
 object AcompanhamentoDeMeta{
 
     lateinit var metaJoinList: ArrayList<MetaJoin>
+    lateinit var mesAtual: Mes
 
     init {
         metaJoinList = getMetasList()
@@ -13,11 +16,17 @@ object AcompanhamentoDeMeta{
 
     var abastanca = 0
 
-    fun setValues(callback: () -> Unit) {
-        for (mj in metaJoinList) {
+    fun setMyMesAtual(mes: Mes) {
+        mesAtual = mes
+    }
 
+    fun setValues(callback: () -> Unit) {
+
+        var estatisticaMesAtual = CentralEstatistica.estatisticasMensais.get(mesAtual.mesId)
+
+        for (mj in metaJoinList) {
             if (mj.meta.nomeMeta.equals("Abastança")){
-                var abastancaAtual = Estatisticas.abastanca
+                var abastancaAtual = estatisticaMesAtual!!.abastanca
                 println(">>>>>>>>>>>> abastanca atual: ${abastancaAtual}")
                 abastanca = abastancaAtual
                 mj.valorAtual = abastancaAtual.toDouble()
@@ -25,7 +34,7 @@ object AcompanhamentoDeMeta{
             }
 
             if (mj.meta.nomeMeta.equals("Patrimônio Líquido")) {
-                var patrimonioLiquidoAtual = Estatisticas.totalEmCaixa
+                var patrimonioLiquidoAtual = estatisticaMesAtual!!.totalEmCaixa
                 mj.valorAtual = patrimonioLiquidoAtual
                 mj.valorAtualPercentual = ((100 * patrimonioLiquidoAtual) / mj.meta.valor).toInt()
             }

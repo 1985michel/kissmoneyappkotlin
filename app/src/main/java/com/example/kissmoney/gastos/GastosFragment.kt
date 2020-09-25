@@ -13,12 +13,14 @@ import com.example.kissmoney.contas.ContasFragmentArgs
 import com.example.kissmoney.databinding.FragmentGanhosBinding
 import com.example.kissmoney.databinding.FragmentGastosBinding
 import com.example.kissmoney.ganhos.GanhoJoinViewModel
+import com.example.kissmoney.mes.CentralEstatistica
 import com.example.kissmoney.mes.Estatisticas
 import com.example.kissmoney.mes.Mes
 import com.example.kissmoney.mes.MesViewModel
 import com.example.kissmoney.util.formataParaBr
 import com.example.kissmoney.util.getNomeMesAtual
 import com.example.kissmoney.util.getNomeMesPorExtensoComAno
+import com.example.kissmoney.util.recebeNomeMesRetornaNomeMesAnterior
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -58,19 +60,26 @@ class GastosFragment : Fragment() {
 
 
         mesAtual = Mes(idMes, getNomeMesAtual())
+        mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
 
         if (idMes != 0L) {
-
             mesViewModel.getById(mesAtual) {
-
-                setDadosNaView(binding)
+                mesViewModel.getByName(mesAnterior){
+                    mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
+                    mesViewModel.getByName(mesAnterior){
+                        setDadosNaView(binding)
+                    }
+                }
             }
         } else {
             mesViewModel.getByName(mesAtual) {
-                setDadosNaView(binding)
-
+                mesViewModel.getByName(mesAnterior){
+                    mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
+                    mesViewModel.getByName(mesAnterior){
+                        setDadosNaView(binding)
+                    }
+                }
             }
-
         }
 
 
@@ -88,19 +97,54 @@ class GastosFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 //"Update UI here!")
 
-                binding.nomeMesTextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
 
-                binding.valorGastoTotalTextView.text =
-                    formataParaBr(Estatisticas.totalGastoNoMes.toBigDecimal())
-                binding.valorCompromissosPendentesTextView.text =
-                    formataParaBr(Estatisticas.totalCompromissosPendentesDoMes.toBigDecimal())
-                binding.valorCompromissosTextView2.text =
-                    formataParaBr(Estatisticas.totalCompromissosDoMes.toBigDecimal())
-                binding.valorPrevisaoMensalTextView.text =
-                    formataParaBr((Estatisticas.totalCompromissosPendentesDoMes + Estatisticas.totalGastoNoMes).toBigDecimal())
-                binding.custoDeVidaDiariotextView.text =
-                    formataParaBr(Estatisticas.gastoDiarioNoMes.toBigDecimal())
+                var estatisticaMesAtual = CentralEstatistica.estatisticasMensais.get(mesAtual.mesId)
+                var estatisticaMesAnterior = CentralEstatistica.estatisticasMensais.get(mesAnterior.mesId)
 
+                println(">>>>>>>>>>>>>>>>>>>>>> Estatística obtida")
+                if (estatisticaMesAtual != null) {
+
+                    binding.nomeMesTextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
+                    binding.valorGastoTotalTextView.text =
+                        formataParaBr(estatisticaMesAtual?.totalGastoNoMes!!.toBigDecimal())
+                    binding.valorCompromissosPendentesTextView.text =
+                        formataParaBr(estatisticaMesAtual?.totalCompromissosPendentesDoMes.toBigDecimal())
+                    binding.valorCompromissosTextView2.text =
+                        formataParaBr(estatisticaMesAtual?.totalCompromissosDoMes.toBigDecimal())
+
+                    var previsaoCustoMensal = estatisticaMesAtual?.totalCompromissosPendentesDoMes + estatisticaMesAtual.totalGastoNoMes
+                    binding.valorPrevisaoMensalTextView.text =
+                        formataParaBr(previsaoCustoMensal.toBigDecimal())
+
+                    binding.custoDeVidaDiariotextView.text =
+                        formataParaBr(estatisticaMesAtual?.gastoDiarioNoMes.toBigDecimal())
+
+                    if (estatisticaMesAnterior != null) {
+
+                        var percentualVariacaoGasto = (estatisticaMesAnterior?.totalGastoNoMes!! * 100 ) / estatisticaMesAtual?.totalGastoNoMes!!
+                        binding.comparacaoMesAnteriorGastoTotalTextView.text = percentualVariacaoGasto.toString()
+
+                        var previsaoCustoMensalMesAnterior = estatisticaMesAnterior?.totalCompromissosPendentesDoMes + estatisticaMesAnterior.totalGastoNoMes
+
+                        var percentualVariacaoPrevisaoCustoMensal = previsaoCustoMensalMesAnterior * 100 / previsaoCustoMensal
+                        binding.comparacaoAoMesAnteriorPrevisaoTextView.text = percentualVariacaoPrevisaoCustoMensal.toString()
+                    }
+                }
+
+//                binding.nomeMesTextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
+//                binding.valorGastoTotalTextView.text =
+//                    formataParaBr(estatisticaMesAtual?.totalGastoNoMes!!.toBigDecimal())
+//                binding.valorCompromissosPendentesTextView.text =
+//                    formataParaBr(estatisticaMesAtual?.totalCompromissosPendentesDoMes.toBigDecimal())
+//                binding.valorCompromissosTextView2.text =
+//                    formataParaBr(estatisticaMesAtual?.totalCompromissosDoMes.toBigDecimal())
+//                binding.valorPrevisaoMensalTextView.text =
+//                    formataParaBr((estatisticaMesAtual?.totalCompromissosPendentesDoMes + estatisticaMesAtual.totalGastoNoMes).toBigDecimal())
+//                binding.custoDeVidaDiariotextView.text =
+//                    formataParaBr(estatisticaMesAtual?.gastoDiarioNoMes.toBigDecimal())
+//
+//                var percentualVariacaoGasto = (estatisticaMesAnterior?.totalGastoNoMes!! * 100 ) / estatisticaMesAtual?.totalGastoNoMes!!
+//                binding.comparacaoMesAnteriorGastoTotalTextView.text = percentualVariacaoGasto.toString()
 
 
             }

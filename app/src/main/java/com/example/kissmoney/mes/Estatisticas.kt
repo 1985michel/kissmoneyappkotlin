@@ -16,15 +16,25 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-object Estatisticas {
+//class Estatisticas (mes: Mes, mesVM: MesViewModel, metaVM: MetaViewModel) {
+
+class Estatisticas (mes: Mes) {
 
     private lateinit var metas: List<Meta>
 
-    private lateinit var mesAtual: Mes
-    private lateinit var mesAnterior: Mes
+    private var mesAtual: Mes
+    //private lateinit var mesAnterior: Mes
 
-    private lateinit var mesViewModel: MesViewModel
-    private lateinit var metaViewModel: MetaViewModel
+//    private  var mesViewModel: MesViewModel
+//    private  var metaViewModel: MetaViewModel
+
+
+    init {
+        this.mesAtual = mes
+//        this.metaViewModel = metaVM
+//        this.mesViewModel = mesVM
+
+    }
 
     var totalEmCaixa = 0.0
     var totalEmCaixaNoInicioDoMes = 0.0
@@ -70,9 +80,26 @@ object Estatisticas {
         return ""
     }
 
+     fun imprime() {
+
+        println(">>> totalEmCaixa = ${this.totalEmCaixa}")
+        println(">>> totalEmCaixaNoInicioDoMes = ${this.totalEmCaixaNoInicioDoMes}")
+        println(">>> totalEmCaixaNoInicioDosRegistros = $totalEmCaixaNoInicioDosRegistros")
+        println(">>> totalGanhoNoMes = $totalGastoNoMes")
+        println(">>> totalGanhoTodoHistorico = $totalGanhoTodoHistorico")
+        println(">>> totalGastoNoMes = $totalGastoNoMes")
+        println(">>> totalGastoTodoHistorico = $totalGanhoTodoHistorico")
+        println(">>> gastoDiarioNoMes = $totalGastoNoMes")
+        println(">>> gastoDiarioTodoHistorico = $gastoDiarioTodoHistorico")
+        println(">>> qtdMesesComRegistros = $qtdMesesComRegistros")
+        println(">>> abastanca = 0 $abastanca")
+        println(">>> totalInvestido = $totalInvestido")
+
+    }
+
     fun processa(callback: () -> Unit) {
-        mesAtual = Mes(0L, getNomeMesAtual())
-        mesViewModel.getByName(mesAtual) {
+//        mesAtual = Mes(0L, getNomeMesAtual())
+//        mesViewModel.getByName(mesAtual) {
 
             GlobalScope.launch {
                 //Background processing..."
@@ -119,18 +146,18 @@ object Estatisticas {
 //                    }
 //                }
 //            }
-        }
+        //}
     }
 
     fun setMyMetas(callback: () -> Unit) {
         callback()
     }
 
-    fun setViewModels(mesVM: MesViewModel, metaVM: MetaViewModel, callback: () -> Unit) {
-        this.mesViewModel = mesVM
-        this.metaViewModel = metaVM
-        callback()
-    }
+//    fun setViewModels(mesVM: MesViewModel, metaVM: MetaViewModel, callback: () -> Unit) {
+//        this.mesViewModel = mesVM
+//        this.metaViewModel = metaVM
+//        callback()
+//    }
 
     fun setMyAbastanca(callback: () -> Unit) {
         abastanca = (totalEmCaixa / gastoDiarioTodoHistorico).toInt()

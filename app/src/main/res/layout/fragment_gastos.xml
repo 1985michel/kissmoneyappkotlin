@@ -166,7 +166,7 @@
             style="@style/padraoTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="em relação ao mês anterior (proporcional)."
+            android:text="% em relação ao mês anterior (proporcional)."
             app:layout_constraintBaseline_toBaselineOf="@+id/comparacaoAoMesAnteriorPrevisaoTextView"
             app:layout_constraintStart_toEndOf="@+id/comparacaoAoMesAnteriorPrevisaoTextView" />
 

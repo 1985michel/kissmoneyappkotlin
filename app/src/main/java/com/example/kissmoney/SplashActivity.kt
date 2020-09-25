@@ -13,9 +13,14 @@ import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
 import com.example.kissmoney.ganhos.GanhoJoinViewModel
 import com.example.kissmoney.ganhos.GanhoViewModel
 import com.example.kissmoney.ganhos.mensal.GanhoMensalViewModel
+import com.example.kissmoney.mes.CentralEstatistica
 import com.example.kissmoney.mes.Estatisticas
+import com.example.kissmoney.mes.Mes
 import com.example.kissmoney.mes.MesViewModel
+import com.example.kissmoney.meta.AcompanhamentoDeMeta
 import com.example.kissmoney.meta.MetaViewModel
+import com.example.kissmoney.util.getNomeMesAtual
+import com.example.kissmoney.util.recebeNomeMesRetornaNomeMesAnterior
 
 
 class SplashActivity : AppCompatActivity() {
@@ -58,17 +63,37 @@ class SplashActivity : AppCompatActivity() {
         }
 
 
+        // vou rodar estatísticas do mes atual e do mes anterior
 
-        Estatisticas.setViewModels(mesViewModel, metaViewModel) {
-            Estatisticas.processa(){
-//                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-//                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-//                println(">>>>>>>>>>> ESTATISTICA STRING >>>>>>>>>>>>>>")
-//                Estatisticas.toString()
-                startActivity(intent)
-                finish() //encerra a splash
+        var mesAtual = Mes(0L, getNomeMesAtual())
+        mesViewModel.getByName(mesAtual) {
+            CentralEstatistica.addMes(mesAtual) {
+
+                //já facilitando para a view de Mes (tela inicial)
+                AcompanhamentoDeMeta.setMyMesAtual(mesAtual)
+
+                var mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
+                mesViewModel.getByName(mesAnterior){
+                    CentralEstatistica.addMes(mesAnterior){
+                        startActivity(intent)
+                        finish() //encerra a splash
+                    }
+                }
             }
         }
+
+
+
+//        Estatisticas.setViewModels(mesViewModel, metaViewModel) {
+//            Estatisticas.processa(){
+////                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+////                println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+////                println(">>>>>>>>>>> ESTATISTICA STRING >>>>>>>>>>>>>>")
+////                Estatisticas.toString()
+//                startActivity(intent)
+//                finish() //encerra a splash
+//            }
+//        }
 
 
 
