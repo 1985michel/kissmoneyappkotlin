@@ -15,6 +15,31 @@ fun getDataHojeString(): String {
     return "${dia}/${mes}/${year}"
 }
 
+fun verificaStatusVencimento(data: String) : Int {
+
+    //retorna -1 para vencido
+    //retorna 0 para vencendo
+    //retorna 1 para futuro
+    val cal = Calendar.getInstance()
+    val year = cal[Calendar.YEAR]
+    var month = cal[Calendar.MONTH]
+    month += 1
+    val day = cal[Calendar.DAY_OF_MONTH]
+    var mes = if (month < 10) "0" + month.toString() else month
+    var dia = if (day < 10) "0" + day.toString() else day
+
+    var diaVencimento = data.substring(0,2)
+    var mesVencimento = data.substring(3,5)
+    var anoVencimento = data.substring(6)
+
+
+    var vencimento = "$anoVencimento$mesVencimento$diaVencimento"
+    var hoje = "$year$mes$dia"
+
+    return vencimento.compareTo(hoje)
+
+}
+
 fun recebeDataRetornaMes(data: String): String {
 
     val mes = data.substring(3, 5)

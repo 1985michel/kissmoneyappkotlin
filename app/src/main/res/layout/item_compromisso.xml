@@ -35,6 +35,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/atencao_icon"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/nomeCompromissoTextView"
             app:layout_constraintEnd_toEndOf="parent"
             tools:srcCompat="@drawable/atencao_icon" />

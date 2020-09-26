@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.opengl.Visibility
 import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
@@ -98,6 +99,17 @@ class CompromissoListAdapter internal constructor(context: Context) :
             else
                 R.color.lightgreybackground
         )
+
+        var statusVencimento = verificaStatusVencimento(current.dataVencimento)
+        if (!current.isPago) {
+            if (statusVencimento <= 0) {
+                holder.atencaoImageView.visibility = View.VISIBLE
+            } else if (statusVencimento > 0) {
+                holder.atencaoImageView.visibility = View.INVISIBLE
+            }
+        }
+
+
 
 
         holder.constraint.setOnClickListener {
