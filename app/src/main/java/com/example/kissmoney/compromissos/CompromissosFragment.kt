@@ -282,6 +282,7 @@ class CompromissosFragment : Fragment() {
             if (!compJ.isPago) totalPendente += compJ.valor
         }
 
+        binding.nomeDoMestextView4.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
         binding.totalTextView.text = formataParaBr(total.toBigDecimal())
         binding.textView25.text = formataParaBr(totalPendente.toBigDecimal())
     }
