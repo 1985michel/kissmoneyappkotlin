@@ -16,7 +16,9 @@ import com.example.kissmoney.contas.ContaJoinViewModel
 import com.example.kissmoney.databinding.FragmentNovomesBinding
 import com.example.kissmoney.meta.AcompanhamentoDeMeta
 import com.example.kissmoney.meta.Meta
+import com.example.kissmoney.util.formataParaBr
 import com.example.kissmoney.util.getNomeMesAtual
+import com.example.kissmoney.util.getNomeMesPorExtensoComAno
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,6 +28,7 @@ import kotlinx.coroutines.withContext
 class mesFragment : Fragment() {
 
     var metas = ArrayList<Meta>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +76,13 @@ class mesFragment : Fragment() {
         mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         recyclerView.layoutManager = mLayoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
+
+        binding.nomeMesTextView.text = getNomeMesPorExtensoComAno(AcompanhamentoDeMeta.mesAtual.nomeMes)
+        binding.valorBalancoTextView.text = formataParaBr(
+            CentralEstatistica.estatisticasMensais.get(AcompanhamentoDeMeta.mesAtual.mesId)!!.balanco.toBigDecimal()
+        )
+        binding.variacaoDiasMesTextView.text =
+            CentralEstatistica.estatisticasMensais.get(AcompanhamentoDeMeta.mesAtual.mesId)!!.balancoEmDias.toString()
 
         AcompanhamentoDeMeta.setValues {
             adapter.setDados(AcompanhamentoDeMeta.metaJoinList)

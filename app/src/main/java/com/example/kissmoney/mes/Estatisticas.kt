@@ -62,6 +62,10 @@ class Estatisticas (mes: Mes) {
     var totalInvestido = 0.0
 
 
+    var balanco = 0.0
+    var balancoEmDias = 0
+
+
     override fun toString(): String {
 
         println(">>> totalEmCaixa = ${this.totalEmCaixa}")
@@ -122,9 +126,12 @@ class Estatisticas (mes: Mes) {
 //                                                    println(">>>>> setMyAbastanca retornou")
 //                                                    println(">>>>>>>>>>>>>>>>> EM ESTATÍSTICAS ESTAMOS SETANDO A ABASTANCA EM $abastanca")
                                                     setMyCompromissosDoMes {
-                                                        callback()
+                                                        setMyBalanco {
+                                                            setMyBalancoEmDias{
+                                                                callback()
+                                                            }
+                                                        }
                                                     }
-
                                                 }
                                             }
                                         }
@@ -163,6 +170,16 @@ class Estatisticas (mes: Mes) {
         abastanca = (totalEmCaixa / gastoDiarioTodoHistorico).toInt()
 //        println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
 //        println(">>>> Estatísicas 109: Abastança ($abastanca) = total em Caixa ($totalEmCaixa) / gasto diario todo historico ($gastoDiarioTodoHistorico)")
+        callback()
+    }
+
+    fun setMyBalanco(callback: () -> Unit) {
+        balanco = totalEmCaixa - totalEmCaixaNoInicioDosRegistros
+        callback()
+    }
+
+    fun setMyBalancoEmDias(callback: () -> Unit) {
+        balancoEmDias = (balanco / gastoDiarioTodoHistorico).toInt()
         callback()
     }
 
