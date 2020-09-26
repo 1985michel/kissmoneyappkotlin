@@ -5,215 +5,244 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/light_none">
 
-
-        <TextView
-            android:id="@+id/valorCompromissosTextView2"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="R$ 2.000,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView38"
-            app:layout_constraintStart_toEndOf="@+id/textView35" />
-
-        <TextView
-            android:id="@+id/textView38"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Compromissos:"
-            app:layout_constraintStart_toStartOf="@+id/textView31"
-            app:layout_constraintTop_toBottomOf="@+id/comparacaoMesAnteriorGastoTotalTextView" />
-
-        <TextView
-            android:id="@+id/textView20"
-            style="@style/tituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="Gastos"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/nomeMesTextView"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Setembro / 2020"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-        <TextView
-            android:id="@+id/textView31"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Gasto Total:"
-            app:layout_constraintStart_toStartOf="@+id/textView39"
-            app:layout_constraintTop_toBottomOf="@+id/textView39" />
-
-        <TextView
-            android:id="@+id/valorGastoTotalTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="R$ 10.000,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
-            app:layout_constraintStart_toEndOf="@+id/textView31" />
-
-        <TextView
-            android:id="@+id/comparacaoMesAnteriorGastoTotalTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:text="+ 10 % "
-            app:layout_constraintStart_toStartOf="@+id/textView31"
-            app:layout_constraintTop_toBottomOf="@+id/textView31" />
-
-        <TextView
-            android:id="@+id/textView34"
-            style="@style/padraoTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="% em relação ao mês anterior (proporcional)."
-            app:layout_constraintBaseline_toBaselineOf="@+id/comparacaoMesAnteriorGastoTotalTextView"
-            app:layout_constraintStart_toEndOf="@+id/comparacaoMesAnteriorGastoTotalTextView" />
-
-        <TextView
-            android:id="@+id/textView35"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Compromissos Pendentes:"
-            app:layout_constraintStart_toStartOf="@+id/textView31"
-            app:layout_constraintTop_toBottomOf="@+id/textView38" />
-
-        <TextView
-            android:id="@+id/valorCompromissosPendentesTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="R$ 2.000,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView35"
-            app:layout_constraintStart_toEndOf="@+id/textView35" />
-
-        <TextView
-            android:id="@+id/textView37"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Previsão de custo mensal:"
-            app:layout_constraintStart_toStartOf="@+id/textView35"
-            app:layout_constraintTop_toBottomOf="@+id/textView35" />
-
-        <TextView
-            android:id="@+id/valorPrevisaoMensalTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="R$ 3.000,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView37"
-            app:layout_constraintStart_toStartOf="@+id/valorCompromissosPendentesTextView" />
-
-        <TextView
-            android:id="@+id/textView39"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="No mês:"
-            app:layout_constraintStart_toStartOf="@+id/textView20"
-            app:layout_constraintTop_toBottomOf="@+id/nomeMesTextView" />
-
-        <TextView
-            android:id="@+id/textView40"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Estatísticas:"
-            app:layout_constraintStart_toStartOf="@+id/textView39"
-            app:layout_constraintTop_toBottomOf="@+id/textView42" />
-
-        <TextView
-            android:id="@+id/comparacaoAoMesAnteriorPrevisaoTextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="- 8 % "
-            app:layout_constraintStart_toStartOf="@+id/comparacaoMesAnteriorGastoTotalTextView"
-            app:layout_constraintTop_toBottomOf="@+id/textView37" />
-
-        <TextView
-            android:id="@+id/textView42"
-            style="@style/padraoTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="% em relação ao mês anterior (proporcional)."
-            app:layout_constraintBaseline_toBaselineOf="@+id/comparacaoAoMesAnteriorPrevisaoTextView"
-            app:layout_constraintStart_toEndOf="@+id/comparacaoAoMesAnteriorPrevisaoTextView" />
-
-        <TextView
-            android:id="@+id/textView43"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Gasto de vida diário:"
-            app:layout_constraintStart_toStartOf="@+id/textView40"
-            app:layout_constraintTop_toBottomOf="@+id/textView40"
-            style="@style/padraoTextView" />
-
-        <TextView
-            android:id="@+id/custoDeVidaDiariotextView"
-            style="@style/padraoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="R$ 235,00"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView43"
-            app:layout_constraintStart_toEndOf="@+id/textView43" />
-
-        <TextView
-            android:id="@+id/textView47"
-            style="@style/subtituloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Relatório:"
-            app:layout_constraintStart_toStartOf="@+id/textView40"
-            app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/relatorioGastosRecyclerView"
             android:layout_width="0dp"
-            android:layout_height="268dp"
+            android:layout_height="143dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView47"
             tools:listitem="@layout/item_relatorio" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout7"
+            android:layout_width="0dp"
+            android:layout_height="135dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/round_darkblue_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView20"
+                style="@style/fragment_title_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="Gastos"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/nomeMesTextView"
+                style="@style/fragment_title_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="17dp"
+                android:text="Setembro / 2020"
+                android:textColor="@color/light_none"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="345dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/round_outline"
+            app:layout_constraintBottom_toTopOf="@+id/relatorioGastosRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout7"
+            app:layout_constraintVertical_bias="1.0">
+
+            <TextView
+                android:id="@+id/textView34"
+                style="@style/padraoTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text=" % em relação ao mês anterior."
+                android:textColor="@color/greyfont"
+                app:layout_constraintBaseline_toBaselineOf="@+id/comparacaoMesAnteriorGastoTotalTextView"
+                app:layout_constraintStart_toEndOf="@+id/comparacaoMesAnteriorGastoTotalTextView" />
+
+            <TextView
+                android:id="@+id/textView31"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="Gasto Total:"
+                android:textColor="@color/greyfont"
+                app:layout_constraintBottom_toTopOf="@+id/textView38"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/valorGastoTotalTextView"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="R$ 10.000,00"
+                android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="14sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/comparacaoMesAnteriorGastoTotalTextView"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="+ 10 % "
+                android:textColor="@color/design_default_color_on_secondary"
+                app:layout_constraintStart_toStartOf="@+id/textView31"
+                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+            <TextView
+                android:id="@+id/textView38"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="Compromissos:"
+                android:textColor="@color/greyfont"
+                app:layout_constraintBottom_toTopOf="@+id/textView35"
+                app:layout_constraintStart_toStartOf="@+id/textView31"
+                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+            <TextView
+                android:id="@+id/valorCompromissosTextView2"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="R$ 2.000,00"
+                android:textColor="@color/design_default_color_on_secondary"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView38"
+                app:layout_constraintStart_toStartOf="@+id/valorGastoTotalTextView" />
+
+            <TextView
+                android:id="@+id/textView35"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="Compromissos Pendentes:"
+                android:textColor="@color/greyfont"
+                app:layout_constraintBottom_toTopOf="@+id/textView37"
+                app:layout_constraintStart_toStartOf="@+id/textView38"
+                app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+            <TextView
+                android:id="@+id/valorCompromissosPendentesTextView"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="R$ 2.000,00"
+                android:textColor="@color/design_default_color_on_secondary"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView35"
+                app:layout_constraintStart_toStartOf="@+id/valorCompromissosTextView2" />
+
+            <TextView
+                android:id="@+id/textView37"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="Previsão de custo mensal:"
+                android:textColor="@color/greyfont"
+                app:layout_constraintBottom_toTopOf="@+id/textView43"
+                app:layout_constraintStart_toStartOf="@+id/textView35"
+                app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+            <TextView
+                android:id="@+id/valorPrevisaoMensalTextView"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="R$ 3.000,00"
+                android:textColor="@color/design_default_color_on_secondary"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView37"
+                app:layout_constraintStart_toStartOf="@+id/valorCompromissosPendentesTextView" />
+
+            <TextView
+                android:id="@+id/textView42"
+                style="@style/padraoTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text=" % em relação ao mês anterior."
+                android:textColor="@color/greyfont"
+                app:layout_constraintBaseline_toBaselineOf="@+id/comparacaoAoMesAnteriorPrevisaoTextView"
+                app:layout_constraintStart_toEndOf="@+id/comparacaoAoMesAnteriorPrevisaoTextView" />
+
+            <TextView
+                android:id="@+id/comparacaoAoMesAnteriorPrevisaoTextView"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="- 8 % "
+                android:textColor="@color/design_default_color_on_secondary"
+                app:layout_constraintStart_toStartOf="@+id/comparacaoMesAnteriorGastoTotalTextView"
+                app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+            <TextView
+                android:id="@+id/custoDeVidaDiariotextView"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="R$ 235,00"
+                android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="14sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView43"
+                app:layout_constraintStart_toStartOf="@+id/valorPrevisaoMensalTextView" />
+
+            <TextView
+                android:id="@+id/textView43"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="Gasto de vida diário:"
+                android:textColor="@color/greyfont"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView37"
+                app:layout_constraintTop_toBottomOf="@+id/textView37" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

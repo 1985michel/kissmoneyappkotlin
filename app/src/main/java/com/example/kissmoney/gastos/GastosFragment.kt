@@ -122,12 +122,20 @@ class GastosFragment : Fragment() {
                     if (estatisticaMesAnterior != null) {
 
                         var percentualVariacaoGasto = (estatisticaMesAnterior?.totalGastoNoMes!! * 100 ) / estatisticaMesAtual?.totalGastoNoMes!!
-                        binding.comparacaoMesAnteriorGastoTotalTextView.text = percentualVariacaoGasto.toString()
+                        var percentualVariacaoGastoString = if (percentualVariacaoGasto > 0) " + "
+                            else if (percentualVariacaoGasto < 0) " - "
+                            else ""
+                        percentualVariacaoGastoString = "$percentualVariacaoGastoString ${percentualVariacaoGasto.toString()}"
+                        binding.comparacaoMesAnteriorGastoTotalTextView.text = percentualVariacaoGastoString
 
                         var previsaoCustoMensalMesAnterior = estatisticaMesAnterior?.totalCompromissosPendentesDoMes + estatisticaMesAnterior.totalGastoNoMes
 
                         var percentualVariacaoPrevisaoCustoMensal = previsaoCustoMensalMesAnterior * 100 / previsaoCustoMensal
-                        binding.comparacaoAoMesAnteriorPrevisaoTextView.text = percentualVariacaoPrevisaoCustoMensal.toString()
+                        var percentualVariacaoPrevisaoCustoString = if (percentualVariacaoPrevisaoCustoMensal > 0) " + "
+                        else if (percentualVariacaoPrevisaoCustoMensal < 0) " - "
+                        else ""
+                        percentualVariacaoPrevisaoCustoString = "$percentualVariacaoPrevisaoCustoString ${percentualVariacaoPrevisaoCustoMensal.toString()}"
+                        binding.comparacaoAoMesAnteriorPrevisaoTextView.text = percentualVariacaoPrevisaoCustoString
                     }
                 }
 
