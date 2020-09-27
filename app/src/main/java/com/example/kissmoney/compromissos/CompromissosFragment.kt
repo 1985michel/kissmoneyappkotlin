@@ -269,6 +269,23 @@ class CompromissosFragment : Fragment() {
 
         }
 
+        binding.nomeDoMestextView4.setOnClickListener {
+
+
+
+
+            val toast = Toast.makeText(
+                activity as AppCompatActivity,
+                Html.fromHtml("<font color='#e3f2fd' ><b>" + "Compromissos recorrentes do mês anterior importados com sucesso!" + "</b></font>"),
+                Toast.LENGTH_LONG
+            )
+
+            //colocando o toast verde
+            toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+
+            toast.show()
+        }
+
         (activity as AppCompatActivity).supportActionBar?.title = ""
         return binding.root
     }

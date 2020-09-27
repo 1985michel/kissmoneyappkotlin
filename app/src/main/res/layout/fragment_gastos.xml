@@ -9,19 +9,6 @@
         android:background="@color/light_none">
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/relatorioGastosRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="143dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/item_relatorio" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout7"
             android:layout_width="0dp"
@@ -62,16 +49,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="345dp"
+            android:layout_height="0dp"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/round_outline"
-            app:layout_constraintBottom_toTopOf="@+id/relatorioGastosRecyclerView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout7"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout7">
 
             <TextView
                 android:id="@+id/textView34"
@@ -82,6 +69,7 @@
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:text=" % em relação ao mês anterior."
                 android:textColor="@color/greyfont"
+                android:textSize="14sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/comparacaoMesAnteriorGastoTotalTextView"
                 app:layout_constraintStart_toEndOf="@+id/comparacaoMesAnteriorGastoTotalTextView" />
 
@@ -90,11 +78,12 @@
                 style="@style/padraoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:text="Gasto Total:"
                 android:textColor="@color/greyfont"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView38"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -104,11 +93,11 @@
                 style="@style/padraoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="60dp"
+                android:layout_marginEnd="32dp"
                 android:fontFamily="@font/roboto_condensed_bold"
                 android:text="R$ 10.000,00"
                 android:textColor="@color/design_default_color_on_secondary"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -122,6 +111,7 @@
                 android:fontFamily="@font/roboto_condensed_bold"
                 android:text="+ 10 % "
                 android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView31"
                 app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
@@ -134,6 +124,7 @@
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:text="Compromissos:"
                 android:textColor="@color/greyfont"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView35"
                 app:layout_constraintStart_toStartOf="@+id/textView31"
                 app:layout_constraintTop_toBottomOf="@+id/textView31" />
@@ -146,8 +137,9 @@
                 android:fontFamily="@font/roboto_condensed_bold"
                 android:text="R$ 2.000,00"
                 android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="14sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView38"
-                app:layout_constraintStart_toStartOf="@+id/valorGastoTotalTextView" />
+                app:layout_constraintEnd_toEndOf="@+id/valorGastoTotalTextView" />
 
             <TextView
                 android:id="@+id/textView35"
@@ -157,6 +149,7 @@
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:text="Compromissos Pendentes:"
                 android:textColor="@color/greyfont"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView37"
                 app:layout_constraintStart_toStartOf="@+id/textView38"
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
@@ -169,8 +162,9 @@
                 android:fontFamily="@font/roboto_condensed_bold"
                 android:text="R$ 2.000,00"
                 android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="14sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView35"
-                app:layout_constraintStart_toStartOf="@+id/valorCompromissosTextView2" />
+                app:layout_constraintEnd_toEndOf="@+id/valorCompromissosTextView2" />
 
             <TextView
                 android:id="@+id/textView37"
@@ -180,6 +174,7 @@
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:text="Previsão de custo mensal:"
                 android:textColor="@color/greyfont"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView43"
                 app:layout_constraintStart_toStartOf="@+id/textView35"
                 app:layout_constraintTop_toBottomOf="@+id/textView35" />
@@ -192,8 +187,9 @@
                 android:fontFamily="@font/roboto_condensed_bold"
                 android:text="R$ 3.000,00"
                 android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="14sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView37"
-                app:layout_constraintStart_toStartOf="@+id/valorCompromissosPendentesTextView" />
+                app:layout_constraintEnd_toEndOf="@+id/valorCompromissosPendentesTextView" />
 
             <TextView
                 android:id="@+id/textView42"
@@ -204,6 +200,7 @@
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:text=" % em relação ao mês anterior."
                 android:textColor="@color/greyfont"
+                android:textSize="14sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/comparacaoAoMesAnteriorPrevisaoTextView"
                 app:layout_constraintStart_toEndOf="@+id/comparacaoAoMesAnteriorPrevisaoTextView" />
 
@@ -216,6 +213,7 @@
                 android:fontFamily="@font/roboto_condensed_bold"
                 android:text="- 8 % "
                 android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/comparacaoMesAnteriorGastoTotalTextView"
                 app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
@@ -227,9 +225,9 @@
                 android:fontFamily="@font/roboto_condensed_bold"
                 android:text="R$ 235,00"
                 android:textColor="@color/design_default_color_on_secondary"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView43"
-                app:layout_constraintStart_toStartOf="@+id/valorPrevisaoMensalTextView" />
+                app:layout_constraintEnd_toEndOf="@+id/valorPrevisaoMensalTextView" />
 
             <TextView
                 android:id="@+id/textView43"
@@ -237,11 +235,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_condensed_regular"
-                android:text="Gasto de vida diário:"
+                android:text="Custo de vida diário:"
                 android:textColor="@color/greyfont"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView37"
-                app:layout_constraintTop_toBottomOf="@+id/textView37" />
+                app:layout_constraintTop_toBottomOf="@+id/textView37"
+                android:textSize="14sp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

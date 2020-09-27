@@ -24,6 +24,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:text="Conta de Água"
             app:layout_constraintBottom_toBottomOf="@+id/isRecorrenteImageView"
             app:layout_constraintEnd_toStartOf="@+id/atencaoImageView"
@@ -67,10 +68,11 @@
             style="@style/subtituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="2dp"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:text="R$ 123.000,00"
-            app:layout_constraintStart_toEndOf="@+id/dataVencimentoTextView"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/nomeCompromissoTextView"
             app:layout_constraintTop_toBottomOf="@+id/nomeCompromissoTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

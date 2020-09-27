@@ -39,6 +39,7 @@ limitations under the License. -->
             android:layout_marginStart="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="12dp"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:text="Salário do José"
             android:textAlignment="textStart"
             android:textAllCaps="false"
@@ -54,11 +55,12 @@ limitations under the License. -->
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:text="R$ 989.00,00"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textSize="14sp"
-            android:textStyle="normal"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/nomeGanhoTextView"
             app:layout_constraintTop_toBottomOf="@+id/nomeGanhoTextView" />
 

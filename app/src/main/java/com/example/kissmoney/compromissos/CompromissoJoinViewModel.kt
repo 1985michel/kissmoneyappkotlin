@@ -102,4 +102,8 @@ object CompromissoJoinViewModel {
             callback()
         })
     }
+
+    private fun importaCompromissosRecorrentesDoMesAnterior() {
+
+    }
 }
