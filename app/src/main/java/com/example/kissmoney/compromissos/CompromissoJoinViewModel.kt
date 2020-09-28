@@ -103,7 +103,15 @@ object CompromissoJoinViewModel {
         })
     }
 
-    private fun importaCompromissosRecorrentesDoMesAnterior() {
-
-    }
+//    private fun importarCompromissosRecorrentesDoMesAnterior(mesAnterior : Mes) {
+//
+//        var compromissosRecorrentesDoMesAnterior = ArrayList<Compromisso>()
+//        allCompromissos.observe(owner, Observer {compromisoss ->
+//
+//            for (comp in compromisoss){
+//                if (comp.is)
+//            }
+//        })
+//
+//    }
 }

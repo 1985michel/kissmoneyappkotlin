@@ -176,6 +176,15 @@
             tools:listItem="@layout/item_compromisso"
             tools:listitem="@layout/item_compromisso" />
 
+        <ImageView
+            android:id="@+id/importarRecorrenteImagView"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/despesa_recorrente_2"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
+            app:layout_constraintEnd_toStartOf="@+id/nomeDoMestextView4" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
