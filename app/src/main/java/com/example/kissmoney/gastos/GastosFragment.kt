@@ -1,15 +1,23 @@
 package com.example.kissmoney.gastos
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import com.example.kissmoney.MainActivity
 import com.example.kissmoney.R
 import com.example.kissmoney.contas.ContasFragmentArgs
+import com.example.kissmoney.contas.ContasFragmentDirections
 import com.example.kissmoney.databinding.FragmentGanhosBinding
 import com.example.kissmoney.databinding.FragmentGastosBinding
 import com.example.kissmoney.ganhos.GanhoJoinViewModel
@@ -41,12 +49,13 @@ class GastosFragment : Fragment() {
         mesViewModel = ViewModelProvider(this).get(MesViewModel::class.java)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        (activity as AppCompatActivity).supportActionBar?.title =""
+        (activity as AppCompatActivity).supportActionBar?.title = ""
 //        return inflater.inflate(R.layout.fragment_gastos, container, false)
 
         val binding = DataBindingUtil.inflate<FragmentGastosBinding>(
@@ -64,18 +73,18 @@ class GastosFragment : Fragment() {
 
         if (idMes != 0L) {
             mesViewModel.getById(mesAtual) {
-                mesViewModel.getByName(mesAnterior){
+                mesViewModel.getByName(mesAnterior) {
                     mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
-                    mesViewModel.getByName(mesAnterior){
+                    mesViewModel.getByName(mesAnterior) {
                         setDadosNaView(binding)
                     }
                 }
             }
         } else {
             mesViewModel.getByName(mesAtual) {
-                mesViewModel.getByName(mesAnterior){
+                mesViewModel.getByName(mesAnterior) {
                     mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
-                    mesViewModel.getByName(mesAnterior){
+                    mesViewModel.getByName(mesAnterior) {
                         setDadosNaView(binding)
                     }
                 }
@@ -83,8 +92,49 @@ class GastosFragment : Fragment() {
         }
 
 
-        return binding.root
+        binding.reprocessarIV.setOnClickListener {
 
+            val toast = Toast.makeText(
+
+                activity as AppCompatActivity,
+                Html.fromHtml("<font color='#e3f2fd' ><b>" + "Dados recalculados!" + "</b></font>"),
+                Toast.LENGTH_LONG
+            )
+
+            //colocando o toast verde
+            toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+
+            toast.show()
+
+
+            CentralEstatistica.processa {
+
+                setDadosNaView(binding)
+//                GlobalScope.launch {
+//                    //Background processing..."
+//                    withContext(Dispatchers.Main) {
+//                        //"Update UI here!")
+//                        // para poder rodar na tread principal
+//                        val toast = Toast.makeText(
+//
+//                            activity as AppCompatActivity,
+//                            Html.fromHtml("<font color='#e3f2fd' ><b>" + "Dados recalculados!" + "</b></font>"),
+//                            Toast.LENGTH_LONG
+//                        )
+//
+//                        //colocando o toast verde
+//                        toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+//
+//                        toast.show()
+//                    }
+//                }
+
+
+            }
+        }
+
+
+        return binding.root
 
 
     }
@@ -99,7 +149,8 @@ class GastosFragment : Fragment() {
 
 
                 var estatisticaMesAtual = CentralEstatistica.estatisticasMensais.get(mesAtual.mesId)
-                var estatisticaMesAnterior = CentralEstatistica.estatisticasMensais.get(mesAnterior.mesId)
+                var estatisticaMesAnterior =
+                    CentralEstatistica.estatisticasMensais.get(mesAnterior.mesId)
 
                 println(">>>>>>>>>>>>>>>>>>>>>> Estatística obtida")
                 if (estatisticaMesAtual != null) {
@@ -112,7 +163,8 @@ class GastosFragment : Fragment() {
                     binding.valorCompromissosTextView2.text =
                         formataParaBr(estatisticaMesAtual?.totalCompromissosDoMes.toBigDecimal())
 
-                    var previsaoCustoMensal = estatisticaMesAtual?.totalCompromissosPendentesDoMes + estatisticaMesAtual.totalGastoNoMes
+                    var previsaoCustoMensal =
+                        estatisticaMesAtual?.totalCompromissosPendentesDoMes + estatisticaMesAtual.totalGastoNoMes
                     binding.valorPrevisaoMensalTextView.text =
                         formataParaBr(previsaoCustoMensal.toBigDecimal())
 
@@ -121,21 +173,29 @@ class GastosFragment : Fragment() {
 
                     if (estatisticaMesAnterior != null) {
 
-                        var percentualVariacaoGasto = (estatisticaMesAnterior?.totalGastoNoMes!! * 100 ) / estatisticaMesAtual?.totalGastoNoMes!!
+                        var percentualVariacaoGasto =
+                            (estatisticaMesAnterior?.totalGastoNoMes!! * 100) / estatisticaMesAtual?.totalGastoNoMes!!
                         var percentualVariacaoGastoString = if (percentualVariacaoGasto > 0) " + "
-                            else if (percentualVariacaoGasto < 0) " - "
-                            else ""
-                        percentualVariacaoGastoString = "$percentualVariacaoGastoString ${percentualVariacaoGasto.toString()}"
-                        binding.comparacaoMesAnteriorGastoTotalTextView.text = percentualVariacaoGastoString
-
-                        var previsaoCustoMensalMesAnterior = estatisticaMesAnterior?.totalCompromissosPendentesDoMes + estatisticaMesAnterior.totalGastoNoMes
-
-                        var percentualVariacaoPrevisaoCustoMensal = previsaoCustoMensalMesAnterior * 100 / previsaoCustoMensal
-                        var percentualVariacaoPrevisaoCustoString = if (percentualVariacaoPrevisaoCustoMensal > 0) " + "
-                        else if (percentualVariacaoPrevisaoCustoMensal < 0) " - "
+                        else if (percentualVariacaoGasto < 0) " - "
                         else ""
-                        percentualVariacaoPrevisaoCustoString = "$percentualVariacaoPrevisaoCustoString ${percentualVariacaoPrevisaoCustoMensal.toString()}"
-                        binding.comparacaoAoMesAnteriorPrevisaoTextView.text = percentualVariacaoPrevisaoCustoString
+                        percentualVariacaoGastoString =
+                            "$percentualVariacaoGastoString ${percentualVariacaoGasto.toString()}"
+                        binding.comparacaoMesAnteriorGastoTotalTextView.text =
+                            percentualVariacaoGastoString
+
+                        var previsaoCustoMensalMesAnterior =
+                            estatisticaMesAnterior?.totalCompromissosPendentesDoMes + estatisticaMesAnterior.totalGastoNoMes
+
+                        var percentualVariacaoPrevisaoCustoMensal =
+                            previsaoCustoMensalMesAnterior * 100 / previsaoCustoMensal
+                        var percentualVariacaoPrevisaoCustoString =
+                            if (percentualVariacaoPrevisaoCustoMensal > 0) " + "
+                            else if (percentualVariacaoPrevisaoCustoMensal < 0) " - "
+                            else ""
+                        percentualVariacaoPrevisaoCustoString =
+                            "$percentualVariacaoPrevisaoCustoString ${percentualVariacaoPrevisaoCustoMensal.toString()}"
+                        binding.comparacaoAoMesAnteriorPrevisaoTextView.text =
+                            percentualVariacaoPrevisaoCustoString
                     }
                 }
 
