@@ -9,6 +9,21 @@
         android:background="@color/light_none">
 
 
+        <ImageView
+            android:id="@+id/importarRecorrenteImagView3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="3dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="4dp"
+            android:src="@drawable/despesa_recorrente_2"
+            app:layout_constraintBottom_toBottomOf="@+id/nomeDoMestextView"
+            app:layout_constraintEnd_toStartOf="@+id/nomeDoMestextView"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCaixa" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
@@ -90,7 +105,7 @@
 
             android:layout_marginTop="130dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/round_outline"
             android:orientation="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true"

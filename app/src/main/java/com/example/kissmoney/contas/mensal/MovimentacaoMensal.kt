@@ -31,11 +31,11 @@ data class MovimentacaoMensal (
     var contaId: Long,
 
     @ColumnInfo(name = "valor_inicial")
-    val saldoInicial: Double = 0.00,
+    var saldoInicial: Double = 0.00,
 
     @ColumnInfo(name = "valor_atual")
-    val saldoAtualOuFinal: Double = 0.00,
+    var saldoAtualOuFinal: Double = 0.00,
 
     @ColumnInfo(name = "data_atualizacao")
-    val dataAtualizacao: String
+    var dataAtualizacao: String
 )

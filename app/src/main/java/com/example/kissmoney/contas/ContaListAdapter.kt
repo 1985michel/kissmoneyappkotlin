@@ -73,7 +73,7 @@ class ContaListAdapter internal constructor(context: Context) :
         val valorAtualTextView: TextView = itemView.findViewById(R.id.valor_total_textView)
         val dataAtualizacaoTextView: TextView = itemView.findViewById(R.id.dataAtualizacaoTextView)
         val contaIconImageView: ImageView = itemView.findViewById(R.id.contaIconImageView)
-        val atencaoImageView: ImageView = itemView.findViewById(R.id.atencaoImageView)
+        val atencaoImageView: ImageView = itemView.findViewById(R.id.atencaoImageViewGanho)
 
         val constraint: ConstraintLayout = itemView.findViewById(R.id.constraint)
     }

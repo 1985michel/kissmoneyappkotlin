@@ -36,8 +36,8 @@ limitations under the License. -->
             style="@style/subtituloTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="2dp"
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Banco do Brasil"
@@ -46,7 +46,7 @@ limitations under the License. -->
             android:textSize="18sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@+id/contaIconImageView"
-            app:layout_constraintEnd_toStartOf="@+id/atencaoImageView"
+            app:layout_constraintEnd_toStartOf="@+id/atencaoImageViewGanho"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/contaIconImageView" />
 
@@ -67,8 +67,8 @@ limitations under the License. -->
 
         <ImageView
             android:id="@+id/atencaoImageViewGanho"
-            android:layout_width="15dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/nomeContaItemTV"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -94,13 +94,13 @@ limitations under the License. -->
 
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="2dp"
             app:layout_constraintStart_toEndOf="@+id/dataAtualizacaoTextView"
             app:layout_constraintTop_toBottomOf="@+id/nomeContaItemTV"
-            app:srcCompat="@drawable/despesa_recorrente_2" />
+            app:srcCompat="@drawable/despesa_recorrente_small" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

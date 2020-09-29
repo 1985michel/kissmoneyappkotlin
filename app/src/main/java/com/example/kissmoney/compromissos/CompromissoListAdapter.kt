@@ -68,7 +68,7 @@ class CompromissoListAdapter internal constructor(context: Context) :
         val nomeCompromisso: TextView = itemView.findViewById(R.id.nomeCompromissoTextView)
         val dataVencimento: TextView = itemView.findViewById(R.id.dataVencimentoTextView)
         val valor: TextView = itemView.findViewById(R.id.valorCompromisso)
-        val atencaoImageView: ImageView = itemView.findViewById(R.id.atencaoImageView)
+        val atencaoImageView: ImageView = itemView.findViewById(R.id.atencaoImageViewGanho)
         val isRecorrenteImageView: ImageView = itemView.findViewById(R.id.isRecorrenteImageView)
 
         val constraint: ConstraintLayout = itemView.findViewById(R.id.constraint)
@@ -108,7 +108,7 @@ class CompromissoListAdapter internal constructor(context: Context) :
                 holder.atencaoImageView.visibility = View.INVISIBLE
             }
         } else {
-            holder.atencaoImageView.visibility = View.INVISIBLE
+
         }
 
 

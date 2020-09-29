@@ -23,6 +23,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kissmoney.R
+import com.example.kissmoney.compromissos.CompromissoJoinViewModel
 import com.example.kissmoney.contas.mensal.MovimentacaoMensal
 import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
 import com.example.kissmoney.databinding.FragmentContasBinding
@@ -55,6 +56,7 @@ class ContasFragment : Fragment() {
     lateinit var mesAtual: Mes
     lateinit var mesAnterior: Mes
     lateinit var mesPosterior: Mes
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,15 +97,15 @@ class ContasFragment : Fragment() {
 
         mesAtual = Mes(idMes, getNomeMesAtual())
 
-            // se tiver recebido um id, vou ao banco buscar o nome do mês
-        if (idMes != 0L){
-            mesViewModel.getById(mesAtual){
+        // se tiver recebido um id, vou ao banco buscar o nome do mês
+        if (idMes != 0L) {
+            mesViewModel.getById(mesAtual) {
 
                 GlobalScope.launch {
                     //Background processing..."
                     withContext(Dispatchers.Main) {
 
-                        ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId){
+                        ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId) {
                             setaContasNoAdapter(mesAtual.mesId)
                             setaValoresNaView(binding)
                         }
@@ -112,13 +114,13 @@ class ContasFragment : Fragment() {
                 }
             }
         } else { // se não tiver recebido um id, vou ao banco buscar por nome, se não existir registro, o viewmodel cria
-            mesViewModel.getByName(mesAtual){
+            mesViewModel.getByName(mesAtual) {
 
                 GlobalScope.launch {
                     //Background processing..."
                     withContext(Dispatchers.Main) {
 
-                        ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId){
+                        ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId) {
                             setaContasNoAdapter(mesAtual.mesId)
                             setaValoresNaView(binding)
                         }
@@ -128,7 +130,6 @@ class ContasFragment : Fragment() {
             }
         }
         //fim navegação entre meses
-
 
 
         binding.fab.setOnClickListener {
@@ -143,7 +144,6 @@ class ContasFragment : Fragment() {
             dialog.setCancelable(false)
 
 
-
             var tiposSpinner = dialog.findViewById<Spinner>(R.id.tipoContaSpinner2)
             var nomeEditText = dialog.findViewById<EditText>(R.id.nomeContaBottonTextView)
             var valorInicialEditText = dialog.findViewById<EditText>(R.id.saldoInicialEditText)
@@ -152,7 +152,8 @@ class ContasFragment : Fragment() {
             var dataAtualizacaoTextView =
                 dialog.findViewById<TextView>(R.id.dataAtualizacaoTextView)
             var isEncerrada = dialog.findViewById<SwitchCompat>(R.id.isEncerradaSwitch)
-            var tipoContaSpinnerImageView : ImageView? = dialog.findViewById(R.id.tipoContaSpinnerImageView)
+            var tipoContaSpinnerImageView: ImageView? =
+                dialog.findViewById(R.id.tipoContaSpinnerImageView)
 
             var adapterSpinner = ArrayAdapter(
                 activity as AppCompatActivity,
@@ -162,16 +163,22 @@ class ContasFragment : Fragment() {
             adapterSpinner.setDropDownViewResource(R.layout.spinner_item_white)
             tiposSpinner?.adapter = adapterSpinner
 
-            tiposSpinner?.onItemSelectedListener =  object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            tiposSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
                     tipoContaSpinnerImageView?.setImageResource(
-                        if (tiposSpinner?.selectedItem.toString() == TiposDeConta.CARTEIRA.tipo){
+                        if (tiposSpinner?.selectedItem.toString() == TiposDeConta.CARTEIRA.tipo) {
                             R.drawable.cofre_icon_list_dark
-                        } else if (tiposSpinner?.selectedItem.toString() == TiposDeConta.INVESTIMENTO.tipo){
+                        } else if (tiposSpinner?.selectedItem.toString() == TiposDeConta.INVESTIMENTO.tipo) {
                             R.drawable.invest_icon_list_dark
-                        } else{
+                        } else {
                             R.drawable.creditcard_icon_list_dark
-                        })
+                        }
+                    )
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -287,7 +294,7 @@ class ContasFragment : Fragment() {
                             //Background processing..."
                             withContext(Dispatchers.Main) {
                                 //"Update UI here!")
-                                ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId){
+                                ContaJoinViewModel.setContasJoinNoMes(mesAtual.mesId) {
                                     setaContasNoAdapter(mesAtual.mesId)
                                 }
 //                                ContaJoinViewModel.setAllContasJoin() {
@@ -318,6 +325,28 @@ class ContasFragment : Fragment() {
             dialog.show()
         }
 
+        binding.importarRecorrenteImagView3.setOnClickListener {
+
+            importarContasDoMesAnterior {
+
+                setaContasNoAdapter(mesAtual.mesId)
+
+
+
+                val toast = Toast.makeText(
+                    activity as AppCompatActivity,
+                    Html.fromHtml("<font color='#e3f2fd' ><b>" + "Contas importadas ou Atualizadas!" + "</b></font>"),
+                    Toast.LENGTH_LONG
+                )
+
+                //colocando o toast verde
+                toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+
+                toast.show()
+            }
+        }
+
+
         (activity as AppCompatActivity).supportActionBar?.title = ""
 
         return binding.root
@@ -347,14 +376,14 @@ class ContasFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 //"Update UI here!")
                 // para poder rodar na tread principal
-                    binding.mesAnteriorImageViewCaixa.setOnClickListener {
-                        Navigation.findNavController(requireView())
-                            .navigate(ContasFragmentDirections.actionContasFragmentSelf(mesAnterior.mesId))
-                    }
-                    binding.mesPosteriorImageViewCaixa.setOnClickListener {
-                        Navigation.findNavController(requireView())
-                            .navigate(ContasFragmentDirections.actionContasFragmentSelf(mesPosterior.mesId))
-                    }
+                binding.mesAnteriorImageViewCaixa.setOnClickListener {
+                    Navigation.findNavController(requireView())
+                        .navigate(ContasFragmentDirections.actionContasFragmentSelf(mesAnterior.mesId))
+                }
+                binding.mesPosteriorImageViewCaixa.setOnClickListener {
+                    Navigation.findNavController(requireView())
+                        .navigate(ContasFragmentDirections.actionContasFragmentSelf(mesPosterior.mesId))
+                }
             }
         }
     }
@@ -382,13 +411,113 @@ class ContasFragment : Fragment() {
         }
     }
 
-//    private fun getNomeMesPorExtensoComAno(nomeMes: String): String {
-//
-//        for (mes in NomesMeses.values()){
-//            if (nomeMes.substring(0,2).equals(mes.numero.toString())){
-//                return "${mes.name} / ${nomeMes.substring(3)}"
-//            }
-//        }
-//        return ""
-//    }
+    private fun importarContasDoMesAnterior(callback: () -> Unit) {
+
+        var contasList = ArrayList<Conta>()
+        var movimentacaoMensalListMesAnterior = ArrayList<MovimentacaoMensal>()
+        var movimentacaoMensalListMesAtual = ArrayList<MovimentacaoMensal>()
+
+
+        var isExisteNoMesAtual = false
+
+        var movimentacaoAtual = MovimentacaoMensal(0L, 0L, 0L, 0.0, 0.0, "")
+
+        getMovimentacoesMensaisMes(mesAtual, movimentacaoMensalListMesAtual) {
+            getMovimentacoesMensaisMes(mesAnterior, movimentacaoMensalListMesAnterior) {
+                getContasMesAnterior(movimentacaoMensalListMesAnterior, contasList) {
+
+                    contasList.forEach { conta ->
+                        if (!conta.isEncerrada) {
+
+                            movimentacaoMensalListMesAnterior.forEach { mmAnt ->
+                                if (mmAnt.contaId == conta.contaId) {
+                                    movimentacaoMensalListMesAtual.forEach { mmAtual ->
+                                        if (mmAtual.contaId == mmAnt.contaId) {
+                                            isExisteNoMesAtual = true
+                                        }
+                                    }
+
+                                    //se não existe no mês, então crie
+                                    if (!isExisteNoMesAtual) {
+                                        clonaMovimentacaoMensalEInsereNoMesPosterior(mmAnt)
+                                    }//
+                                }
+                                isExisteNoMesAtual = false
+                                movimentacaoAtual = MovimentacaoMensal(0L, 0L, 0L, 0.0, 0.0, "")
+                            }
+                        }
+                    }
+
+                    callback()
+
+                }
+            }
+        }
+    }
+
+    fun atualizarPendentes(pendentesList: ArrayList<MovimentacaoMensal>) {
+
+        pendentesList.forEach {
+            atualizaValorInicialParaFinalDoMesAnterior(it){}
+        }
+    }
+
+    fun atualizaValorInicialParaFinalDoMesAnterior(
+        movimentacaoMensal: MovimentacaoMensal, callback: () -> Unit
+    ) {
+
+        movimentacaoMensalViewModel.update(movimentacaoMensal)
+        callback()
+
+    }
+
+    private fun getMovimentacoesMensaisMes(
+        mes: Mes,
+        movimentacoesList: ArrayList<MovimentacaoMensal>,
+        callback: () -> Unit
+    ) {
+        movimentacoesList.clear()
+
+        movimentacaoMensalViewModel.allMovimentacoes.observe(
+            this.viewLifecycleOwner,
+            androidx.lifecycle.Observer { movs ->
+                movs.forEach { movi ->
+                    if (movi.mesId == mes.mesId) movimentacoesList.add(movi)
+                }
+                callback()
+            })
+    }
+
+    private fun getContasMesAnterior(
+        movimentacoesList: ArrayList<MovimentacaoMensal>,
+        contasList: ArrayList<Conta>,
+        callback: () -> Unit
+    ) {
+
+        contasList.clear()
+
+        contaViewModel.allContas.observe(
+            this.viewLifecycleOwner,
+            androidx.lifecycle.Observer { contas ->
+                contas.forEach { conta ->
+                    movimentacoesList.forEach { movi ->
+                        if (movi.contaId == conta.contaId) contasList.add(conta)
+                    }
+                }
+                callback()
+            })
+    }
+
+    private fun clonaMovimentacaoMensalEInsereNoMesPosterior(mm: MovimentacaoMensal) {
+        var clone = mm.copy()
+        var dataComecoMes = "01/${avancaUmMesNaData(mm.dataAtualizacao).substring(3)}"
+        clone.dataAtualizacao = dataComecoMes
+        clone.mesId = mesAtual.mesId
+        clone.saldoInicial = mm.saldoAtualOuFinal
+        clone.saldoAtualOuFinal = mm.saldoAtualOuFinal
+        clone.movimentacaoMensalId = 0L
+        movimentacaoMensalViewModel.insert(clone)
+    }
+
+
 }
