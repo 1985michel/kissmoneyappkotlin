@@ -84,6 +84,16 @@ class mesFragment : Fragment() {
         binding.variacaoDiasMesTextView.text =
             CentralEstatistica.estatisticasMensais.get(AcompanhamentoDeMeta.mesAtual.mesId)!!.balancoEmDias.toString()
 
+        binding.imageView.setImageResource(
+            if (binding.variacaoDiasMesTextView.text.toString().toInt() > 0) {
+                R.drawable.greenrow4
+            } else if (binding.variacaoDiasMesTextView.text.toString().toInt() < 0) {
+                R.drawable.redrow4
+            } else {
+                R.drawable.round_colorless
+            }
+        )
+
         AcompanhamentoDeMeta.setValues {
             adapter.setDados(AcompanhamentoDeMeta.metaJoinList)
         }
