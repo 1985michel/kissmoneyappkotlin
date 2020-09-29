@@ -65,6 +65,7 @@ class GanhoListAdapter internal constructor(context: Context) :
         val dataRecebimentoTV: TextView = itemView.findViewById(R.id.dataRecebimentoTextView)
         val tipoDeGanhoIV: ImageView = itemView.findViewById(R.id.ganhoIconImageView)
         val isRecorrenteIV: ImageView = itemView.findViewById(R.id.imageView9)
+        val atencaoImageView: ImageView = itemView.findViewById(R.id.atencaoImageViewGanho)
 
         val constraint: ConstraintLayout = itemView.findViewById(R.id.constraint)
     }
@@ -94,6 +95,19 @@ class GanhoListAdapter internal constructor(context: Context) :
         )
 
         holder.isRecorrenteIV.visibility = if (current.isGanhoRegular) View.VISIBLE else View.INVISIBLE
+
+        var statusVencimento = verificaStatusVencimento(current.dataRecebimento)
+        if (!current.isRecebido) {
+            println("${current.nomeGanho} recebido: ${current.isRecebido} <<<<<<<<<<<<<<")
+            if (statusVencimento <= 0) {
+                holder.atencaoImageView.visibility = View.VISIBLE
+            } else if (statusVencimento > 0) {
+                holder.atencaoImageView.visibility = View.INVISIBLE
+            }
+        } else {
+            holder.atencaoImageView.visibility = View.INVISIBLE
+        }
+
 
         holder.constraint.setOnClickListener {
 

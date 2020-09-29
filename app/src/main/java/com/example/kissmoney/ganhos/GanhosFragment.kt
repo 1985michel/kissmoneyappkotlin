@@ -295,13 +295,16 @@ class GanhosFragment : Fragment() {
     private fun setaValoresNaView(binding: FragmentGanhosBinding) {
 
         var total = 0.0
+        var totalPendente = 0.0
 
         for (gj in GanhoJoinViewModel.ganhosJoinDoMes) {
             total += gj.valor
+            if (!gj.isRecebido) totalPendente += gj.valor
         }
 
         binding.nomeDoMestextView2.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
         binding.valorTotalTv.text = formataParaBr(total.toBigDecimal())
+        binding.textView39.text = formataParaBr(totalPendente.toBigDecimal())
 
     }
 

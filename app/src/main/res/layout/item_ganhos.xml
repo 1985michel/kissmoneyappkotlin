@@ -32,11 +32,9 @@ limitations under the License. -->
 
         <ImageView
             android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
-            android:paddingLeft="2dp"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="2dp"
             app:layout_constraintStart_toEndOf="@+id/dataRecebimentoTextView"
             app:layout_constraintTop_toBottomOf="@+id/nomeGanhoTextView"
             app:srcCompat="@drawable/despesa_recorrente_small" />
@@ -47,8 +45,7 @@ limitations under the License. -->
             style="@style/subtituloTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Salário do José"
@@ -57,7 +54,7 @@ limitations under the License. -->
             android:textSize="18sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@+id/ganhoIconImageView"
-            app:layout_constraintEnd_toStartOf="@+id/atencaoImageView"
+            app:layout_constraintEnd_toStartOf="@+id/atencaoImageViewGanho"
             app:layout_constraintStart_toEndOf="@+id/ganhoIconImageView" />
 
         <TextView
@@ -66,7 +63,6 @@ limitations under the License. -->
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:layout_marginEnd="4dp"
             android:fontFamily="@font/roboto_condensed_regular"
             android:text="R$ 989.00,00"
             android:textAlignment="center"
@@ -77,10 +73,12 @@ limitations under the License. -->
             app:layout_constraintTop_toBottomOf="@+id/nomeGanhoTextView" />
 
         <ImageView
-            android:id="@+id/atencaoImageView"
-            android:layout_width="15dp"
-            android:layout_height="25dp"
+            android:id="@+id/atencaoImageViewGanho"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/atencao_icon"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/nomeGanhoTextView"
             app:layout_constraintEnd_toEndOf="parent" />
 

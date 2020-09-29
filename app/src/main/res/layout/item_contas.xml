@@ -66,7 +66,7 @@ limitations under the License. -->
             app:layout_constraintTop_toBottomOf="@+id/nomeContaItemTV" />
 
         <ImageView
-            android:id="@+id/atencaoImageView"
+            android:id="@+id/atencaoImageViewGanho"
             android:layout_width="15dp"
             android:layout_height="25dp"
             android:layout_marginEnd="16dp"

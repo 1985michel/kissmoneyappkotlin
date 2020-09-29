@@ -51,6 +51,30 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/textView39"
+                style="@style/subtituloTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="R$ 0,00"
+                android:textColor="@color/lightgreybackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/valor_total_tv" />
+
+            <TextView
+                android:id="@+id/palavraVariacaoEmReaisTextView3"
+                style="@style/padraoTextViewWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="Pendente"
+                android:textColor="@color/design_default_color_surface"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView39"
+                app:layout_constraintEnd_toStartOf="@+id/textView39" />
+
+            <TextView
                 android:id="@+id/textView"
                 style="@style/tituloTextView"
                 android:layout_width="wrap_content"
@@ -69,11 +93,10 @@
                 style="@style/destaque_value_fragment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="37dp"
-                android:layout_marginBottom="24dp"
                 android:text="R$ 0,00"
                 android:textColor="@color/lightgreybackground"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

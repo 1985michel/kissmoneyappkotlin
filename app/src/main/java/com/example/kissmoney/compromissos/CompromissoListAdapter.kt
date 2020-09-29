@@ -107,6 +107,8 @@ class CompromissoListAdapter internal constructor(context: Context) :
             } else if (statusVencimento > 0) {
                 holder.atencaoImageView.visibility = View.INVISIBLE
             }
+        } else {
+            holder.atencaoImageView.visibility = View.INVISIBLE
         }
 
 
