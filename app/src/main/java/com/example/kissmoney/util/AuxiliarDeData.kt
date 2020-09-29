@@ -76,6 +76,12 @@ fun recebeNomeMesRetornaNomeMesPosterior(nomeMes: String): String {
     return mesPosterior + "/" + anoInt.toString()
 }
 
+fun avancaUmMesNaData(data: String): String {
+    var dia = data.substring(0,2)
+
+    return "$dia/${recebeNomeMesRetornaNomeMesPosterior(data.substring(3))}"
+}
+
 fun getNomeMesAtual(): String {
     val cal = Calendar.getInstance()
     val year = cal[Calendar.YEAR]

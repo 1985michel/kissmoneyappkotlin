@@ -162,14 +162,17 @@ class CompromissoListAdapter internal constructor(context: Context) :
 
                 var msg = dialogIterno.findViewById(R.id.msgTextView) as TextView
                 msg.setText(
-                    Html.fromHtml("Você confirma que deseja apagar <b>${current.nomeCompromisso.toUpperCase()}</b> e todos os seus registros (inclusive de todos os meses)?")
+                    Html.fromHtml("Você confirma que deseja apagar <b>${current.nomeCompromisso.toUpperCase()}</b> neste mês?")
                 )
 
                 var confirmaBtn = dialogIterno.findViewById(R.id.apagarButton) as Button
 
                 confirmaBtn.setOnClickListener {
-                    compromissoViewModel.delete(
-                        current.getCompromisso()
+//                    compromissoViewModel.delete(
+//                        current.getCompromisso()
+//                    )
+                    compromissoMensalViewModel.delete(
+                        current.getCompromissoMensal()
                     )
 
                     val toast = Toast.makeText(
@@ -307,9 +310,9 @@ class CompromissoListAdapter internal constructor(context: Context) :
                         var isPago = isPagoSwitch?.isChecked
                         var dataVencimento = dataVencimentoTV?.text.toString()
 
-                        var compromisso = Compromisso(current.compromissoId, nome)
+                        var compromisso = Compromisso(current.compromissoId, nome, isRecorrente!!)
                         var compromissoMensal =
-                            CompromissoMensal(current.compromissoMensalId, current.mesId, current.compromissoId, valor, dataVencimento, isPago!!, isRecorrente!!)
+                            CompromissoMensal(current.compromissoMensalId, current.mesId, current.compromissoId, valor, dataVencimento, isPago!!)
 
                         CompromissoManager.updateCompromissoComMovimentacao(compromisso, compromissoMensal, mesViewModel, compromissoViewModel, compromissoMensalViewModel){
                             GlobalScope.launch {

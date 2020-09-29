@@ -14,6 +14,9 @@ data class Compromisso (
     var compromissoId: Long = 0L,
 
     @ColumnInfo(name = "nome_compromisso")
-    val nomeCompromisso: String
+    val nomeCompromisso: String,
+
+    @ColumnInfo(name = "is_recorrente")
+    var isRecorrente: Boolean = false
 
 )

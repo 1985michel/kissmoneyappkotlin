@@ -36,12 +36,11 @@ data class CompromissoMensal (
     val valor: Double = 0.00,
 
     @ColumnInfo(name = "data_vencimento")
-    val dataVencimento: String,
+    var dataVencimento: String,
 
     @ColumnInfo(name = "is_pago")
-    var isPago: Boolean = false,
+    var isPago: Boolean = false
 
-    @ColumnInfo(name = "is_recorrente")
-    var isRecorrente: Boolean = false
+
 
 )

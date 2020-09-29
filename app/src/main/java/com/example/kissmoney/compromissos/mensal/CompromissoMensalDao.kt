@@ -9,6 +9,9 @@ interface CompromissoMensalDao {
     @Query("SELECT * FROM compromisso_mensal_table ORDER BY compromissoId DESC")
     fun getAll(): LiveData<List<CompromissoMensal>>
 
+//    @Query("SELECT * FROM compromisso_mensal_table ORDER BY compromissoId DESC")
+//    fun getCopromissosMensaisRecorrentesDoMes(mesId : Long): LiveData<List<CompromissoMensal>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert (compromissoMensal: CompromissoMensal): Long
 

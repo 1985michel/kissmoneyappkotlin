@@ -8,12 +8,16 @@ import com.example.kissmoney.compromissos.mensal.CompromissoMensalViewModel
 import com.example.kissmoney.contas.ContaJoinViewModel
 import com.example.kissmoney.mes.Mes
 import com.example.kissmoney.mes.MesViewModel
+import com.example.kissmoney.util.avancaUmMesNaData
 
 object CompromissoJoinViewModel {
 
     private lateinit var allCompromissos: LiveData<List<Compromisso>>
     private lateinit var allCompromissosMensais: LiveData<List<CompromissoMensal>>
     private lateinit var allMeses: LiveData<List<Mes>>
+
+    private lateinit var compromissoMensalViewModel: CompromissoMensalViewModel
+    private lateinit var mesViewModel: MesViewModel
 
     var compromissosJoinDoMes = ArrayList<CompromissoJoin>()
 
@@ -25,6 +29,10 @@ object CompromissoJoinViewModel {
         mesViewModel: MesViewModel,
         callback: () -> Unit
     ) {
+
+        this.compromissoMensalViewModel = compromissoMensalViewModel
+        this.mesViewModel = mesViewModel
+
         allCompromissos = compromissoViewModel.allCompromissos
         allCompromissosMensais = compromissoMensalViewModel.allCompromissosMensais
         allMeses = mesViewModel.allMeses
@@ -55,7 +63,13 @@ object CompromissoJoinViewModel {
                 for (compromisso in compromissoList) {
                     if (compromisso.compromissoId == cm.compromissoId) compromissoW = compromisso
                 }
-                if (cm.mesId == mesId) compromissosJoinDoMes.add(CompromissoJoin(compromissoW, cm, mesW))
+                if (cm.mesId == mesId) compromissosJoinDoMes.add(
+                    CompromissoJoin(
+                        compromissoW,
+                        cm,
+                        mesW
+                    )
+                )
             }
             callback()
         }
@@ -72,7 +86,7 @@ object CompromissoJoinViewModel {
         mesList.clear()
         getCompromissosMensais(compromissoMensalList) {
             getMeses(mesList) {
-                getCompromissos(compromissoList){
+                getCompromissos(compromissoList) {
                     callback()
                 }
             }
@@ -95,7 +109,10 @@ object CompromissoJoinViewModel {
         })
     }
 
-    private fun getCompromissosMensais(compromissoMensalList: ArrayList<CompromissoMensal>, callback: () -> Unit) {
+    private fun getCompromissosMensais(
+        compromissoMensalList: ArrayList<CompromissoMensal>,
+        callback: () -> Unit
+    ) {
         allCompromissosMensais.observe(owner, Observer {
             compromissoMensalList.clear()
             compromissoMensalList.addAll(it)
@@ -103,15 +120,5 @@ object CompromissoJoinViewModel {
         })
     }
 
-//    private fun importarCompromissosRecorrentesDoMesAnterior(mesAnterior : Mes) {
-//
-//        var compromissosRecorrentesDoMesAnterior = ArrayList<Compromisso>()
-//        allCompromissos.observe(owner, Observer {compromisoss ->
-//
-//            for (comp in compromisoss){
-//                if (comp.is)
-//            }
-//        })
-//
-//    }
+
 }

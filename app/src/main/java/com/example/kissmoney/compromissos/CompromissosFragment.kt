@@ -92,7 +92,8 @@ class CompromissosFragment : Fragment() {
             AppCompatResources.getDrawable(
                 this.requireContext(),
                 R.drawable.divider
-            )!!)
+            )!!
+        )
         recyclerView.addItemDecoration(itemDecoration)
 
         // início navegação entre meses
@@ -231,16 +232,22 @@ class CompromissosFragment : Fragment() {
                     var isPago = isPagoSwitch?.isChecked
                     var dataVencimento = dataVencimentoTV?.text.toString()
 
-                    var compromisso = Compromisso(0L, nome)
+                    var compromisso = Compromisso(0L, nome, isRecorrente!!)
                     var compromissoMensal =
-                        CompromissoMensal(0L, 0L, 0L, valor, dataVencimento, isPago!!, isRecorrente!!)
+                        CompromissoMensal(0L, 0L, 0L, valor, dataVencimento, isPago!!)
 
-                    CompromissoManager.criaCompromissoComCompromissoMensal(compromisso, compromissoMensal, mesViewModel, compromissoViewModel, compromissoMensalViewModel){
+                    CompromissoManager.criaCompromissoComCompromissoMensal(
+                        compromisso,
+                        compromissoMensal,
+                        mesViewModel,
+                        compromissoViewModel,
+                        compromissoMensalViewModel
+                    ) {
                         GlobalScope.launch {
                             //Background processing..."
                             withContext(Dispatchers.Main) {
                                 //"Update UI here!")
-                                CompromissoJoinViewModel.setCompromissosJoinNoMes(mesAtual.mesId){
+                                CompromissoJoinViewModel.setCompromissosJoinNoMes(mesAtual.mesId) {
                                     setaCopromissosNoAdapter()
                                 }//
                             }
@@ -269,21 +276,25 @@ class CompromissosFragment : Fragment() {
 
         }
 
-        binding.nomeDoMestextView4.setOnClickListener {
+        binding.importarRecorrenteImagView.setOnClickListener {
 
 
+            importaCompromissosDoMesAnterior() {
+                setaCopromissosNoAdapter()
+
+                val toast = Toast.makeText(
+                    activity as AppCompatActivity,
+                    Html.fromHtml("<font color='#e3f2fd' ><b>" + "Compromissos recorrentes importados!" + "</b></font>"),
+                    Toast.LENGTH_LONG
+                )
+
+                //colocando o toast verde
+                toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+
+                toast.show()
+            }
 
 
-            val toast = Toast.makeText(
-                activity as AppCompatActivity,
-                Html.fromHtml("<font color='#e3f2fd' ><b>" + "Compromissos recorrentes do mês anterior importados com sucesso!" + "</b></font>"),
-                Toast.LENGTH_LONG
-            )
-
-            //colocando o toast verde
-            toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
-
-            toast.show()
         }
 
         (activity as AppCompatActivity).supportActionBar?.title = ""
@@ -348,11 +359,119 @@ class CompromissosFragment : Fragment() {
         }
     }
 
-    private fun importaCompromissosDoMesAnterior() {
+    private fun importaCompromissosDoMesAnterior(callback: () -> Unit) {
 
-       
 
+        var compromissoList = ArrayList<Compromisso>()
+        var compromissoMensalListMesAnterior = ArrayList<CompromissoMensal>()
+
+        var compromissoMensalListMesAtual = ArrayList<CompromissoMensal>()
+
+        //variavel que armazena se o compromisso já existe no mes atual
+        var isExisteNoMesAtual = false
+
+
+        getCompromissosMensaisMes(mesAtual, compromissoMensalListMesAtual) {
+            //pego os compromissos mensais do mes anterior
+            getCompromissosMensaisMes(mesAnterior, compromissoMensalListMesAnterior) {
+
+                //pego os compromissos que são do mes anterior
+                getCompromissosMesAnterior(compromissoMensalListMesAnterior, compromissoList) {
+
+                    //percorro os compromissos do mes anterior e verifico se sao recorrentes
+                    compromissoList.forEach { comp ->
+
+                        if (comp.isRecorrente) {
+
+                            //se forem recorrentes, verifico se ja existem no mes atual
+                            compromissoMensalListMesAnterior.forEach { cm ->
+                                if (cm.compromissoId == comp.compromissoId) {
+
+//                                    CompromissoJoinViewModel.compromissosJoinDoMes.forEach { cj ->
+//                                        if (cj.compromissoId == cm.compromissoId) isExisteNoMesAtual =
+//                                            true
+//                                    }
+                                    compromissoMensalListMesAtual.forEach { compAtual ->
+                                        if (compAtual.compromissoId == cm.compromissoId) isExisteNoMesAtual = true
+                                    }
+
+                                    if (!isExisteNoMesAtual) {
+                                        clonaCompromissoMensalEInsereNoMesPosterior(cm)
+                                    }
+                                }
+
+                                isExisteNoMesAtual = false
+                            }
+                        }
+                    }
+                    callback()
+                }
+            }
+        }
+    }
+
+    private fun getCompromissosMesAnterior(
+        compromissoMensalListMesAnterior: ArrayList<CompromissoMensal>,
+        compromissoList: ArrayList<Compromisso>,
+        callback: () -> Unit
+    ) {
+
+        compromissoList.clear()
+
+        compromissoViewModel.allCompromissos.observe(
+            this.viewLifecycleOwner,
+            androidx.lifecycle.Observer { comps ->
+                comps.forEach { cp ->
+                    compromissoMensalListMesAnterior.forEach { cms ->
+                        if (cms.compromissoId == cp.compromissoId) compromissoList.add(cp)
+                    }
+                }
+                callback()
+            })
+    }
+
+    private fun getCompromissosMensaisMes(
+        mes: Mes,
+        compromissoMensalListMesAnterior: ArrayList<CompromissoMensal>,
+        callback: () -> Unit
+    ) {
+
+        compromissoMensalListMesAnterior.clear()
+
+        compromissoMensalViewModel.allCompromissosMensais.observe(
+            this.viewLifecycleOwner,
+            androidx.lifecycle.Observer { cms ->
+                cms.forEach { cm ->
+                    if (cm.mesId == mes.mesId) compromissoMensalListMesAnterior.add(cm)
+                }
+                callback()
+            })
+    }
+
+
+    private fun clonaCompromissoMensalEInsereNoMesPosterior(cm: CompromissoMensal) {
+        var clone = cm.copy()
+        clone.dataVencimento = avancaUmMesNaData(cm.dataVencimento)
+        clone.mesId = mesAtual.mesId
+        clone.compromissoMensalId = 0L
+        compromissoMensalViewModel.insert(clone)
     }
 
 
 }
+
+
+//CompromissoJoinViewModel.setCompromissosJoinNoMes(mesAtual.mesId){
+//    setaCopromissosNoAdapter()
+//
+//    val toast = Toast.makeText(
+//        activity as AppCompatActivity,
+//        Html.fromHtml("<font color='#e3f2fd' ><b>" + "Compromissos recorrentes do mês anterior importados com sucesso!" + "</b></font>"),
+//        Toast.LENGTH_LONG
+//    )
+//
+//    //colocando o toast verde
+//    toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+//
+//    toast.show()
+//}

@@ -25,7 +25,7 @@ import kotlinx.coroutines.CoroutineScope
 @Database(
     entities = [Compromisso::class, CompromissoMensal::class, Conta::class, MovimentacaoMensal::class,
         Ganho::class, GanhoMensal::class, Meta::class, Mes::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class KissmoneyDatabase  : RoomDatabase(){

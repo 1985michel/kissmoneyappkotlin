@@ -24,15 +24,15 @@ class CompromissoJoin (compromisso: Compromisso, compromissoMensal: CompromissoM
         valor = compromissoMensal.valor
         dataVencimento = compromissoMensal.dataVencimento
         isPago = compromissoMensal.isPago
-        isRecorrente = compromissoMensal.isRecorrente
+        isRecorrente = compromisso.isRecorrente
     }
 
     fun getCompromisso(): Compromisso {
-        return Compromisso(this.compromissoId, this.nomeCompromisso)
+        return Compromisso(this.compromissoId, this.nomeCompromisso, this.isRecorrente)
     }
 
     fun getCompromissoMensal(): CompromissoMensal {
-        return CompromissoMensal(this.compromissoMensalId, this.mesId, this.compromissoId, this.valor, this.dataVencimento, this.isPago, this.isRecorrente)
+        return CompromissoMensal(this.compromissoMensalId, this.mesId, this.compromissoId, this.valor, this.dataVencimento, this.isPago)
     }
 
 }

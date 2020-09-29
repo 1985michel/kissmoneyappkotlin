@@ -23,6 +23,18 @@ object CompromissoManager {
         }
     }
 
+    fun criaCompromissoMensal(
+        compromissoMensal: CompromissoMensal,
+        mesViewModel: MesViewModel,
+        compromissoMensalViewModel: CompromissoMensalViewModel, callback: () -> Unit
+    ) {
+        setaMes(compromissoMensal, mesViewModel) {
+                compromissoMensalViewModel.insertMonitorado(compromissoMensal) {
+                    callback()
+                }
+        }
+    }
+
     fun updateCompromissoComMovimentacao(compromisso: Compromisso, compromissoMensal: CompromissoMensal,
                                          mesViewModel: MesViewModel, compromissoViewModel: CompromissoViewModel,
                                          compromissoMensalViewModel: CompromissoMensalViewModel, callback: () -> Unit) {
