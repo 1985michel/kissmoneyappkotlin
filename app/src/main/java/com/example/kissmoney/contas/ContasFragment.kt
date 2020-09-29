@@ -329,20 +329,24 @@ class ContasFragment : Fragment() {
 
             importarContasDoMesAnterior {
 
-                setaContasNoAdapter(mesAtual.mesId)
+                atualizarSaldosDaContaComBaseNoMesAnterior(){
+                    setaContasNoAdapter(mesAtual.mesId)
 
 
 
-                val toast = Toast.makeText(
-                    activity as AppCompatActivity,
-                    Html.fromHtml("<font color='#e3f2fd' ><b>" + "Contas importadas ou Atualizadas!" + "</b></font>"),
-                    Toast.LENGTH_LONG
-                )
+                    val toast = Toast.makeText(
+                        activity as AppCompatActivity,
+                        Html.fromHtml("<font color='#e3f2fd' ><b>" + "Contas importadas ou Atualizadas!" + "</b></font>"),
+                        Toast.LENGTH_LONG
+                    )
 
-                //colocando o toast verde
-                toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+                    //colocando o toast verde
+                    toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
 
-                toast.show()
+                    toast.show()
+                }
+
+
             }
         }
 
@@ -409,6 +413,32 @@ class ContasFragment : Fragment() {
 
             }
         }
+    }
+
+
+    private fun atualizarSaldosDaContaComBaseNoMesAnterior(callback: () -> Unit) {
+
+        var movMesAnteriorList = ArrayList<MovimentacaoMensal>()
+        var movMesAtualList = ArrayList<MovimentacaoMensal>()
+
+        movimentacaoMensalViewModel.allMovimentacoes.observe(this.viewLifecycleOwner, androidx.lifecycle.Observer {
+            lista ->
+            lista.forEach { mv ->
+                if (mv.mesId == mesAnterior.mesId) movMesAnteriorList.add(mv.copy())
+                else if (mv.mesId == mesAtual.mesId) movMesAtualList.add(mv.copy())
+            }
+        })
+
+        movMesAnteriorList.forEach { mmAnt ->
+            movMesAtualList.forEach {mmAtu ->
+                if (mmAnt.contaId == mmAtu.contaId) {
+                    mmAtu.saldoInicial = mmAnt.saldoAtualOuFinal
+                    movimentacaoMensalViewModel.update(mmAtu)
+                }
+            }
+        }
+
+        callback()
     }
 
     private fun importarContasDoMesAnterior(callback: () -> Unit) {
