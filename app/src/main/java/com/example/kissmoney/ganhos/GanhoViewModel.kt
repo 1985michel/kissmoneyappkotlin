@@ -44,7 +44,7 @@ class GanhoViewModel (application: Application) : AndroidViewModel(application) 
         if (ganhoEncontrado is Ganho) {
             ganho.nomeGanho = ganhoEncontrado.nomeGanho
             ganho.isRendaPassiva = ganhoEncontrado.isRendaPassiva
-            ganho.isEncerrado = ganhoEncontrado.isEncerrado
+            ganho.isRecorrente = ganhoEncontrado.isRecorrente
         }
     }
 }

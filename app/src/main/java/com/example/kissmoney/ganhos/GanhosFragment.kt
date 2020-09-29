@@ -21,12 +21,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kissmoney.R
-import com.example.kissmoney.contas.ContaJoinViewModel
-import com.example.kissmoney.contas.ContaViewModel
 import com.example.kissmoney.contas.ContasFragmentArgs
-import com.example.kissmoney.contas.ContasFragmentDirections
-import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
-import com.example.kissmoney.databinding.FragmentContasBinding
 import com.example.kissmoney.databinding.FragmentGanhosBinding
 import com.example.kissmoney.ganhos.mensal.GanhoMensal
 import com.example.kissmoney.ganhos.mensal.GanhoMensalViewModel
@@ -273,6 +268,25 @@ class GanhosFragment : Fragment() {
             dialog.show()
         }
 
+
+        binding.importarRecorrenteImagView2.setOnClickListener {
+
+            importarGanhosDoMesAnterior {
+                setaGanhosNoAdapter()
+
+                val toast = Toast.makeText(
+                    activity as AppCompatActivity,
+                    Html.fromHtml("<font color='#e3f2fd' ><b>" + "Ganhos recorrentes importados!" + "</b></font>"),
+                    Toast.LENGTH_LONG
+                )
+
+                //colocando o toast verde
+                toast.view?.setBackgroundColor(Color.parseColor("#32AB44"))
+
+                toast.show()
+            }
+        }
+
         (activity as AppCompatActivity).supportActionBar?.title = ""
 
         return binding.root
@@ -325,5 +339,89 @@ class GanhosFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun importarGanhosDoMesAnterior(callback: () -> Unit) {
+
+        var ganhosList = ArrayList<Ganho>()
+        var ganhoMensalListMesAnterior = ArrayList<GanhoMensal>()
+        var ganhoMensalListMesAtual = ArrayList<GanhoMensal>()
+
+        var isExisteNoMesAtual = false
+
+        getGanhosMensaisMes(mesAtual, ganhoMensalListMesAtual) {
+            getGanhosMensaisMes(mesAnterior, ganhoMensalListMesAnterior) {
+                getGanhosMesAnterior(ganhoMensalListMesAnterior, ganhosList) {
+
+                    ganhosList.forEach { ganho ->
+
+                        if (ganho.isRecorrente) {
+                            ganhoMensalListMesAnterior.forEach { gm ->
+                                if (gm.ganhoId == ganho.ganhoId) {
+                                    ganhoMensalListMesAtual.forEach { gmAtual ->
+                                        if (gmAtual.ganhoId == gm.ganhoId) isExisteNoMesAtual = true
+                                    }
+
+                                    if (!isExisteNoMesAtual) {
+                                        clonaGanhoMensalEInsereNoMesPosterior(gm)
+                                    }
+                                }
+
+                                isExisteNoMesAtual = false
+                            }
+                        }
+                    }
+
+                    callback()
+
+                }
+            }
+        }
+
+    }
+
+    private fun getGanhosMensaisMes(
+        mes: Mes,
+        ganhosMensaisList : ArrayList<GanhoMensal>,
+        callback: () -> Unit
+    ) {
+
+        ganhosMensaisList.clear()
+
+        ganhoMensalViewModel.allGanhosMensais.observe(this.viewLifecycleOwner, androidx.lifecycle.Observer {
+            gms ->
+            gms.forEach { gm ->
+                if (gm.mesId == mes.mesId)  ganhosMensaisList.add(gm)
+            }
+            callback()
+        })
+    }
+
+    private fun getGanhosMesAnterior(
+        ganhosMensaisList : ArrayList<GanhoMensal>,
+        ganhosList : ArrayList<Ganho>,
+        callback: () -> Unit
+    ) {
+
+        ganhosList.clear()
+
+        ganhoViewModel.allGanhos.observe(this.viewLifecycleOwner, androidx.lifecycle.Observer {
+                ganhos ->
+            ganhos.forEach { g ->
+                ganhosMensaisList.forEach { gms ->
+                    if (gms.ganhoId == g.ganhoId ) ganhosList.add(g)
+                }
+            }
+            callback()
+        })
+    }
+
+    private fun clonaGanhoMensalEInsereNoMesPosterior(gm: GanhoMensal) {
+        var clone = gm.copy()
+        clone.dataRecebimento = avancaUmMesNaData(gm.dataRecebimento)
+        clone.mesId = mesAtual.mesId
+        clone.isRecebido = false
+        clone.ganhoMensalId = 0L
+        ganhoMensalViewModel.insert(clone)
     }
 }

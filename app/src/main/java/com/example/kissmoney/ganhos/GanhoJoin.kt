@@ -23,7 +23,7 @@ class GanhoJoin (ganho: Ganho, ganhoMensal: GanhoMensal, mes: Mes) {
         ganhoId = ganho.ganhoId
         nomeGanho = ganho.nomeGanho
         isRendaPassiva = ganho.isRendaPassiva
-        isGanhoRegular = ganho.isEncerrado
+        isGanhoRegular = ganho.isRecorrente
         ganhoMensalId = ganhoMensal.ganhoMensalId
         mesId = ganhoMensal.mesId
         mesNome = mes.nomeMes

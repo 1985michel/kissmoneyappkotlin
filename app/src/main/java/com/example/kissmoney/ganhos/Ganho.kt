@@ -16,6 +16,6 @@ data class Ganho (
     @ColumnInfo(name = "is_renda_passiva")
     var isRendaPassiva: Boolean = false,
 
-    @ColumnInfo(name = "is_encerrado")
-    var isEncerrado: Boolean = false
+    @ColumnInfo(name = "is_recorrente")
+    var isRecorrente: Boolean = false
 )

@@ -35,10 +35,10 @@ data class GanhoMensal (
     val valor: Double = 0.00,
 
     @ColumnInfo(name = "data_recebimento")
-    val dataRecebimento: String,
+    var dataRecebimento: String,
 
     @ColumnInfo(name = "is_recebido")
-    val isRecebido: Boolean = false,
+    var isRecebido: Boolean = false,
 
     @ColumnInfo(name = "observacao")
     val observacao: String

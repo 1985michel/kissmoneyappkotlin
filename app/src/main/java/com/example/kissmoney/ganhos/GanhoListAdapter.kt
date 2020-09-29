@@ -64,6 +64,7 @@ class GanhoListAdapter internal constructor(context: Context) :
         val valorTV: TextView = itemView.findViewById(R.id.valor_total_textView)
         val dataRecebimentoTV: TextView = itemView.findViewById(R.id.dataRecebimentoTextView)
         val tipoDeGanhoIV: ImageView = itemView.findViewById(R.id.ganhoIconImageView)
+        val isRecorrenteIV: ImageView = itemView.findViewById(R.id.imageView9)
 
         val constraint: ConstraintLayout = itemView.findViewById(R.id.constraint)
     }
@@ -91,6 +92,8 @@ class GanhoListAdapter internal constructor(context: Context) :
                 R.drawable.trabalho_icon
             }
         )
+
+        holder.isRecorrenteIV.visibility = if (current.isGanhoRegular) View.VISIBLE else View.INVISIBLE
 
         holder.constraint.setOnClickListener {
 
@@ -144,14 +147,18 @@ class GanhoListAdapter internal constructor(context: Context) :
 
                 var msg = dialogIterno.findViewById(R.id.msgTextView) as TextView
                 msg.setText(
-                    Html.fromHtml("Você confirma que deseja apagar <b>${current.nomeGanho.toUpperCase()}</b> e todos os seus registros (inclusive de todos os meses)?")
+                    Html.fromHtml("Você confirma que deseja apagar <b>${current.nomeGanho.toUpperCase()}</b> neste mês?")
                 )
 
                 var confirmaBtn = dialogIterno.findViewById(R.id.apagarButton) as Button
 
                 confirmaBtn.setOnClickListener {
-                    ganhoViewModel.delete(
-                        current.getGanho()
+//                    ganhoViewModel.delete(
+//                        current.getGanho()
+//                    )
+
+                    ganhoMesViewModel.delete(
+                        current.getGanhoMensal()
                     )
 
                     val toast = Toast.makeText(

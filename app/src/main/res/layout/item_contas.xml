@@ -36,7 +36,7 @@ limitations under the License. -->
             style="@style/subtituloTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/roboto_condensed_bold"
@@ -55,15 +55,14 @@ limitations under the License. -->
             style="@style/subtituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="1dp"
             android:fontFamily="@font/roboto_condensed_regular"
             android:text="R$ 989.00,00"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/atencaoImageView"
+            app:layout_constraintEnd_toEndOf="@+id/nomeContaItemTV"
             app:layout_constraintTop_toBottomOf="@+id/nomeContaItemTV" />
 
         <ImageView
@@ -92,6 +91,16 @@ limitations under the License. -->
             android:text="08 / Junho"
             app:layout_constraintStart_toStartOf="@+id/nomeContaItemTV"
             app:layout_constraintTop_toBottomOf="@+id/nomeContaItemTV" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@+id/dataAtualizacaoTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nomeContaItemTV"
+            app:srcCompat="@drawable/despesa_recorrente_2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
