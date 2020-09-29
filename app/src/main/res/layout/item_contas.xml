@@ -70,6 +70,8 @@ limitations under the License. -->
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/atencao_icon"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/nomeContaItemTV"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -91,16 +93,6 @@ limitations under the License. -->
             android:text="08 / Junho"
             app:layout_constraintStart_toStartOf="@+id/nomeContaItemTV"
             app:layout_constraintTop_toBottomOf="@+id/nomeContaItemTV" />
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="20dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
-            app:layout_constraintStart_toEndOf="@+id/dataAtualizacaoTextView"
-            app:layout_constraintTop_toBottomOf="@+id/nomeContaItemTV"
-            app:srcCompat="@drawable/despesa_recorrente_small" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

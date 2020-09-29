@@ -1,6 +1,9 @@
 package com.example.kissmoney.util
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.kissmoney.mes.NomesMeses
+import java.time.LocalDate
 import java.util.*
 
 fun getDataHojeString(): String {
@@ -38,6 +41,35 @@ fun verificaStatusVencimento(data: String) : Int {
 
     return vencimento.compareTo(hoje)
 
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun verificaSeTemMaisDe7diasDaUltimaAtualizacao(data: String) : Boolean {
+
+    val cal = Calendar.getInstance()
+    val year = cal[Calendar.YEAR]
+    var month = cal[Calendar.MONTH]
+    month += 1
+    val day = cal[Calendar.DAY_OF_MONTH]
+    var mes = if (month < 10) "0" + month.toString() else month
+    var dia = if (day < 10) "0" + day.toString() else day
+
+    var diaVencimento = data.substring(0,2)
+    var mesVencimento = data.substring(3,5)
+    var anoVencimento = data.substring(6)
+
+
+    val dataVencimentoDate = LocalDate.parse("$anoVencimento-$mesVencimento-$diaVencimento")
+    val hojeDate = LocalDate.parse("$year-$mes-$dia")
+
+    var diferenca = hojeDate.compareTo(dataVencimentoDate)
+
+//    var vencimento = "$anoVencimento$mesVencimento$diaVencimento"
+//    var hoje = "$year$mes$dia"
+
+    println(">>>>>>> DATA $data tem $diferenca desde a ultima atualizacao")
+
+    return diferenca > 6
 }
 
 fun recebeDataRetornaMes(data: String): String {

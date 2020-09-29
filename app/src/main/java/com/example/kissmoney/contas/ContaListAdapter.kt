@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -24,10 +26,7 @@ import com.example.kissmoney.contas.mensal.MovimentacaoMensal
 import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
 import com.example.kissmoney.mes.Mes
 import com.example.kissmoney.mes.MesViewModel
-import com.example.kissmoney.util.MoneyTextWatcher
-import com.example.kissmoney.util.formataParaBr
-import com.example.kissmoney.util.getDataHojeString
-import com.example.kissmoney.util.limpaFormatacaoDeMoeda
+import com.example.kissmoney.util.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -87,6 +86,7 @@ class ContaListAdapter internal constructor(context: Context) :
         return ContaViewHolder(itemView)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ContaListAdapter.ContaViewHolder, position: Int) {
         var current = contas[position]
 
@@ -105,6 +105,17 @@ class ContaListAdapter internal constructor(context: Context) :
                 R.drawable.creditcard_icon_list
             }
         )
+
+        if (!current.isEncerrada) {
+            if (verificaSeTemMaisDe7diasDaUltimaAtualizacao(current.dataAtualizacao)) {
+                holder.atencaoImageView.visibility = View.VISIBLE
+            } else {
+                holder.atencaoImageView.visibility = View.INVISIBLE
+            }
+
+        } else {
+            holder.atencaoImageView.visibility = View.INVISIBLE
+        }
 
 
         holder.constraint.setOnClickListener {
@@ -167,6 +178,18 @@ class ContaListAdapter internal constructor(context: Context) :
             )
 
 
+            if (!current.isEncerrada) {
+                if (verificaSeTemMaisDe7diasDaUltimaAtualizacao(current.dataAtualizacao)) {
+                    holder.atencaoImageView.visibility = View.VISIBLE
+                } else {
+                    holder.atencaoImageView.visibility = View.INVISIBLE
+                }
+
+            } else {
+                holder.atencaoImageView.visibility = View.INVISIBLE
+            }
+
+
             val cancelBtn = dialog.findViewById<Button>(R.id.cancelButton)
             val deleteBtn = dialog.findViewById<ImageView>(R.id.deleteContaImageView)
             val updateBtn = dialog.findViewById<ImageView>(R.id.updateValorAtualContaImageView)
@@ -184,15 +207,21 @@ class ContaListAdapter internal constructor(context: Context) :
 
                 var msg = dialogIterno.findViewById(R.id.msgTextView) as TextView
                 msg.setText(
-                    Html.fromHtml("Você confirma que deseja apagar <b>${current.nomeConta.toUpperCase()}</b> e todos os seus registros (inclusive de todos os meses)?")
+                    Html.fromHtml("Você confirma que deseja apagar <b>${current.nomeConta.toUpperCase()}</b> neste mês?\nAo fazê-lo a conta será encerrado no mês anterior")
                 )
 
                 var confirmaBtn = dialogIterno.findViewById(R.id.apagarButton) as Button
 
                 confirmaBtn.setOnClickListener {
-                    contaViewModel.delete(
-                        current.getConta()
+//                    contaViewModel.delete(
+//                        current.getConta()
+//                    )
+                    movimentacaoMensalViewModel.delete(
+                        current.getMovimentacao()
                     )
+                    var conta = current.getConta()
+                    conta.isEncerrada = true
+                    contaViewModel.update(conta)
 
 
                     val toast = Toast.makeText(
