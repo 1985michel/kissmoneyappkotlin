@@ -25,10 +25,7 @@ import com.example.kissmoney.mes.CentralEstatistica
 import com.example.kissmoney.mes.Estatisticas
 import com.example.kissmoney.mes.Mes
 import com.example.kissmoney.mes.MesViewModel
-import com.example.kissmoney.util.formataParaBr
-import com.example.kissmoney.util.getNomeMesAtual
-import com.example.kissmoney.util.getNomeMesPorExtensoComAno
-import com.example.kissmoney.util.recebeNomeMesRetornaNomeMesAnterior
+import com.example.kissmoney.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -173,29 +170,87 @@ class GastosFragment : Fragment() {
 
                     if (estatisticaMesAnterior != null) {
 
-                        var percentualVariacaoGasto =
-                            (estatisticaMesAnterior?.totalGastoNoMes!! * 100) / estatisticaMesAtual?.totalGastoNoMes!!
-                        var percentualVariacaoGastoString = if (percentualVariacaoGasto > 0) " + "
-                        else if (percentualVariacaoGasto < 0) " - "
-                        else ""
-                        percentualVariacaoGastoString =
-                            "$percentualVariacaoGastoString ${percentualVariacaoGasto.toString()}"
-                        binding.comparacaoMesAnteriorGastoTotalTextView.text =
-                            percentualVariacaoGastoString
+                        if (estatisticaMesAtual?.totalGastoNoMes!! > 0) {
 
-                        var previsaoCustoMensalMesAnterior =
-                            estatisticaMesAnterior?.totalCompromissosPendentesDoMes + estatisticaMesAnterior.totalGastoNoMes
+                            var percentualVariacaoGasto =
+                                (estatisticaMesAnterior?.totalGastoNoMes!! * 100) / estatisticaMesAtual?.totalGastoNoMes!!
+                            var percentualVariacaoGastoString =
+                                if (percentualVariacaoGasto > 0) " + "
+                                else if (percentualVariacaoGasto < 0) " - "
+                                else ""
+                            percentualVariacaoGastoString =
+                                "$percentualVariacaoGastoString ${percentualVariacaoGasto.toString()}"
 
-                        var percentualVariacaoPrevisaoCustoMensal =
-                            previsaoCustoMensalMesAnterior * 100 / previsaoCustoMensal
-                        var percentualVariacaoPrevisaoCustoString =
-                            if (percentualVariacaoPrevisaoCustoMensal > 0) " + "
-                            else if (percentualVariacaoPrevisaoCustoMensal < 0) " - "
-                            else ""
-                        percentualVariacaoPrevisaoCustoString =
-                            "$percentualVariacaoPrevisaoCustoString ${percentualVariacaoPrevisaoCustoMensal.toString()}"
-                        binding.comparacaoAoMesAnteriorPrevisaoTextView.text =
-                            percentualVariacaoPrevisaoCustoString
+                            var variacaoGastoPercentual = ""
+                            if (estatisticaMesAnterior?.totalGastoNoMes!! > estatisticaMesAtual?.totalGastoNoMes!!) {
+                                variacaoGastoPercentual = "-"
+                                binding.textViewFeedBackGastos.text = "Parabéns! Você está reduzindo seus gastos!"
+                            } else if (estatisticaMesAnterior?.totalGastoNoMes!! < estatisticaMesAtual?.totalGastoNoMes!!) {
+                                variacaoGastoPercentual = "+"
+                                binding.textViewFeedBackGastos.text = "Cuidado! Você está aumentando seus gastos!"
+                            } else {
+                                variacaoGastoPercentual = ""
+                                binding.textViewFeedBackGastos.text = "Seus gastos estão iguais ao mês anterior. Vamos economizar?"
+                            }
+
+                            variacaoGastoPercentual =
+                                "$variacaoGastoPercentual ${formataComNCasasDecimais(
+                                    percentualVariacaoGasto,
+                                    2
+                                )} %"
+
+
+
+                            binding.comparacaoMesAnteriorGastoTotalTextView.text =
+                                variacaoGastoPercentual
+
+
+                        } else {
+                            binding.textViewFeedBackGastos.text = ""
+                            binding.comparacaoMesAnteriorGastoTotalTextView.text = "0.0%"
+                        }
+
+
+                        if (previsaoCustoMensal > 0) {
+
+                            var previsaoCustoMensalMesAnterior =
+                                estatisticaMesAnterior?.totalCompromissosPendentesDoMes + estatisticaMesAnterior.totalGastoNoMes
+
+
+                            var percentualVariacaoPrevisaoCustoMensal =
+                                previsaoCustoMensalMesAnterior * 100 / previsaoCustoMensal
+
+                            //operações de divisão com números positivos sempre serão positivos
+//                            var percentualVariacaoPrevisaoCustoString =
+//                                if (percentualVariacaoPrevisaoCustoMensal > 0) " + "
+//                                else if (percentualVariacaoPrevisaoCustoMensal < 0) " - "
+//                                else ""
+
+                            var variacaoGastoPercentual = ""
+                            if (previsaoCustoMensalMesAnterior > previsaoCustoMensal) {
+                                variacaoGastoPercentual = "-"
+                                binding.textViewFeedBackGastosPrevisao.text = "Parabéns! Você está no caminho de reduzir seus gastos!"
+                            } else if (previsaoCustoMensalMesAnterior < previsaoCustoMensal) {
+                                variacaoGastoPercentual = "+"
+                                binding.textViewFeedBackGastosPrevisao.text = "Cuidado! Você está aumentando seus gastos!"
+                            } else {
+                                variacaoGastoPercentual = ""
+                                binding.textViewFeedBackGastosPrevisao.text = "Seus gastos seguem o mesmo padrão do mês anterior."
+                            }
+
+
+                            variacaoGastoPercentual = " $variacaoGastoPercentual ${formataComNCasasDecimais(percentualVariacaoPrevisaoCustoMensal,2)}"
+//                            percentualVariacaoPrevisaoCustoString =
+//                                "$percentualVariacaoPrevisaoCustoString ${percentualVariacaoPrevisaoCustoMensal.toString()}"
+                            binding.comparacaoAoMesAnteriorPrevisaoTextView.text =
+                                variacaoGastoPercentual
+
+                        } else {
+                            binding.comparacaoAoMesAnteriorPrevisaoTextView.text = "0.0%"
+                            binding.textViewFeedBackGastosPrevisao.text = ""
+                        }
+
+
                     }
                 }
 

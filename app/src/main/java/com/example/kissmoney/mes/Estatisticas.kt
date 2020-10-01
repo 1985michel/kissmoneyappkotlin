@@ -8,6 +8,7 @@ import com.example.kissmoney.contas.ContaJoinViewModel
 import com.example.kissmoney.ganhos.GanhoJoinViewModel
 import com.example.kissmoney.meta.Meta
 import com.example.kissmoney.meta.MetaViewModel
+import com.example.kissmoney.util.formataComNCasasDecimais
 import com.example.kissmoney.util.getDiaHojeNoMes
 import com.example.kissmoney.util.getNomeMesAtual
 import com.example.kissmoney.util.recebeNomeMesRetornaNomeMesAnterior
@@ -15,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.math.RoundingMode
 
 //class Estatisticas (mes: Mes, mesVM: MesViewModel, metaVM: MetaViewModel) {
 
@@ -71,7 +73,7 @@ class Estatisticas (mes: Mes) {
         println(">>> totalEmCaixa = ${this.totalEmCaixa}")
         println(">>> totalEmCaixaNoInicioDoMes = ${this.totalEmCaixaNoInicioDoMes}")
         println(">>> totalEmCaixaNoInicioDosRegistros = $totalEmCaixaNoInicioDosRegistros")
-        println(">>> totalGanhoNoMes = $totalGastoNoMes")
+        println(">>> totalGanhoNoMes = $totalGanhoNoMes")
         println(">>> totalGanhoTodoHistorico = $totalGanhoTodoHistorico")
         println(">>> totalGastoNoMes = $totalGastoNoMes")
         println(">>> totalGastoTodoHistorico = $totalGanhoTodoHistorico")
@@ -89,7 +91,7 @@ class Estatisticas (mes: Mes) {
         println(">>> totalEmCaixa = ${this.totalEmCaixa}")
         println(">>> totalEmCaixaNoInicioDoMes = ${this.totalEmCaixaNoInicioDoMes}")
         println(">>> totalEmCaixaNoInicioDosRegistros = $totalEmCaixaNoInicioDosRegistros")
-        println(">>> totalGanhoNoMes = $totalGastoNoMes")
+        println(">>> totalGanhoNoMes = $totalGanhoNoMes")
         println(">>> totalGanhoTodoHistorico = $totalGanhoTodoHistorico")
         println(">>> totalGastoNoMes = $totalGastoNoMes")
         println(">>> totalGastoTodoHistorico = $totalGanhoTodoHistorico")
@@ -201,6 +203,8 @@ class Estatisticas (mes: Mes) {
     fun setMyTotalGastoNoMes(callback: () -> Unit) {
         totalGastoNoMes = 0.0
         totalGastoNoMes = totalEmCaixaNoInicioDoMes - totalEmCaixa + totalGanhoNoMes
+
+        totalGastoNoMes = formataComNCasasDecimais(totalGastoNoMes,2)
         callback()
     }
 
@@ -213,6 +217,7 @@ class Estatisticas (mes: Mes) {
 //                println(">>>>>>>>>>> ESTATISTICAS 141:  valores ganhos: ${gj.valor}")
                 totalGanhoTodoHistorico += gj.valor
             }
+            totalGanhoTodoHistorico = formataComNCasasDecimais(totalGanhoTodoHistorico,2)
             callback()
         }
     }
@@ -248,6 +253,8 @@ class Estatisticas (mes: Mes) {
 
         totalGastoTodoHistorico =
             totalEmCaixaNoInicioDosRegistros - totalEmCaixa + totalGanhoTodoHistorico
+
+        totalGastoTodoHistorico = formataComNCasasDecimais(totalGastoTodoHistorico,2)
 //        println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
 //        println(">>>> Estatísicas 152: totalGastoTodoHistorico ($totalGastoTodoHistorico) = totalEmCaixaNoInicioDosRegistros ($totalEmCaixaNoInicioDosRegistros) " +
 //                "- totalEmCaixa ($totalEmCaixa) + totalGanhoTodoHistorico ($totalGanhoTodoHistorico)")
@@ -257,13 +264,20 @@ class Estatisticas (mes: Mes) {
 
 
     fun setMyTotalGanhoNoMes(callback: () -> Unit) {
+
         totalGanhoNoMes = 0.0
 
         GanhoJoinViewModel.setGanhosJoinNoMes(mesAtual.mesId) {
             for (gj in GanhoJoinViewModel.ganhosJoinDoMes) {
-                if (gj.isRecebido) totalGanhoNoMes += gj.valor
+                if (gj.isRecebido) {
+                    totalGanhoNoMes += gj.valor
+                    println(" >>>>> ------------ foi ganho em ${mesAtual.nomeMes} >>> ${gj.nomeGanho} >>> ${gj.valor}")
+                }
             }
 
+            //arredondando com duas casas decimais
+            totalGanhoNoMes = formataComNCasasDecimais(totalGanhoNoMes, 2)
+            println(" >>>>> ------------ TOTAL ganho em ${mesAtual.nomeMes} >>> ${totalGanhoNoMes}")
             callback()
         }
     }
@@ -296,10 +310,15 @@ class Estatisticas (mes: Mes) {
     fun setTotalEmCaixaNoInicioDosRegistros(callback: () -> Unit) {
 
         totalEmCaixaNoInicioDosRegistros = 0.0
+        var contasConsideradasList = ArrayList<Long>()
+        contasConsideradasList.clear()
 
         ContaJoinViewModel.setAllContasJoin() {
             for (cj in ContaJoinViewModel.allContasJoin) {
-                totalEmCaixaNoInicioDosRegistros += cj.saldoInicial
+                if (!contasConsideradasList.contains(cj.contaId)) {
+                    totalEmCaixaNoInicioDosRegistros += cj.saldoInicial
+                    contasConsideradasList.add(cj.contaId)
+                }
             }
             qtdMesesComRegistros = ContaJoinViewModel.qtdDeMesesComRegistro
             callback()

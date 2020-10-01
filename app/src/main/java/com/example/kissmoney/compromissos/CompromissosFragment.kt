@@ -454,7 +454,6 @@ class CompromissosFragment : Fragment() {
         clone.dataVencimento = avancaUmMesNaData(cm.dataVencimento)
         clone.mesId = mesAtual.mesId
         clone.compromissoMensalId = 0L
-        clone.isPago = false
         compromissoMensalViewModel.insert(clone)
     }
 

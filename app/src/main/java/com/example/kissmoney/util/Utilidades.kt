@@ -2,6 +2,7 @@ package com.example.kissmoney.util
 
 
 import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
 
@@ -13,6 +14,10 @@ fun formataParaBr(valor: BigDecimal): String {
         .getCurrencyInstance(Locale("pt", "br"))
     if (valor == BigDecimal.valueOf(0.0)) return "R$ 0,00"
     return brazilianFormat.format(valor)
+}
+
+fun formataComNCasasDecimais(valor: Double, casas: Int): Double {
+    return valor.toBigDecimal().setScale(casas, RoundingMode.DOWN).toDouble()
 }
 
 fun limpaFormatacaoDeMoeda(valor: String): String {
