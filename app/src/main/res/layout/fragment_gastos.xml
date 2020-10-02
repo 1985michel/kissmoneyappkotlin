@@ -45,9 +45,11 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout11"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="24dp"
@@ -59,6 +61,32 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout7">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="32dp"
+                android:src="@drawable/atencao_icon"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/textView31"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView40"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:gravity="center"
+                android:text="Dados incoerentes.\nAtualize os saldos das contas, ganhos e compromissos."
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView8"
+                app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
             <TextView
                 android:id="@+id/textView34"
@@ -88,6 +116,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
             <TextView
+                android:id="@+id/textView43"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="Custo de vida diário:"
+                android:textColor="@color/greyfont"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView37"
+                app:layout_constraintStart_toStartOf="@+id/textView37"
+                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+            <TextView
                 android:id="@+id/textViewFeedBackGastosPrevisao"
                 style="@style/padraoTextView"
                 android:layout_width="0dp"
@@ -107,14 +149,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:text="Gasto Total:"
                 android:textColor="@color/greyfont"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView38"
+                app:layout_constraintBottom_toTopOf="@+id/textView43"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
             <TextView
                 android:id="@+id/valorGastoTotalTextView"
@@ -148,14 +189,14 @@
                 style="@style/padraoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="24dp"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:text="Compromissos:"
                 android:textColor="@color/greyfont"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView35"
                 app:layout_constraintStart_toStartOf="@+id/textView31"
-                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+                app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
             <TextView
                 android:id="@+id/valorCompromissosTextView2"
@@ -178,7 +219,7 @@
                 android:text="Compromissos Pendentes:"
                 android:textColor="@color/greyfont"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView37"
+                app:layout_constraintBottom_toTopOf="@+id/reprocessarIV"
                 app:layout_constraintStart_toStartOf="@+id/textView38"
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
@@ -199,14 +240,13 @@
                 style="@style/padraoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:text="Previsão de custo mensal:"
                 android:textColor="@color/greyfont"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView43"
+                app:layout_constraintBottom_toTopOf="@+id/textView38"
                 app:layout_constraintStart_toStartOf="@+id/textView35"
-                app:layout_constraintTop_toBottomOf="@+id/textView35" />
+                app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
             <TextView
                 android:id="@+id/valorPrevisaoMensalTextView"
@@ -257,22 +297,6 @@
                 android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView43"
                 app:layout_constraintEnd_toEndOf="@+id/valorPrevisaoMensalTextView" />
-
-            <TextView
-                android:id="@+id/textView43"
-                style="@style/padraoTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_condensed_regular"
-                android:text="Custo de vida diário:"
-                android:textColor="@color/greyfont"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/reprocessarIV"
-                app:layout_constraintStart_toStartOf="@+id/textView37"
-                app:layout_constraintTop_toBottomOf="@+id/textViewFeedBackGastosPrevisao"
-                app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
                 android:id="@+id/reprocessarIV"

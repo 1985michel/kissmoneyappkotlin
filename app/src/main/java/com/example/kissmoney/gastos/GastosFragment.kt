@@ -168,6 +168,15 @@ class GastosFragment : Fragment() {
                     binding.custoDeVidaDiariotextView.text =
                         formataParaBr(estatisticaMesAtual?.gastoDiarioNoMes.toBigDecimal())
 
+                    if (estatisticaMesAtual?.totalGastoNoMes!! + estatisticaMesAtual?.totalCompromissosPendentesDoMes!! < estatisticaMesAtual?.totalCompromissosDoMes ||
+                        estatisticaMesAtual?.totalGastoNoMes < 0) {
+                        binding.imageView8.visibility = View.VISIBLE
+                        binding.textView40.visibility = View.VISIBLE
+                    } else {
+                        binding.imageView8.visibility = View.GONE
+                        binding.textView40.visibility = View.GONE
+                    }
+
                     if (estatisticaMesAnterior != null) {
 
                         if (estatisticaMesAtual?.totalGastoNoMes!! > 0) {
@@ -196,13 +205,13 @@ class GastosFragment : Fragment() {
                             variacaoGastoPercentual =
                                 "$variacaoGastoPercentual ${formataComNCasasDecimais(
                                     percentualVariacaoGasto,
-                                    2
+                                    1
                                 )} %"
 
 
 
                             binding.comparacaoMesAnteriorGastoTotalTextView.text =
-                                variacaoGastoPercentual
+                                variacaoGastoPercentual.replace('.',',')
 
 
                         } else {
@@ -239,14 +248,16 @@ class GastosFragment : Fragment() {
                             }
 
 
-                            variacaoGastoPercentual = " $variacaoGastoPercentual ${formataComNCasasDecimais(percentualVariacaoPrevisaoCustoMensal,2)}"
+
+
+                            variacaoGastoPercentual = " $variacaoGastoPercentual ${formataComNCasasDecimais(percentualVariacaoPrevisaoCustoMensal,1)} %"
 //                            percentualVariacaoPrevisaoCustoString =
 //                                "$percentualVariacaoPrevisaoCustoString ${percentualVariacaoPrevisaoCustoMensal.toString()}"
                             binding.comparacaoAoMesAnteriorPrevisaoTextView.text =
-                                variacaoGastoPercentual
+                                variacaoGastoPercentual.replace('.',',')
 
                         } else {
-                            binding.comparacaoAoMesAnteriorPrevisaoTextView.text = "0.0%"
+                            binding.comparacaoAoMesAnteriorPrevisaoTextView.text = "0.0 %"
                             binding.textViewFeedBackGastosPrevisao.text = ""
                         }
 
