@@ -102,10 +102,13 @@ class CompromissoListAdapter internal constructor(context: Context) :
 
         var corFontPago = Color.LTGRAY
         if (current.isPago) {
-            holder.nomeCompromisso.setTextColor(corFontPago)
-            holder.valor.setTextColor(corFontPago)
-            holder.isRecorrenteImageView.alpha = 0.4F
-            holder.dataVencimento.alpha = 0.4F
+//            holder.nomeCompromisso.setTextColor(corFontPago)
+//            holder.valor.setTextColor(corFontPago)
+//            holder.isRecorrenteImageView.alpha = 0.4F
+//            holder.dataVencimento.alpha = 0.4F
+            holder.constraint.alpha = 0.3F
+        } else {
+            holder.constraint.alpha = 1F
         }
 
 
