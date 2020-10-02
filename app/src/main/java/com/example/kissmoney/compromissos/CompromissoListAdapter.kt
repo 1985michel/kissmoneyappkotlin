@@ -369,7 +369,7 @@ class CompromissoListAdapter internal constructor(context: Context) :
     }
 
     internal fun setCompromissos(compromissos: List<CompromissoJoin>) {
-        this.compromissos = compromissos
+        this.compromissos = compromissos.sortedWith(compareBy<CompromissoJoin>{it.isPago}.thenBy { it.dataVencimento }.thenByDescending { it.valor })
         notifyDataSetChanged()
     }
 
