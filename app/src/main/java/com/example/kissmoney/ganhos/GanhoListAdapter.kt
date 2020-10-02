@@ -18,6 +18,7 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kissmoney.R
+import com.example.kissmoney.compromissos.CompromissoJoin
 import com.example.kissmoney.ganhos.mensal.GanhoMensal
 import com.example.kissmoney.ganhos.mensal.GanhoMensalViewModel
 import com.example.kissmoney.mes.Mes
@@ -349,7 +350,7 @@ class GanhoListAdapter internal constructor(context: Context) :
     }
 
     internal fun setGanhos(ganhos: List<GanhoJoin>) {
-        this.ganhos = ganhos
+        this.ganhos = ganhos.sortedWith(compareBy<GanhoJoin>{it.isRecebido}.thenBy { it.dataRecebimento }.thenByDescending { it.valor })
         notifyDataSetChanged()
     }
 

@@ -22,6 +22,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kissmoney.R
+import com.example.kissmoney.compromissos.CompromissoJoin
 import com.example.kissmoney.contas.mensal.MovimentacaoMensal
 import com.example.kissmoney.contas.mensal.MovimentacaoMensalViewModel
 import com.example.kissmoney.mes.Mes
@@ -568,7 +569,7 @@ class ContaListAdapter internal constructor(context: Context) :
     }
 
     internal fun setContas(contas: List<ContaJoin>) {
-        this.contas = contas
+        this.contas = contas.sortedWith(compareBy<ContaJoin>{it.tipoConta})
         notifyDataSetChanged()
     }
 
