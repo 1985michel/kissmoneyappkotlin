@@ -100,6 +100,16 @@ class CompromissoListAdapter internal constructor(context: Context) :
                 R.color.lightgreybackground
         )
 
+        var corFontPago = Color.LTGRAY
+        if (current.isPago) {
+            holder.nomeCompromisso.setTextColor(corFontPago)
+            holder.valor.setTextColor(corFontPago)
+            holder.isRecorrenteImageView.alpha = 0.4F
+            holder.dataVencimento.alpha = 0.4F
+        }
+
+
+
         var statusVencimento = verificaStatusVencimento(current.dataVencimento)
         if (!current.isPago) {
             if (statusVencimento <= 0) {
