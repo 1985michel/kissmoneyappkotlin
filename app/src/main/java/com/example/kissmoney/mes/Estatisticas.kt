@@ -176,7 +176,9 @@ class Estatisticas (mes: Mes) {
     }
 
     fun setMyBalanco(callback: () -> Unit) {
-        balanco = totalEmCaixa - totalEmCaixaNoInicioDosRegistros
+        //essa forma de calculo está errada. O balanço é mensal, deve ser só dentro do mês
+        //balanco = totalEmCaixa - totalEmCaixaNoInicioDosRegistros
+        balanco = totalEmCaixa - totalEmCaixaNoInicioDoMes
         callback()
     }
 
