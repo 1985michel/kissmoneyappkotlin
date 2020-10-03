@@ -168,6 +168,8 @@ class GastosFragment : Fragment() {
                     binding.custoDeVidaDiariotextView.text =
                         formataParaBr(estatisticaMesAtual?.gastoDiarioNoMes.toBigDecimal())
 
+                    binding.custoDiarioTodoHistoricoTV.text = formataParaBr(estatisticaMesAtual?.gastoDiarioTodoHistorico.toBigDecimal())
+
                     if (estatisticaMesAtual?.totalGastoNoMes!! + estatisticaMesAtual?.totalCompromissosPendentesDoMes!! < estatisticaMesAtual?.totalCompromissosDoMes ||
                         estatisticaMesAtual?.totalGastoNoMes < 0) {
                         binding.imageView8.visibility = View.VISIBLE
