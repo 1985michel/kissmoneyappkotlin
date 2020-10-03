@@ -167,7 +167,7 @@
                 app:srcCompat="@drawable/ic_add_black_24dp" />
 
             <ImageView
-                android:id="@+id/mesAnteriorImageViewCaixa2"
+                android:id="@+id/mesAnteriorImageViewGasto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -178,7 +178,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/mesPosteriorImageViewCaixa2"
+                android:id="@+id/mesPosteriorImageViewGasto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"

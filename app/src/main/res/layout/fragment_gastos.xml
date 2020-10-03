@@ -40,9 +40,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="17dp"
-                android:text="Setembro / 2020"
                 android:textColor="@color/light_none"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -57,7 +56,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/round_outline"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout7">
@@ -219,7 +218,7 @@
                 android:text="Compromissos:"
                 android:textColor="@color/greyfont"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView35"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView31"
                 app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
@@ -240,11 +239,11 @@
                 style="@style/padraoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:text="Compromissos Pendentes:"
                 android:textColor="@color/greyfont"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/reprocessarIV"
                 app:layout_constraintStart_toStartOf="@+id/textView38"
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
@@ -323,15 +322,52 @@
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView43"
                 app:layout_constraintEnd_toEndOf="@+id/valorGastoTotalTextView" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout6"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/botton_dark_70_no_hole_100"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
             <ImageView
-                android:id="@+id/reprocessarIV"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="4dp"
-                android:src="@drawable/despesa_recorrente_2"
+                android:id="@+id/mesAnteriorImageViewGastos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:src="@drawable/previous_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/mesPosteriorImageViewGastos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:src="@drawable/next_arrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/reprocessarIV"
+                android:layout_width="50dp"
+                android:layout_height="55dp"
+                android:src="@drawable/update_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.533" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

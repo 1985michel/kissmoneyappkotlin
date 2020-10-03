@@ -332,11 +332,11 @@ class GanhosFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 //"Update UI here!")
                 // para poder rodar na tread principal
-                binding.mesAnteriorImageViewCaixa2.setOnClickListener {
+                binding.mesAnteriorImageViewGasto.setOnClickListener {
                     Navigation.findNavController(requireView())
                         .navigate(GanhosFragmentDirections.actionGanhosFragmentSelf(mesAnterior.mesId))
                 }
-                binding.mesPosteriorImageViewCaixa2.setOnClickListener {
+                binding.mesPosteriorImageViewGasto.setOnClickListener {
                     Navigation.findNavController(requireView())
                         .navigate(GanhosFragmentDirections.actionGanhosFragmentSelf(mesPosterior.mesId))
                 }

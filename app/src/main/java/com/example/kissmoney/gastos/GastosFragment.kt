@@ -21,6 +21,7 @@ import com.example.kissmoney.contas.ContasFragmentDirections
 import com.example.kissmoney.databinding.FragmentGanhosBinding
 import com.example.kissmoney.databinding.FragmentGastosBinding
 import com.example.kissmoney.ganhos.GanhoJoinViewModel
+import com.example.kissmoney.ganhos.GanhosFragmentDirections
 import com.example.kissmoney.mes.CentralEstatistica
 import com.example.kissmoney.mes.Estatisticas
 import com.example.kissmoney.mes.Mes
@@ -73,7 +74,12 @@ class GastosFragment : Fragment() {
                 mesViewModel.getByName(mesAnterior) {
                     mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
                     mesViewModel.getByName(mesAnterior) {
-                        setDadosNaView(binding)
+                        //setDadosNaView(binding)
+                        setMesAnteriorEMesPosterior(binding) {
+                            CentralEstatistica.processa {
+                                setDadosNaView(binding)
+                            }
+                        }
                     }
                 }
             }
@@ -83,6 +89,7 @@ class GastosFragment : Fragment() {
                     mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
                     mesViewModel.getByName(mesAnterior) {
                         setDadosNaView(binding)
+                        setMesAnteriorEMesPosterior(binding){}
                     }
                 }
             }
@@ -183,32 +190,35 @@ class GastosFragment : Fragment() {
 
                         if (estatisticaMesAtual?.totalGastoNoMes!! > 0) {
 
-                            var percentualVariacaoGasto =
-                                (estatisticaMesAnterior?.totalGastoNoMes!! * 100) / estatisticaMesAtual?.totalGastoNoMes!!
-                            var percentualVariacaoGastoString =
-                                if (percentualVariacaoGasto > 0) " + "
-                                else if (percentualVariacaoGasto < 0) " - "
-                                else ""
-                            percentualVariacaoGastoString =
-                                "$percentualVariacaoGastoString ${percentualVariacaoGasto.toString()}"
+//                            var percentualVariacaoGasto =
+//                                (estatisticaMesAnterior?.totalGastoNoMes!! * 100) / estatisticaMesAtual?.totalGastoNoMes!!
+
+                            var percentualVariacaoGasto = 100 - (
+                                ( estatisticaMesAtual?.totalGastoNoMes!! * 100)/estatisticaMesAnterior?.totalGastoNoMes!!)
+
+
+//                            var percentualVariacaoGastoString =
+//                                if (percentualVariacaoGasto > 0) " + "
+//                                else if (percentualVariacaoGasto < 0) " - "
+//                                else ""
+//                            percentualVariacaoGastoString =
+//                                "$percentualVariacaoGastoString ${percentualVariacaoGasto.toString()}"
 
                             var variacaoGastoPercentual = ""
+                            var sinal = ""
                             if (estatisticaMesAnterior?.totalGastoNoMes!! > estatisticaMesAtual?.totalGastoNoMes!!) {
-                                variacaoGastoPercentual = "-"
+                                sinal = "-"
                                 binding.textViewFeedBackGastos.text = "Parabéns! Você está reduzindo seus gastos!"
                             } else if (estatisticaMesAnterior?.totalGastoNoMes!! < estatisticaMesAtual?.totalGastoNoMes!!) {
-                                variacaoGastoPercentual = "+"
+                                sinal = "+"
                                 binding.textViewFeedBackGastos.text = "Cuidado! Você está aumentando seus gastos!"
                             } else {
-                                variacaoGastoPercentual = ""
+                                sinal = ""
                                 binding.textViewFeedBackGastos.text = "Seus gastos estão iguais ao mês anterior. Vamos economizar?"
                             }
 
                             variacaoGastoPercentual =
-                                "$variacaoGastoPercentual ${formataComNCasasDecimais(
-                                    percentualVariacaoGasto,
-                                    1
-                                )} %"
+                                "$sinal ${formataComNCasasDecimais( percentualVariacaoGasto, 1)} %"
 
 
 
@@ -228,8 +238,10 @@ class GastosFragment : Fragment() {
                                 estatisticaMesAnterior?.totalCompromissosPendentesDoMes + estatisticaMesAnterior.totalGastoNoMes
 
 
-                            var percentualVariacaoPrevisaoCustoMensal =
-                                previsaoCustoMensalMesAnterior * 100 / previsaoCustoMensal
+//                            var percentualVariacaoPrevisaoCustoMensal =
+//                                previsaoCustoMensalMesAnterior * 100 / previsaoCustoMensal
+
+                            var percentualVariacaoPrevisaoCustoMensal = 100 - (previsaoCustoMensal * 100 / previsaoCustoMensalMesAnterior)
 
                             //operações de divisão com números positivos sempre serão positivos
 //                            var percentualVariacaoPrevisaoCustoString =
@@ -238,21 +250,22 @@ class GastosFragment : Fragment() {
 //                                else ""
 
                             var variacaoGastoPercentual = ""
+                            var sinal = ""
                             if (previsaoCustoMensalMesAnterior > previsaoCustoMensal) {
-                                variacaoGastoPercentual = "-"
+                                sinal = "-"
                                 binding.textViewFeedBackGastosPrevisao.text = "Parabéns! Você está no caminho de reduzir seus gastos!"
                             } else if (previsaoCustoMensalMesAnterior < previsaoCustoMensal) {
-                                variacaoGastoPercentual = "+"
+                                sinal = "+"
                                 binding.textViewFeedBackGastosPrevisao.text = "Cuidado! Você está aumentando seus gastos!"
                             } else {
-                                variacaoGastoPercentual = ""
+                                sinal = ""
                                 binding.textViewFeedBackGastosPrevisao.text = "Seus gastos seguem o mesmo padrão do mês anterior."
                             }
 
 
 
 
-                            variacaoGastoPercentual = " $variacaoGastoPercentual ${formataComNCasasDecimais(percentualVariacaoPrevisaoCustoMensal,1)} %"
+                            variacaoGastoPercentual = " $sinal ${formataComNCasasDecimais(percentualVariacaoPrevisaoCustoMensal,1)} %"
 //                            percentualVariacaoPrevisaoCustoString =
 //                                "$percentualVariacaoPrevisaoCustoString ${percentualVariacaoPrevisaoCustoMensal.toString()}"
                             binding.comparacaoAoMesAnteriorPrevisaoTextView.text =
@@ -265,6 +278,8 @@ class GastosFragment : Fragment() {
 
 
                     }
+                } else {
+                    CentralEstatistica.addMes(mesAtual){setDadosNaView(binding)}
                 }
 
 //                binding.nomeMesTextView.text = getNomeMesPorExtensoComAno(mesAtual.nomeMes)
@@ -285,6 +300,36 @@ class GastosFragment : Fragment() {
 
             }
         }
+
+    }
+
+    private fun setMesAnteriorEMesPosterior(binding: FragmentGastosBinding, callback: () -> Unit) {
+        //mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
+        mesPosterior = Mes(0L, recebeNomeMesRetornaNomeMesPosterior(mesAtual.nomeMes))
+        //mesViewModel.getByName(mesAnterior) {}
+        mesViewModel.getByName(mesPosterior) {
+
+            println(">>>>>>>>>>>>>>>> MES POSTERIOR ${mesPosterior.nomeMes}   ID: ${mesPosterior.mesId}")
+
+            GlobalScope.launch {
+                //Background processing..."
+                withContext(Dispatchers.Main) {
+                    //"Update UI here!")
+                    // para poder rodar na tread principal
+                    binding.mesAnteriorImageViewGastos.setOnClickListener {
+                        Navigation.findNavController(requireView())
+                            .navigate(GastosFragmentDirections.actionGastosFragmentSelf(mesAnterior.mesId))
+                    }
+                    binding.mesPosteriorImageViewGastos.setOnClickListener {
+                        Navigation.findNavController(requireView())
+                            .navigate(GastosFragmentDirections.actionGastosFragmentSelf(mesPosterior.mesId))
+                    }
+                    callback()
+                }
+            }
+
+        }
+
 
     }
 
