@@ -202,6 +202,9 @@ class Estatisticas (mes: Mes) {
         callback()
     }
 
+
+    // Atenção! A fatura do cartão (tratada como uma conta) por ser negativa, já é descontada do caixa do mês anterior
+    // por isso não entra no gasto do mês atual
     fun setMyTotalGastoNoMes(callback: () -> Unit) {
         totalGastoNoMes = 0.0
         totalGastoNoMes = totalEmCaixaNoInicioDoMes - totalEmCaixa + totalGanhoNoMes
