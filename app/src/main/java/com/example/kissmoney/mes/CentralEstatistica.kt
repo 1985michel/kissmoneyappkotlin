@@ -15,6 +15,8 @@ object CentralEstatistica {
         estatisticasMensais = HashMap<Long, Estatisticas>()
     }
 
+    
+
     fun addMes(mes: Mes, callback: () -> Unit) {
 
         if (!estatisticasMensais.containsKey(mes.mesId)) {
