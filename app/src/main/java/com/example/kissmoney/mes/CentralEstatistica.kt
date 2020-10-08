@@ -150,7 +150,7 @@ object CentralEstatistica {
         //vou alterar essa forma de calcular, vou me basear nos meses que têm custo mensal
 
         var total = 0.0
-        var dias = 1
+        var dias = 0
 
         totalGastoTodoHistorico = 0.0
 
