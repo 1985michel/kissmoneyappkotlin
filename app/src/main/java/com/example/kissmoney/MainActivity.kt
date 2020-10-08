@@ -29,6 +29,7 @@ import com.example.kissmoney.databinding.ActivityMainBinding
 import com.example.kissmoney.ganhos.GanhoJoinViewModel
 import com.example.kissmoney.ganhos.GanhoViewModel
 import com.example.kissmoney.ganhos.mensal.GanhoMensalViewModel
+import com.example.kissmoney.mes.CentralEstatistica
 import com.example.kissmoney.mes.Estatisticas
 import com.example.kissmoney.mes.MesViewModel
 import com.example.kissmoney.meta.MetaViewModel
@@ -110,7 +111,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -133,6 +133,8 @@ class MainActivity : AppCompatActivity() {
         var compromissoMensalViewModel = ViewModelProvider(this).get(CompromissoMensalViewModel::class.java)
 
         var metaViewModel = ViewModelProvider(this).get(MetaViewModel::class.java)
+
+        CentralEstatistica.setMyOwner(this)
 
         var cjvm = ContaJoinViewModel
 

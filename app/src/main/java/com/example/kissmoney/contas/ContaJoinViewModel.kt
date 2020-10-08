@@ -42,6 +42,7 @@ object ContaJoinViewModel {
         callback()
     }
 
+
     fun setAllContasJoin(callback: () -> Unit){
 
         var moviList = ArrayList<MovimentacaoMensal>()

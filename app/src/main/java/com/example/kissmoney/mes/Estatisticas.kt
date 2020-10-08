@@ -6,6 +6,8 @@ import com.example.kissmoney.compromissos.CompromissoViewModel
 import com.example.kissmoney.contas.Conta
 import com.example.kissmoney.contas.ContaJoinViewModel
 import com.example.kissmoney.ganhos.GanhoJoinViewModel
+import com.example.kissmoney.mes.CentralEstatistica.estatisticasMensais
+import com.example.kissmoney.meta.AcompanhamentoDeMeta
 import com.example.kissmoney.meta.Meta
 import com.example.kissmoney.meta.MetaViewModel
 import com.example.kissmoney.util.formataComNCasasDecimais
@@ -40,15 +42,15 @@ class Estatisticas (mes: Mes) {
 
     var totalEmCaixa = 0.0
     var totalEmCaixaNoInicioDoMes = 0.0
-    var totalEmCaixaNoInicioDosRegistros = 0.0
+//    var totalEmCaixaNoInicioDosRegistros = 0.0
 
     var totalGanhoNoMes = 0.0
-    var totalGanhoTodoHistorico = 0.0
+//    var totalGanhoTodoHistorico = 0.0
 
     var totalGastoNoMes = 0.0
     var gastoDiarioNoMes = 0.0
-    var totalGastoTodoHistorico = 0.0
-    var gastoDiarioTodoHistorico = 0.0
+//    var totalGastoTodoHistorico = 0.0
+//    var gastoDiarioTodoHistorico = 0.0
 
 //    var totalGastoNoMesAnterior = 0.0
 
@@ -59,7 +61,7 @@ class Estatisticas (mes: Mes) {
 //    var totalCompromissosPendentesDoMesAnterior = 0.0
 
 
-    var qtdMesesComRegistros = 0
+//    var qtdMesesComRegistros = 0
     var abastanca = 0 //qtd de dias de liberdade financeira
     var totalInvestido = 0.0
 
@@ -72,14 +74,14 @@ class Estatisticas (mes: Mes) {
 
         println(">>> totalEmCaixa = ${this.totalEmCaixa}")
         println(">>> totalEmCaixaNoInicioDoMes = ${this.totalEmCaixaNoInicioDoMes}")
-        println(">>> totalEmCaixaNoInicioDosRegistros = $totalEmCaixaNoInicioDosRegistros")
+//        println(">>> totalEmCaixaNoInicioDosRegistros = $totalEmCaixaNoInicioDosRegistros")
         println(">>> totalGanhoNoMes = $totalGanhoNoMes")
-        println(">>> totalGanhoTodoHistorico = $totalGanhoTodoHistorico")
-        println(">>> totalGastoNoMes = $totalGastoNoMes")
-        println(">>> totalGastoTodoHistorico = $totalGanhoTodoHistorico")
-        println(">>> gastoDiarioNoMes = $totalGastoNoMes")
-        println(">>> gastoDiarioTodoHistorico = $gastoDiarioTodoHistorico")
-        println(">>> qtdMesesComRegistros = $qtdMesesComRegistros")
+//        println(">>> totalGanhoTodoHistorico = $totalGanhoTodoHistorico")
+//        println(">>> totalGastoNoMes = $totalGastoNoMes")
+//        println(">>> totalGastoTodoHistorico = $totalGanhoTodoHistorico")
+//        println(">>> gastoDiarioNoMes = $totalGastoNoMes")
+//        println(">>> gastoDiarioTodoHistorico = $gastoDiarioTodoHistorico")
+//        println(">>> qtdMesesComRegistros = $qtdMesesComRegistros")
         println(">>> abastanca = 0 $abastanca")
         println(">>> totalInvestido = $totalInvestido")
 
@@ -90,48 +92,106 @@ class Estatisticas (mes: Mes) {
 
         println(">>> totalEmCaixa = ${this.totalEmCaixa}")
         println(">>> totalEmCaixaNoInicioDoMes = ${this.totalEmCaixaNoInicioDoMes}")
-        println(">>> totalEmCaixaNoInicioDosRegistros = $totalEmCaixaNoInicioDosRegistros")
+//        println(">>> totalEmCaixaNoInicioDosRegistros = $totalEmCaixaNoInicioDosRegistros")
         println(">>> totalGanhoNoMes = $totalGanhoNoMes")
-        println(">>> totalGanhoTodoHistorico = $totalGanhoTodoHistorico")
-        println(">>> totalGastoNoMes = $totalGastoNoMes")
-        println(">>> totalGastoTodoHistorico = $totalGanhoTodoHistorico")
-        println(">>> gastoDiarioNoMes = $totalGastoNoMes")
-        println(">>> gastoDiarioTodoHistorico = $gastoDiarioTodoHistorico")
-        println(">>> qtdMesesComRegistros = $qtdMesesComRegistros")
+//        println(">>> totalGanhoTodoHistorico = $totalGanhoTodoHistorico")
+//        println(">>> totalGastoNoMes = $totalGastoNoMes")
+//        println(">>> totalGastoTodoHistorico = $totalGanhoTodoHistorico")
+//        println(">>> gastoDiarioNoMes = $totalGastoNoMes")
+//        println(">>> gastoDiarioTodoHistorico = $gastoDiarioTodoHistorico")
+//        println(">>> qtdMesesComRegistros = $qtdMesesComRegistros")
         println(">>> abastanca = 0 $abastanca")
         println(">>> totalInvestido = $totalInvestido")
 
+    }
+
+    fun processaDadosEstatisticasDependentesDeDadosGerais(callback: () -> Unit) {
+        setMyAbastanca {
+            setMyBalancoEmDias {
+                callback()
+            }
+        }
     }
 
     fun processa(callback: () -> Unit) {
 //        mesAtual = Mes(0L, getNomeMesAtual())
 //        mesViewModel.getByName(mesAtual) {
 
-            GlobalScope.launch {
-                //Background processing..."
-                withContext(Dispatchers.Main) {
-                    setMyTotalEmCaixa() {
+
+        println(" >>>>>>>>> ENTRANDO EM processa da classe ESTATÍSTICAS")
+
+//            GlobalScope.launch {
+//                //Background processing..."
+//                withContext(Dispatchers.Main) {
+//                    setMyTotalEmCaixa() {
 //                        println(">>>>> setMyTotalEmCaixa retornou")
-                        setMyTotalGanhoNoMes() {
+//                        setMyTotalGanhoNoMes() {
 //                            println(">>>>> setMyTotalGanhoNoMes retornou")
-                            setMyTotalGastoNoMes {
+//                            setMyTotalGastoNoMes {
 //                                println(">>>>> setMyTotalGastoNoMes retornou")
-                                setMyGastoDiarioNoMes {
+//                                setMyGastoDiarioNoMes {
 //                                    println(">>>>> setMyGastoDiarioNoMes retornou")
-                                    setMyTotalGanhoTodoHistorico() {
+//                                    setMyTotalGanhoTodoHistorico() {
 //                                        println(">>>>> setMyTotalGanhoTodoHistorico retornou")
-                                        setMyTotalGastoTodoHistorico {
+//                                        setMyTotalGastoTodoHistorico {
 //                                            println(">>>>> setMyTotalGastoTodoHistorico retornou")
-                                            setMyGastoDiarioTodoHistorico {
+//                                            setMyGastoDiarioTodoHistorico {
 //                                                println(">>>>> setMyGastoDiarioTodoHistorico retornou")
-                                                setMyAbastanca {
+//                                                setMyAbastanca {
 //                                                    println(">>>>> setMyAbastanca retornou")
+////                                                    println(">>>>>>>>>>>>>>>>> EM ESTATÍSTICAS ESTAMOS SETANDO A ABASTANCA EM $abastanca")
+//                                                    setMyCompromissosDoMes {
+//                                                        println(">>>>> setMyCompromissosDoMes retornou")
+//                                                        setMyBalanco {
+//                                                            println(">>>>> setMyBalanco retornou")
+//                                                            setMyBalancoEmDias{
+//                                                                println(">>>>> setMyBalancoEmDias retornou")
+//                                                                println(" >>>>>>>>> callback de processa da classe ESTATÍSTICAS")
+//                                                                callback()
+//                                                            }
+//                                                        }
+//                                                    }
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+
+
+
+        GlobalScope.launch {
+            //Background processing..."
+            withContext(Dispatchers.Main) {
+                setMyTotalEmCaixa() {
+                    println(">>>>> setMyTotalEmCaixa retornou")
+                    setMyTotalGanhoNoMes() {
+                        println(">>>>> setMyTotalGanhoNoMes retornou")
+                        setMyTotalGastoNoMes {
+                            println(">>>>> setMyTotalGastoNoMes retornou")
+                            setMyGastoDiarioNoMes {
+                                println(">>>>> setMyGastoDiarioNoMes retornou")
+//                                setMyTotalGanhoTodoHistorico() {
+//                                    println(">>>>> setMyTotalGanhoTodoHistorico retornou")
+//                                    setMyTotalGastoTodoHistorico {
+//                                        println(">>>>> setMyTotalGastoTodoHistorico retornou")
+//                                        setMyGastoDiarioTodoHistorico {
+//                                            println(">>>>> setMyGastoDiarioTodoHistorico retornou")
+//                                            setMyAbastanca {
+//                                                println(">>>>> setMyAbastanca retornou")
 //                                                    println(">>>>>>>>>>>>>>>>> EM ESTATÍSTICAS ESTAMOS SETANDO A ABASTANCA EM $abastanca")
-                                                    setMyCompromissosDoMes {
-                                                        setMyBalanco {
-                                                            setMyBalancoEmDias{
-                                                                callback()
-                                                            }
+                                                setMyCompromissosDoMes {
+                                                    println(">>>>> setMyCompromissosDoMes retornou")
+                                                    setMyBalanco {
+                                                        println(">>>>> setMyBalanco retornou")
+//                                                        setMyBalancoEmDias{
+//                                                            println(">>>>> setMyBalancoEmDias retornou")
+                                                            println(" >>>>>>>>> callback de processa da classe ESTATÍSTICAS")
+                                                            callback()
                                                         }
                                                     }
                                                 }
@@ -140,10 +200,21 @@ class Estatisticas (mes: Mes) {
                                     }
                                 }
                             }
-                        }
-                    }
-                }
-            }
+//                        }
+//                   }
+//                }
+//            }
+//        }
+
+
+
+
+
+
+
+
+
+
 
 //            mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
 //            mesViewModel.getByName(mesAnterior) {
@@ -169,7 +240,8 @@ class Estatisticas (mes: Mes) {
 //    }
 
     fun setMyAbastanca(callback: () -> Unit) {
-        abastanca = (totalEmCaixa / gastoDiarioTodoHistorico).toInt()
+        //abastanca = (totalEmCaixa / gastoDiarioTodoHistorico).toInt()
+        abastanca = (totalEmCaixa / CentralEstatistica.gastoDiarioTodoHistorico).toInt()
 //        println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
 //        println(">>>> Estatísicas 109: Abastança ($abastanca) = total em Caixa ($totalEmCaixa) / gasto diario todo historico ($gastoDiarioTodoHistorico)")
         callback()
@@ -183,24 +255,60 @@ class Estatisticas (mes: Mes) {
     }
 
     fun setMyBalancoEmDias(callback: () -> Unit) {
-        balancoEmDias = (balanco / gastoDiarioTodoHistorico).toInt()
+        balancoEmDias = (balanco / CentralEstatistica.gastoDiarioTodoHistorico).toInt()
         callback()
     }
 
 
     fun setMyGastoDiarioNoMes(callback: () -> Unit) {
-        gastoDiarioNoMes = totalGastoNoMes / getDiaHojeNoMes()
-        callback()
+
+        //se estivermos trabalhando com o mês corrente, calcule com base no dia de hoje
+        if (mesAtual.nomeMes ==  AcompanhamentoDeMeta.mesAtual.nomeMes) {
+            gastoDiarioNoMes = totalGastoNoMes / getDiaHojeNoMes()
+            callback()
+        } else {
+            //se for um mês já concluído, calcule com base em 30 dias
+            gastoDiarioNoMes = totalGastoNoMes / 30.0
+            callback()
+        }
+
     }
 
 
-    fun setMyGastoDiarioTodoHistorico(callback: () -> Unit) {
-        var qtdDias = (qtdMesesComRegistros - 1) * 30
-        gastoDiarioTodoHistorico = totalGastoTodoHistorico / (qtdDias + getDiaHojeNoMes())
-//        println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
-//        println(">>>> Estatísicas 126: Gasto Diario de todo o historico ($gastoDiarioTodoHistorico) = total gasto todo historico ($totalGastoTodoHistorico) / qtdDias (${qtdDias + getDiaHojeNoMes()})")
-        callback()
-    }
+//    fun setMyGastoDiarioTodoHistorico(callback: () -> Unit) {
+//        var qtdDias = (qtdMesesComRegistros - 1) * 30
+//
+//        //gastoDiarioTodoHistorico = totalGastoTodoHistorico / (qtdDias + getDiaHojeNoMes())
+//
+//        //vou alterar essa forma de calcular, vou me basear nos meses que têm custo mensal
+//
+//        var total = 0.0
+//        var dias = 1
+//
+//        for ( (key, value) in CentralEstatistica.estatisticasMensais) {
+//            if( value.totalGastoNoMes > 0) {
+//                total += value.totalGastoNoMes
+//                if (key != AcompanhamentoDeMeta.mesAtual.mesId) {
+//                    dias += 30
+//                } else {
+//                    dias += getDiaHojeNoMes()
+//                }
+//            }
+//        }
+//
+//        println ("88888888888888888888888888888888888888888")
+//        println("7777777777777777777777777777777777777777777")
+//        println("666666666666666666666666666666666666666666")
+//        println(">>>>>>>>>>>>>>>>>>>> ENCONTRAMOS ${dias} dias e o valor total de ${total}")
+//
+//        gastoDiarioTodoHistorico = total / dias
+//
+//
+//
+////        println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
+////        println(">>>> Estatísicas 126: Gasto Diario de todo o historico ($gastoDiarioTodoHistorico) = total gasto todo historico ($totalGastoTodoHistorico) / qtdDias (${qtdDias + getDiaHojeNoMes()})")
+//        callback()
+//    }
 
 
     // Atenção! A fatura do cartão (tratada como uma conta) por ser negativa, já é descontada do caixa do mês anterior
@@ -214,18 +322,18 @@ class Estatisticas (mes: Mes) {
     }
 
 
-    fun setMyTotalGanhoTodoHistorico(callback: () -> Unit) {
-        totalGanhoTodoHistorico = 0.0
-        GanhoJoinViewModel.setAllGanhosJoin() {
-            for (gj in GanhoJoinViewModel.allGanhosJoin) {
-//                println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
-//                println(">>>>>>>>>>> ESTATISTICAS 141:  valores ganhos: ${gj.valor}")
-                totalGanhoTodoHistorico += gj.valor
-            }
-            totalGanhoTodoHistorico = formataComNCasasDecimais(totalGanhoTodoHistorico,2)
-            callback()
-        }
-    }
+//    fun setMyTotalGanhoTodoHistorico(callback: () -> Unit) {
+//        totalGanhoTodoHistorico = 0.0
+//        GanhoJoinViewModel.setAllGanhosJoin() {
+//            for (gj in GanhoJoinViewModel.allGanhosJoin) {
+////                println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
+////                println(">>>>>>>>>>> ESTATISTICAS 141:  valores ganhos: ${gj.valor}")
+//                totalGanhoTodoHistorico += gj.valor
+//            }
+//            totalGanhoTodoHistorico = formataComNCasasDecimais(totalGanhoTodoHistorico,2)
+//            callback()
+//        }
+//    }
 
     fun setMyCompromissosDoMes(callback: () -> Unit) {
         totalCompromissosDoMes = 0.0
@@ -254,18 +362,18 @@ class Estatisticas (mes: Mes) {
 //    }
 
 
-    fun setMyTotalGastoTodoHistorico(callback: () -> Unit) {
-
-        totalGastoTodoHistorico =
-            totalEmCaixaNoInicioDosRegistros - totalEmCaixa + totalGanhoTodoHistorico
-
-        totalGastoTodoHistorico = formataComNCasasDecimais(totalGastoTodoHistorico,2)
-//        println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
-//        println(">>>> Estatísicas 152: totalGastoTodoHistorico ($totalGastoTodoHistorico) = totalEmCaixaNoInicioDosRegistros ($totalEmCaixaNoInicioDosRegistros) " +
-//                "- totalEmCaixa ($totalEmCaixa) + totalGanhoTodoHistorico ($totalGanhoTodoHistorico)")
-        callback()
-
-    }
+//    fun setMyTotalGastoTodoHistorico(callback: () -> Unit) {
+//
+//        totalGastoTodoHistorico =
+//            totalEmCaixaNoInicioDosRegistros - totalEmCaixa + totalGanhoTodoHistorico
+//
+//        totalGastoTodoHistorico = formataComNCasasDecimais(totalGastoTodoHistorico,2)
+////        println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨")
+////        println(">>>> Estatísicas 152: totalGastoTodoHistorico ($totalGastoTodoHistorico) = totalEmCaixaNoInicioDosRegistros ($totalEmCaixaNoInicioDosRegistros) " +
+////                "- totalEmCaixa ($totalEmCaixa) + totalGanhoTodoHistorico ($totalGanhoTodoHistorico)")
+//        callback()
+//
+//    }
 
 
     fun setMyTotalGanhoNoMes(callback: () -> Unit) {
@@ -303,30 +411,32 @@ class Estatisticas (mes: Mes) {
                 totalEmCaixaNoInicioDoMes += cj.saldoInicial
             }
 
-            setTotalEmCaixaNoInicioDosRegistros() {
-                callback()
-            }
+            callback()
+
+//            setTotalEmCaixaNoInicioDosRegistros() {
+//                callback()
+//            }
 
             //callback()
         }
 
     }
 
-    fun setTotalEmCaixaNoInicioDosRegistros(callback: () -> Unit) {
-
-        totalEmCaixaNoInicioDosRegistros = 0.0
-        var contasConsideradasList = ArrayList<Long>()
-        contasConsideradasList.clear()
-
-        ContaJoinViewModel.setAllContasJoin() {
-            for (cj in ContaJoinViewModel.allContasJoin) {
-                if (!contasConsideradasList.contains(cj.contaId)) {
-                    totalEmCaixaNoInicioDosRegistros += cj.saldoInicial
-                    contasConsideradasList.add(cj.contaId)
-                }
-            }
-            qtdMesesComRegistros = ContaJoinViewModel.qtdDeMesesComRegistro
-            callback()
-        }
-    }
+//    fun setTotalEmCaixaNoInicioDosRegistros(callback: () -> Unit) {
+//
+//        totalEmCaixaNoInicioDosRegistros = 0.0
+//        var contasConsideradasList = ArrayList<Long>()
+//        contasConsideradasList.clear()
+//
+//        ContaJoinViewModel.setAllContasJoin() {
+//            for (cj in ContaJoinViewModel.allContasJoin) {
+//                if (!contasConsideradasList.contains(cj.contaId)) {
+//                    totalEmCaixaNoInicioDosRegistros += cj.saldoInicial
+//                    contasConsideradasList.add(cj.contaId)
+//                }
+//            }
+//            qtdMesesComRegistros = ContaJoinViewModel.qtdDeMesesComRegistro
+//            callback()
+//        }
+//    }
 }

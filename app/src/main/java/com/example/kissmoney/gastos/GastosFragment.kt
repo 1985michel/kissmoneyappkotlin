@@ -76,9 +76,9 @@ class GastosFragment : Fragment() {
                     mesViewModel.getByName(mesAnterior) {
                         //setDadosNaView(binding)
                         setMesAnteriorEMesPosterior(binding) {
-                            CentralEstatistica.processa {
+                           // CentralEstatistica.processa {
                                 setDadosNaView(binding)
-                            }
+                           // }
                         }
                     }
                 }
@@ -89,7 +89,9 @@ class GastosFragment : Fragment() {
                     mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
                     mesViewModel.getByName(mesAnterior) {
                         setDadosNaView(binding)
-                        setMesAnteriorEMesPosterior(binding){}
+                        setMesAnteriorEMesPosterior(binding){
+
+                        }
                     }
                 }
             }
@@ -175,7 +177,8 @@ class GastosFragment : Fragment() {
                     binding.custoDeVidaDiariotextView.text =
                         formataParaBr(estatisticaMesAtual?.gastoDiarioNoMes.toBigDecimal())
 
-                    binding.custoDiarioTodoHistoricoTV.text = formataParaBr(estatisticaMesAtual?.gastoDiarioTodoHistorico.toBigDecimal())
+//                    binding.custoDiarioTodoHistoricoTV.text = formataParaBr(estatisticaMesAtual?.gastoDiarioTodoHistorico.toBigDecimal())
+                    binding.custoDiarioTodoHistoricoTV.text = formataParaBr(CentralEstatistica.gastoDiarioTodoHistorico.toBigDecimal())
 
                     if (estatisticaMesAtual?.totalGastoNoMes!! + estatisticaMesAtual?.totalCompromissosPendentesDoMes!! < estatisticaMesAtual?.totalCompromissosDoMes ||
                         estatisticaMesAtual?.totalGastoNoMes < 0) {

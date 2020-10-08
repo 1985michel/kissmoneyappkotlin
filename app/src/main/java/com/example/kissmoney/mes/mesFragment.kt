@@ -78,7 +78,7 @@ class mesFragment : Fragment() {
         recyclerView.itemAnimator = DefaultItemAnimator()
 
         println(">>>> Vou imprimir as estatísticas desse mês")
-        CentralEstatistica.estatisticasMensais.get(AcompanhamentoDeMeta.mesAtual.mesId).toString()
+        AcompanhamentoDeMeta.mesAtual.mesId.toString()
 
         binding.nomeMesTextView.text = getNomeMesPorExtensoComAno(AcompanhamentoDeMeta.mesAtual.nomeMes)
         binding.valorBalancoTextView.text = formataParaBr(

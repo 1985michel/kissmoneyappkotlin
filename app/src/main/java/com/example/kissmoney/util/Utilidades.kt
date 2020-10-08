@@ -17,6 +17,8 @@ fun formataParaBr(valor: BigDecimal): String {
 }
 
 fun formataComNCasasDecimais(valor: Double, casas: Int): Double {
+
+    if (valor.isInfinite()) return 0.0
     return valor.toBigDecimal().setScale(casas, RoundingMode.DOWN).toDouble()
 }
 
