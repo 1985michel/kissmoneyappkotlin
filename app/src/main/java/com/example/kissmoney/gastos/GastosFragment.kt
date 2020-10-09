@@ -65,6 +65,7 @@ class GastosFragment : Fragment() {
         val args = ContasFragmentArgs.fromBundle(requireArguments())
         var idMes = args.idMes
 
+        
 
         mesAtual = Mes(idMes, getNomeMesAtual())
         mesAnterior = Mes(0L, recebeNomeMesRetornaNomeMesAnterior(mesAtual.nomeMes))
