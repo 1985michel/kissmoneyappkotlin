@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="330dp"
+    android:layout_height="135dp"
+    android:background="@drawable/cornerlesssquare">
+
+    <TextView
+        android:id="@+id/textView45"
+        style="@style/padraoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/roboto_condensed_regular"
+        android:text="dias"
+        app:layout_constraintEnd_toEndOf="@+id/variacaoDiasMesTV"
+        app:layout_constraintStart_toStartOf="@+id/variacaoDiasMesTV"
+        app:layout_constraintTop_toTopOf="@+id/variacaoDiasMesTV" />
+
+    <TextView
+        android:id="@+id/nomeMesItemTextView"
+        style="@style/padraoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_condensed_regular"
+        android:text="Setembro, 2020"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/valorBanlancoTV"
+        style="@style/padraoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="R$ 0,00"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="28dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/variacaoDiasMesTV"
+        app:srcCompat="@drawable/greenrow4" />
+
+    <TextView
+        android:id="@+id/variacaoDiasMesTV"
+        style="@style/padraoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="15"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toTopOf="@+id/nomeMesItemTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

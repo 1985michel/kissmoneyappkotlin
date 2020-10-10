@@ -26,7 +26,7 @@ class Estatisticas (mes: Mes) {
 
     private lateinit var metas: List<Meta>
 
-    private var mesAtual: Mes
+    var mesAtual: Mes
     //private lateinit var mesAnterior: Mes
 
 //    private  var mesViewModel: MesViewModel

@@ -1,0 +1,159 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.kissmoney.mes.mesFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightgreybackground">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/botton_dark_70_no_hole_100"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/gastosImageView"
+                android:layout_width="54dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/downrow_dark_2"
+                app:layout_constraintBottom_toBottomOf="@+id/cardImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/cardImageView"
+                app:layout_constraintTop_toTopOf="@+id/cardImageView"
+                app:layout_constraintVertical_bias="0.625" />
+
+            <ImageView
+                android:id="@+id/ganhosImageView"
+                android:layout_width="54dp"
+                android:layout_height="40dp"
+                android:src="@drawable/uprow_dark_2"
+                app:layout_constraintEnd_toStartOf="@+id/walletImageView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/gastosImageView" />
+
+            <ImageView
+                android:id="@+id/cardImageView"
+                android:layout_width="63dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/creditcard_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gastosImageView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/walletImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.166" />
+
+            <ImageView
+                android:id="@+id/walletImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/wallet_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cardImageView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/ganhosImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView12"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ganhos"
+                android:textColor="@color/design_default_color_background"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView16"
+                app:layout_constraintEnd_toEndOf="@+id/ganhosImageView"
+                app:layout_constraintStart_toStartOf="@+id/ganhosImageView" />
+
+            <TextView
+                android:id="@+id/textView13"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gastos"
+                android:textColor="@color/design_default_color_background"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView15"
+                app:layout_constraintEnd_toEndOf="@+id/gastosImageView"
+                app:layout_constraintStart_toStartOf="@+id/gastosImageView" />
+
+            <TextView
+                android:id="@+id/textView15"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dívidas"
+                android:textColor="@color/design_default_color_background"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView16"
+                app:layout_constraintEnd_toEndOf="@+id/cardImageView"
+                app:layout_constraintStart_toStartOf="@+id/cardImageView" />
+
+            <TextView
+                android:id="@+id/textView16"
+                style="@style/padraoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="Contas"
+                android:textColor="@color/design_default_color_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/walletImageView"
+                app:layout_constraintStart_toStartOf="@+id/walletImageView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView7"
+            style="@style/tituloTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="Balanço"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="32dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewbalanco"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerviewmes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7"
+            tools:listitem="@layout/item_balanco" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewmes"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/itemmes" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

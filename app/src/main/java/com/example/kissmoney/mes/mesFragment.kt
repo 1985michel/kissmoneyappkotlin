@@ -1,5 +1,6 @@
 package com.example.kissmoney.mes
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,22 +8,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kissmoney.R
-import com.example.kissmoney.contas.ContaJoinViewModel
-import com.example.kissmoney.databinding.FragmentNovomesBinding
+import com.example.kissmoney.databinding.FragmentNovoMesTresBinding
 import com.example.kissmoney.meta.AcompanhamentoDeMeta
 import com.example.kissmoney.meta.Meta
-import com.example.kissmoney.util.formataParaBr
-import com.example.kissmoney.util.getNomeMesAtual
-import com.example.kissmoney.util.getNomeMesPorExtensoComAno
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class mesFragment : Fragment() {
@@ -60,9 +52,10 @@ class mesFragment : Fragment() {
 //        }
 
 
-        val binding = DataBindingUtil.inflate<FragmentNovomesBinding>(
+        val binding = DataBindingUtil.inflate<FragmentNovoMesTresBinding>(
             inflater,
-            R.layout.fragment_novomes,
+            R.layout.fragment_novo_mes_tres,
+//            R.layout.fragment_novomes,
 //            R.layout.fragment_mes,
             container,
             false
@@ -77,29 +70,46 @@ class mesFragment : Fragment() {
         recyclerView.layoutManager = mLayoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
 
-        println(">>>> Vou imprimir as estatísticas desse mês")
-        AcompanhamentoDeMeta.mesAtual.mesId.toString()
-
-        binding.nomeMesTextView.text = getNomeMesPorExtensoComAno(AcompanhamentoDeMeta.mesAtual.nomeMes)
-        binding.valorBalancoTextView.text = formataParaBr(
-            CentralEstatistica.estatisticasMensais.get(AcompanhamentoDeMeta.mesAtual.mesId)!!.balanco.toBigDecimal()
-        )
-        binding.variacaoDiasMesTextView.text =
-            CentralEstatistica.estatisticasMensais.get(AcompanhamentoDeMeta.mesAtual.mesId)!!.balancoEmDias.toString()
-
-        binding.imageView.setImageResource(
-            if (binding.variacaoDiasMesTextView.text.toString().toInt() > 0) {
-                R.drawable.greenrow4
-            } else if (binding.variacaoDiasMesTextView.text.toString().toInt() < 0) {
-                R.drawable.redrow4
-            } else {
-                R.drawable.round_colorless
-            }
-        )
-
         AcompanhamentoDeMeta.setValues {
             adapter.setDados(AcompanhamentoDeMeta.metaJoinList)
         }
+
+        val recyclerViewBalanco = binding.recyclerviewbalanco
+        var adapterBalanco = BalancoListAdapter(requireActivity())
+        recyclerViewBalanco.adapter = adapterBalanco
+        val mLayoutManagerBalanco = LinearLayoutManager(requireActivity())
+        mLayoutManagerBalanco.orientation = LinearLayoutManager.HORIZONTAL
+        recyclerViewBalanco.layoutManager = mLayoutManagerBalanco
+        recyclerViewBalanco.itemAnimator = DefaultItemAnimator()
+
+        adapterBalanco.setDados(CentralEstatistica.listaDeBalancos)
+
+        //navega para o último item
+        recyclerViewBalanco.smoothScrollBy(Resources.getSystem().getDisplayMetrics().widthPixels,0)
+
+
+
+//        println(">>>> Vou imprimir as estatísticas desse mês")
+//        AcompanhamentoDeMeta.mesAtual.mesId.toString()
+
+//        binding.nomeMesTextView.text = getNomeMesPorExtensoComAno(AcompanhamentoDeMeta.mesAtual.nomeMes)
+//        binding.valorBalancoTextView.text = formataParaBr(
+//            CentralEstatistica.estatisticasMensais.get(AcompanhamentoDeMeta.mesAtual.mesId)!!.balanco.toBigDecimal()
+//        )
+//        binding.variacaoDiasMesTextView.text =
+//            CentralEstatistica.estatisticasMensais.get(AcompanhamentoDeMeta.mesAtual.mesId)!!.balancoEmDias.toString()
+//
+//        binding.imageView.setImageResource(
+//            if (binding.variacaoDiasMesTextView.text.toString().toInt() > 0) {
+//                R.drawable.greenrow4
+//            } else if (binding.variacaoDiasMesTextView.text.toString().toInt() < 0) {
+//                R.drawable.redrow4
+//            } else {
+//                R.drawable.round_colorless
+//            }
+//        )
+
+
 
 
 
@@ -196,6 +206,8 @@ class mesFragment : Fragment() {
         var metaGastos = Meta(0L, "Gasto", 1500.0, false,"", "")
         metas.add(metaGastos)
     }
+
+
 
 
 

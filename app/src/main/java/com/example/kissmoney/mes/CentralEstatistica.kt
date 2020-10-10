@@ -20,6 +20,8 @@ object CentralEstatistica {
     private lateinit var mesViewModel: MesViewModel
     private lateinit var metaViewModel: MetaViewModel
 
+    var listaDeBalancos = ArrayList<Balanco>()
+
     var totalGastoTodoHistorico = 0.0
     var gastoDiarioTodoHistorico = 0.0
     var totalGanhoTodoHistorico = 0.0
@@ -37,6 +39,7 @@ object CentralEstatistica {
         this.mesViewModel = mesViewModel
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun addAllMeses(listaMeses: ArrayList<Mes>, callback: () -> Unit) {
         //mesViewModel.allMeses.observe(owner, Observer { listaMeses ->
         listaMeses.forEach {
@@ -80,7 +83,9 @@ object CentralEstatistica {
         processaEstatisticasIndividualmente {
             processaDadosGerais {
                 setDadosEstatisticasDependentesDeDadosGerais{
-                    callback()
+                    processaBalancoList{
+                        callback()
+                    }
                 }
             }
         }
@@ -122,6 +127,29 @@ object CentralEstatistica {
                 callback()
             }
         }
+    }
+
+
+    //para alimentar os dados do mes_fragment
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun processaBalancoList(callback: () -> Unit) {
+
+        listaDeBalancos.clear()
+        var chave = 1
+        estatisticasMensais.forEach { key, estat ->
+            chave ++
+            if (estat.totalGastoNoMes > 0) {
+                listaDeBalancos.add(
+                    Balanco(
+                        estat.mesAtual.nomeMes,
+                        estat.balanco,
+                        estat.balancoEmDias
+                    )
+                )
+            }
+            if (chave == estatisticasMensais.size) callback()
+        }
+
     }
 
     fun setTotalEmCaixaNoInicioDosRegistros(callback: () -> Unit) {
@@ -166,10 +194,10 @@ object CentralEstatistica {
             }
         }
 
-        println("88888888888888888888888888888888888888888")
-        println("7777777777777777777777777777777777777777777")
-        println("666666666666666666666666666666666666666666")
-        println(">>>>>>>>>>>>>>>>>>>> ENCONTRAMOS ${dias} dias e o valor total de ${total}")
+//        println("88888888888888888888888888888888888888888")
+//        println("7777777777777777777777777777777777777777777")
+//        println("666666666666666666666666666666666666666666")
+//        println(">>>>>>>>>>>>>>>>>>>> ENCONTRAMOS ${dias} dias e o valor total de ${total}")
 
         gastoDiarioTodoHistorico = total / dias
 
