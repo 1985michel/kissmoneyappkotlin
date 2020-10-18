@@ -121,7 +121,7 @@ class CompromissoListAdapter internal constructor(context: Context) :
                 holder.atencaoImageView.visibility = View.INVISIBLE
             }
         } else {
-
+            holder.atencaoImageView.visibility = View.INVISIBLE
         }
 
 
