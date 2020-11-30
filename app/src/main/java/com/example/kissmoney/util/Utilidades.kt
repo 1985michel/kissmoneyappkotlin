@@ -19,7 +19,14 @@ fun formataParaBr(valor: BigDecimal): String {
 fun formataComNCasasDecimais(valor: Double, casas: Int): Double {
 
     if (valor.isInfinite()) return 0.0
-    return valor.toBigDecimal().setScale(casas, RoundingMode.DOWN).toDouble()
+    //return valor.toBigDecimal().setScale(casas, RoundingMode.DOWN).toDouble()
+
+    var resultado = valor.toBigDecimal().setScale(casas, RoundingMode.DOWN).toDouble()
+
+    //o resultaod deve ser sempre positivo. O tratamento de sinal é feito na view que vai determinar o feedback
+    if (resultado < 0.0) resultado = resultado *-1
+
+    return resultado
 }
 
 fun limpaFormatacaoDeMoeda(valor: String): String {
